@@ -10,20 +10,23 @@ using System.Windows.Forms;
 
 namespace Preowned_Car_Management_System
 {
-    public partial class AddStockPopupForm : Form
+    public partial class AddAccessoriesForm : Form
     {
         public String ImagePath { get; set; }
-        public String carName { get; set; }
-        public String carId { get; set; }
-        public String supplierId { get; set; }
-        public String ownerType { get; set; }
-        public String carDate { get; set; }
-        public String carInfo { get; set; }
+        public String accessoriesName { get; set; }
+        public String accessoriesDate { get; set; }
 
-
-        public AddStockPopupForm()
+        public String accessoriesCount { get;set; }
+        public AddAccessoriesForm()
         {
             InitializeComponent();
+        }
+        private void OKButton_Click(object sender, EventArgs e)
+        {
+            accessoriesName = AccessoriesNameTextBox.Text;
+            accessoriesDate= dateTimePicker1.Value.ToString();
+            accessoriesCount = AccessoriesCountTextBox.Text;
+            DialogResult = DialogResult.OK;
         }
 
         private void photo_button_Click(object sender, EventArgs e)
@@ -46,23 +49,7 @@ namespace Preowned_Car_Management_System
             DialogResult = DialogResult.Cancel;
         }
 
-        private void AddStockPopupForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void OKButton_Click(object sender, EventArgs e)
-        {
-            carName = CarNameTextBox.Text;
-            carId = CarIdTextBox.Text;
-            supplierId = SupplierIdTextBox.Text;
-            carDate = dateTimePicker1.Value.ToString("dd / MM / yyyy");
-            ownerType = OwnerTypeTextBox.Text;
-            carInfo = CarInfoTextBox.Text;
-            DialogResult = DialogResult.OK;
-        }
-
-        private void name_label_Click(object sender, EventArgs e)
+        private void AddAccessoriesForm_Load(object sender, EventArgs e)
         {
 
         }

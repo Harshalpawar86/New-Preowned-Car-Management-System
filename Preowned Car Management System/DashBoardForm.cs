@@ -17,9 +17,6 @@ namespace Preowned_Car_Management_System
             InitializeComponent();
             LoginForm form = new LoginForm();
             this.Size = form.Size;
-            Image originalImage = Properties.Resources.vecteezy_stock_vector_icon_14948759;
-            Image resizedImage = new Bitmap(originalImage, new Size(50, 45));
-            StockButton.Image = resizedImage;
         }
 
         private void DashPanel_Paint(object sender, PaintEventArgs e)
@@ -56,7 +53,7 @@ namespace Preowned_Car_Management_System
             flowLayoutPanel1.Controls.Add(form);
             form.Dock = DockStyle.Fill;
             form.Show();
-        }
+        } 
         
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
@@ -67,6 +64,24 @@ namespace Preowned_Car_Management_System
         private void AddStockButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void SuppliersButton_Click(object sender, EventArgs e)
+        {
+            SupplierForm supplierForm = new SupplierForm();
+            LoadGivenForm(supplierForm);
+        }
+
+        private void BuyersButton_Click(object sender, EventArgs e)
+        {
+            BuyersForm buyersForm = new BuyersForm();
+            LoadGivenForm(buyersForm);
+        }
+
+        private void AccessoriesButton_Click(object sender, EventArgs e)
+        {
+            AccessoriesForm accessoriesForm = new AccessoriesForm();
+            LoadGivenForm(accessoriesForm);
         }
     }
 }

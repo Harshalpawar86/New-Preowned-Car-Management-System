@@ -32,7 +32,7 @@ namespace Preowned_Car_Management_System
             
             DashBoardForm dashBoardForm = new DashBoardForm();
             dashBoardForm.Show();
-            this.Hide();
+          //  this.Hide();
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)

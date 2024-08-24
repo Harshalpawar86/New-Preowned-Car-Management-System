@@ -119,6 +119,7 @@
             this.AccessoriesButton.TabIndex = 23;
             this.AccessoriesButton.Text = "Accessories";
             this.AccessoriesButton.UseVisualStyleBackColor = true;
+            this.AccessoriesButton.Click += new System.EventHandler(this.AccessoriesButton_Click);
             // 
             // BuyersButton
             // 
@@ -130,6 +131,7 @@
             this.BuyersButton.TabIndex = 22;
             this.BuyersButton.Text = "Buyers";
             this.BuyersButton.UseVisualStyleBackColor = true;
+            this.BuyersButton.Click += new System.EventHandler(this.BuyersButton_Click);
             // 
             // SuppliersButton
             // 
@@ -141,6 +143,7 @@
             this.SuppliersButton.TabIndex = 21;
             this.SuppliersButton.Text = "Suppliers";
             this.SuppliersButton.UseVisualStyleBackColor = true;
+            this.SuppliersButton.Click += new System.EventHandler(this.SuppliersButton_Click);
             // 
             // StockButton
             // 
