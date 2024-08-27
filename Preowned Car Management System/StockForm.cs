@@ -149,7 +149,6 @@ namespace Preowned_Car_Management_System
                 AddStockInfo(carName:carName, carId:carId, supplierId:supplierId,carDate:carDate,image:imageString, ownerType:ownerType, carInfoLabel:carInfoLabel);
             }
 
-            // AddStockInfo("Car Name : Audi","Car id : 9090","Supplier Id : 8900","Car Date : 12/12/2024",Properties.Resources.vecteezy_purple_black_car_isolated_in_transparent_background_49174806,"Owner Type : Second Owner", "Car Info : bbcfwdbjc wdbjw cbjcbjkcw jkwc jkc wdjkw  bbcfwdbjc wdbjw cbjcbjkcw jkwc jkc wdjkw  bbcfwdbjc wdbjw cbjcbjkcw jkwc jkc wdjkw  bbcfwdbjc wdbjw cbjcbjkcw jkwc jkc wdjkw  bbcfwdbjc wdbjw cbjcbjkcw jkwc jkc wdjkw ");
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)

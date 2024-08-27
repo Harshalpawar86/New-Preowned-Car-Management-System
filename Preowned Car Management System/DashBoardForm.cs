@@ -17,6 +17,7 @@ namespace Preowned_Car_Management_System
             InitializeComponent();
             LoginForm form = new LoginForm();
             this.Size = form.Size;
+          
         }
 
         private void DashPanel_Paint(object sender, PaintEventArgs e)
@@ -82,6 +83,22 @@ namespace Preowned_Car_Management_System
         {
             AccessoriesForm accessoriesForm = new AccessoriesForm();
             LoadGivenForm(accessoriesForm);
+        }
+
+        private void MaintenanceButton_Click(object sender, EventArgs e)
+        {
+            MaintenanceForm maintenanceForm = new MaintenanceForm();
+            LoadGivenForm(maintenanceForm);
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void StaffButton_Click(object sender, EventArgs e)
+        {
+            StaffForm staffForm = new StaffForm();
+            LoadGivenForm(staffForm);
         }
     }
 }
