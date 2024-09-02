@@ -12,6 +12,8 @@ namespace Preowned_Car_Management_System
 {
     public partial class DashBoardForm : Form
     {
+        public static String connectionString = "Data Source=LAPTOP-Q6RR7BFH\\SQLEXPRESS08;Initial Catalog=PreOwnedCarManagementDatabase;Integrated Security=True;";
+
         public DashBoardForm()
         {
             InitializeComponent();
@@ -99,6 +101,12 @@ namespace Preowned_Car_Management_System
         {
             StaffForm staffForm = new StaffForm();
             LoadGivenForm(staffForm);
+        }
+
+        private void HistoryButton_Click(object sender, EventArgs e)
+        {
+            HistoryForm historyForm = new HistoryForm();
+            LoadGivenForm(historyForm);
         }
     }
 }

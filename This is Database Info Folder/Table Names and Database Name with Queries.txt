@@ -1,0 +1,53 @@
+CREATE DATABASE PreOwnedCarManagementDatabase;
+
+CREATE TABLE StockTable (
+    CarName VARCHAR(100),
+    CarId INT,
+    SupplierId INT,
+    PurchaseAmount DECIMAL(10, 2),
+    PurchaseDate VARCHAR(50),
+    CarImage VARBINARY(MAX),
+    OwnerType VARCHAR(50),
+    CarInfo VARCHAR(MAX)
+);
+
+CREATE TABLE SupplierTable (
+    SupplierId INT,
+    CarId INT,
+    SupplierName VARCHAR(100),
+    CarName VARCHAR(100),
+    SupplierMobileNumber BIGINT,
+    AmountPaid DECIMAL(18, 2),
+    SupplierAddress VARCHAR(500)
+);
+
+
+CREATE TABLE BuyerTable (
+    BuyerId INT,
+    BuyerName VARCHAR(100),
+    CarName VARCHAR(100),
+    MobileNumber BIGINT,
+    BuyerAddress VARCHAR(200)
+);
+
+
+CREATE TABLE HistoryTable(
+    CarImage VARBINARY(MAX),
+    SupplierMobileNumber BIGINT,
+    BuyerMobileNumber BIGINT,
+    SupplierAddress VARCHAR(500),
+    BuyerAddress VARCHAR(500),
+    SupplierId BIGINT,
+    BuyerId BIGINT,
+    OwnerType VARCHAR(100),
+    CarInfo VARCHAR(MAX),
+    CarId BIGINT,
+    CarName VARCHAR(100),
+    SupplierName VARCHAR(100),
+    BuyerName VARCHAR(100),
+    AmountPaid DECIMAL(10, 2),
+    AmountReceived DECIMAL(10, 2),
+    StaffMember VARCHAR(100),
+    PurchaseDate VARCHAR(100),
+    ProfitOrLoss DECIMAL(10, 2)
+);

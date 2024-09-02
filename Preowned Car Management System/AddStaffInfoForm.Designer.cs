@@ -33,7 +33,6 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.StaffNameTextBox = new System.Windows.Forms.TextBox();
             this.CarIdLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.StaffMobileTextBox = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.GenderComboBox = new System.Windows.Forms.ComboBox();
@@ -45,8 +44,7 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.JobDesignationComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.AuthorityComboBox = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label4
@@ -64,7 +62,7 @@
             // 
             this.OKButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.OKButton.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OKButton.Location = new System.Drawing.Point(241, 711);
+            this.OKButton.Location = new System.Drawing.Point(236, 653);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(210, 57);
             this.OKButton.TabIndex = 87;
@@ -76,7 +74,7 @@
             // 
             this.CancelButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CancelButton.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelButton.Location = new System.Drawing.Point(469, 711);
+            this.CancelButton.Location = new System.Drawing.Point(464, 653);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(210, 57);
             this.CancelButton.TabIndex = 86;
@@ -104,15 +102,6 @@
             this.CarIdLabel.Size = new System.Drawing.Size(182, 30);
             this.CarIdLabel.TabIndex = 83;
             this.CarIdLabel.Text = "Enter Name : ";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox1.Location = new System.Drawing.Point(572, 291);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(133, 35);
-            this.textBox1.TabIndex = 90;
             // 
             // StaffMobileTextBox
             // 
@@ -242,38 +231,21 @@
             this.label6.TabIndex = 101;
             this.label6.Text = "Enter Job Designation : ";
             // 
-            // AuthorityComboBox
+            // dateTimePicker1
             // 
-            this.AuthorityComboBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.AuthorityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.AuthorityComboBox.FormattingEnabled = true;
-            this.AuthorityComboBox.Items.AddRange(new object[] {
-            "True",
-            "False"});
-            this.AuthorityComboBox.Location = new System.Drawing.Point(572, 626);
-            this.AuthorityComboBox.Name = "AuthorityComboBox";
-            this.AuthorityComboBox.Size = new System.Drawing.Size(133, 24);
-            this.AuthorityComboBox.TabIndex = 104;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label7.Location = new System.Drawing.Point(162, 626);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(269, 30);
-            this.label7.TabIndex = 103;
-            this.label7.Text = "Verified Authority : ";
+            this.dateTimePicker1.Location = new System.Drawing.Point(547, 293);
+            this.dateTimePicker1.MaxDate = new System.DateTime(2024, 8, 29, 0, 0, 0, 0);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker1.TabIndex = 103;
+            this.dateTimePicker1.Value = new System.DateTime(2024, 8, 29, 0, 0, 0, 0);
             // 
             // AddStaffInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(909, 794);
-            this.Controls.Add(this.AuthorityComboBox);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.JobDesignationComboBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.richTextBox1);
@@ -284,7 +256,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.GenderComboBox);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.StaffMobileTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.OKButton);
@@ -306,7 +277,6 @@
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.TextBox StaffNameTextBox;
         private System.Windows.Forms.Label CarIdLabel;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label StaffMobileTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox GenderComboBox;
@@ -318,7 +288,6 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.ComboBox JobDesignationComboBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox AuthorityComboBox;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

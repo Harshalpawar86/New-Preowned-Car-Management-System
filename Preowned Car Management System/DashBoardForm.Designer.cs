@@ -28,42 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.DashPanel = new System.Windows.Forms.Panel();
-            this.StockButton = new System.Windows.Forms.Button();
-            this.SuppliersButton = new System.Windows.Forms.Button();
-            this.BuyersButton = new System.Windows.Forms.Button();
-            this.AccessoriesButton = new System.Windows.Forms.Button();
-            this.MaintenanceButton = new System.Windows.Forms.Button();
-            this.ReportsButton = new System.Windows.Forms.Button();
-            this.HistoryButton = new System.Windows.Forms.Button();
-            this.StaffButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.contextMenuStrip1.SuspendLayout();
+            this.StaffButton = new System.Windows.Forms.Button();
+            this.HistoryButton = new System.Windows.Forms.Button();
+            this.ReportsButton = new System.Windows.Forms.Button();
+            this.MaintenanceButton = new System.Windows.Forms.Button();
+            this.AccessoriesButton = new System.Windows.Forms.Button();
+            this.BuyersButton = new System.Windows.Forms.Button();
+            this.SuppliersButton = new System.Windows.Forms.Button();
+            this.StockButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.DashPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addStockToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(147, 28);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            // 
-            // addStockToolStripMenuItem
-            // 
-            this.addStockToolStripMenuItem.Name = "addStockToolStripMenuItem";
-            this.addStockToolStripMenuItem.Size = new System.Drawing.Size(146, 24);
-            this.addStockToolStripMenuItem.Text = "Add Stock";
             // 
             // flowLayoutPanel1
             // 
@@ -109,101 +90,6 @@
             this.DashPanel.TabIndex = 5;
             this.DashPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.DashPanel_Paint);
             // 
-            // StockButton
-            // 
-            this.StockButton.ContextMenuStrip = this.contextMenuStrip1;
-            this.StockButton.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StockButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.StockButton.Location = new System.Drawing.Point(31, 6);
-            this.StockButton.Name = "StockButton";
-            this.StockButton.Size = new System.Drawing.Size(284, 64);
-            this.StockButton.TabIndex = 20;
-            this.StockButton.Text = "Stock";
-            this.StockButton.UseVisualStyleBackColor = true;
-            this.StockButton.Click += new System.EventHandler(this.StockButton_Click_1);
-            // 
-            // SuppliersButton
-            // 
-            this.SuppliersButton.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SuppliersButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SuppliersButton.Location = new System.Drawing.Point(31, 90);
-            this.SuppliersButton.Name = "SuppliersButton";
-            this.SuppliersButton.Size = new System.Drawing.Size(284, 64);
-            this.SuppliersButton.TabIndex = 21;
-            this.SuppliersButton.Text = "Suppliers";
-            this.SuppliersButton.UseVisualStyleBackColor = true;
-            this.SuppliersButton.Click += new System.EventHandler(this.SuppliersButton_Click);
-            // 
-            // BuyersButton
-            // 
-            this.BuyersButton.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BuyersButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BuyersButton.Location = new System.Drawing.Point(31, 170);
-            this.BuyersButton.Name = "BuyersButton";
-            this.BuyersButton.Size = new System.Drawing.Size(284, 64);
-            this.BuyersButton.TabIndex = 22;
-            this.BuyersButton.Text = "Buyers";
-            this.BuyersButton.UseVisualStyleBackColor = true;
-            this.BuyersButton.Click += new System.EventHandler(this.BuyersButton_Click);
-            // 
-            // AccessoriesButton
-            // 
-            this.AccessoriesButton.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AccessoriesButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.AccessoriesButton.Location = new System.Drawing.Point(31, 252);
-            this.AccessoriesButton.Name = "AccessoriesButton";
-            this.AccessoriesButton.Size = new System.Drawing.Size(284, 64);
-            this.AccessoriesButton.TabIndex = 23;
-            this.AccessoriesButton.Text = "Accessories";
-            this.AccessoriesButton.UseVisualStyleBackColor = true;
-            this.AccessoriesButton.Click += new System.EventHandler(this.AccessoriesButton_Click);
-            // 
-            // MaintenanceButton
-            // 
-            this.MaintenanceButton.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MaintenanceButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MaintenanceButton.Location = new System.Drawing.Point(31, 334);
-            this.MaintenanceButton.Name = "MaintenanceButton";
-            this.MaintenanceButton.Size = new System.Drawing.Size(284, 64);
-            this.MaintenanceButton.TabIndex = 24;
-            this.MaintenanceButton.Text = "Maintenance";
-            this.MaintenanceButton.UseVisualStyleBackColor = true;
-            this.MaintenanceButton.Click += new System.EventHandler(this.MaintenanceButton_Click);
-            // 
-            // ReportsButton
-            // 
-            this.ReportsButton.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportsButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ReportsButton.Location = new System.Drawing.Point(31, 589);
-            this.ReportsButton.Name = "ReportsButton";
-            this.ReportsButton.Size = new System.Drawing.Size(284, 64);
-            this.ReportsButton.TabIndex = 25;
-            this.ReportsButton.Text = "Reports";
-            this.ReportsButton.UseVisualStyleBackColor = true;
-            // 
-            // HistoryButton
-            // 
-            this.HistoryButton.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HistoryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.HistoryButton.Location = new System.Drawing.Point(31, 416);
-            this.HistoryButton.Name = "HistoryButton";
-            this.HistoryButton.Size = new System.Drawing.Size(284, 64);
-            this.HistoryButton.TabIndex = 26;
-            this.HistoryButton.Text = "History";
-            this.HistoryButton.UseVisualStyleBackColor = true;
-            // 
-            // StaffButton
-            // 
-            this.StaffButton.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StaffButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.StaffButton.Location = new System.Drawing.Point(31, 500);
-            this.StaffButton.Name = "StaffButton";
-            this.StaffButton.Size = new System.Drawing.Size(284, 64);
-            this.StaffButton.TabIndex = 27;
-            this.StaffButton.Text = "Staff";
-            this.StaffButton.UseVisualStyleBackColor = true;
-            this.StaffButton.Click += new System.EventHandler(this.StaffButton_Click);
-            // 
             // panel2
             // 
             this.panel2.AutoScroll = true;
@@ -221,6 +107,101 @@
             this.panel2.Size = new System.Drawing.Size(347, 709);
             this.panel2.TabIndex = 1;
             // 
+            // StaffButton
+            // 
+            this.StaffButton.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StaffButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.StaffButton.Location = new System.Drawing.Point(31, 500);
+            this.StaffButton.Name = "StaffButton";
+            this.StaffButton.Size = new System.Drawing.Size(284, 64);
+            this.StaffButton.TabIndex = 27;
+            this.StaffButton.Text = "Staff";
+            this.StaffButton.UseVisualStyleBackColor = true;
+            this.StaffButton.Click += new System.EventHandler(this.StaffButton_Click);
+            // 
+            // HistoryButton
+            // 
+            this.HistoryButton.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HistoryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.HistoryButton.Location = new System.Drawing.Point(31, 416);
+            this.HistoryButton.Name = "HistoryButton";
+            this.HistoryButton.Size = new System.Drawing.Size(284, 64);
+            this.HistoryButton.TabIndex = 26;
+            this.HistoryButton.Text = "History";
+            this.HistoryButton.UseVisualStyleBackColor = true;
+            this.HistoryButton.Click += new System.EventHandler(this.HistoryButton_Click);
+            // 
+            // ReportsButton
+            // 
+            this.ReportsButton.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReportsButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ReportsButton.Location = new System.Drawing.Point(31, 589);
+            this.ReportsButton.Name = "ReportsButton";
+            this.ReportsButton.Size = new System.Drawing.Size(284, 64);
+            this.ReportsButton.TabIndex = 25;
+            this.ReportsButton.Text = "Reports";
+            this.ReportsButton.UseVisualStyleBackColor = true;
+            // 
+            // MaintenanceButton
+            // 
+            this.MaintenanceButton.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaintenanceButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MaintenanceButton.Location = new System.Drawing.Point(31, 334);
+            this.MaintenanceButton.Name = "MaintenanceButton";
+            this.MaintenanceButton.Size = new System.Drawing.Size(284, 64);
+            this.MaintenanceButton.TabIndex = 24;
+            this.MaintenanceButton.Text = "Maintenance";
+            this.MaintenanceButton.UseVisualStyleBackColor = true;
+            this.MaintenanceButton.Click += new System.EventHandler(this.MaintenanceButton_Click);
+            // 
+            // AccessoriesButton
+            // 
+            this.AccessoriesButton.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AccessoriesButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AccessoriesButton.Location = new System.Drawing.Point(31, 252);
+            this.AccessoriesButton.Name = "AccessoriesButton";
+            this.AccessoriesButton.Size = new System.Drawing.Size(284, 64);
+            this.AccessoriesButton.TabIndex = 23;
+            this.AccessoriesButton.Text = "Accessories";
+            this.AccessoriesButton.UseVisualStyleBackColor = true;
+            this.AccessoriesButton.Click += new System.EventHandler(this.AccessoriesButton_Click);
+            // 
+            // BuyersButton
+            // 
+            this.BuyersButton.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BuyersButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BuyersButton.Location = new System.Drawing.Point(31, 170);
+            this.BuyersButton.Name = "BuyersButton";
+            this.BuyersButton.Size = new System.Drawing.Size(284, 64);
+            this.BuyersButton.TabIndex = 22;
+            this.BuyersButton.Text = "Buyers";
+            this.BuyersButton.UseVisualStyleBackColor = true;
+            this.BuyersButton.Click += new System.EventHandler(this.BuyersButton_Click);
+            // 
+            // SuppliersButton
+            // 
+            this.SuppliersButton.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SuppliersButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.SuppliersButton.Location = new System.Drawing.Point(31, 90);
+            this.SuppliersButton.Name = "SuppliersButton";
+            this.SuppliersButton.Size = new System.Drawing.Size(284, 64);
+            this.SuppliersButton.TabIndex = 21;
+            this.SuppliersButton.Text = "Suppliers";
+            this.SuppliersButton.UseVisualStyleBackColor = true;
+            this.SuppliersButton.Click += new System.EventHandler(this.SuppliersButton_Click);
+            // 
+            // StockButton
+            // 
+            this.StockButton.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StockButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.StockButton.Location = new System.Drawing.Point(31, 6);
+            this.StockButton.Name = "StockButton";
+            this.StockButton.Size = new System.Drawing.Size(284, 64);
+            this.StockButton.TabIndex = 20;
+            this.StockButton.Text = "Stock";
+            this.StockButton.UseVisualStyleBackColor = true;
+            this.StockButton.Click += new System.EventHandler(this.StockButton_Click_1);
+            // 
             // DashBoardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -232,7 +213,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DashBoardForm";
             this.Load += new System.EventHandler(this.DashBoardForm_Load);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.DashPanel.ResumeLayout(false);
@@ -242,8 +222,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem addStockToolStripMenuItem;
         private System.Windows.Forms.Panel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;

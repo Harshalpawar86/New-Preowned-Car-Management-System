@@ -19,7 +19,6 @@ namespace Preowned_Car_Management_System
         public String staffEmail { get; set; }
         public String staffAddress { get; set; }
         public String jobDesignation { get; set; }
-        public String authority { get; set; }
 
         public AddStaffInfoForm()
         {
@@ -37,9 +36,9 @@ namespace Preowned_Car_Management_System
             staffGender=GenderComboBox.Text;
             staffMobileNumber=StaffMobileTextBox.Text;
             staffEmail=StaffEmailTextBox.Text;
+            staffBOD = dateTimePicker1.Value.ToString();
             staffAddress=richTextBox1.Text;
             jobDesignation=JobDesignationComboBox.Text;
-            authority=AuthorityComboBox.Text;
             DialogResult = DialogResult.OK;
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,26 +13,29 @@ namespace Preowned_Car_Management_System
 {
     public partial class BuyersForm : Form
     {
+        String connectionString = DashBoardForm.connectionString;
         ContextMenuStrip contextMenu;
         public BuyersForm()
         {
             InitializeComponent();
             contextMenu = new ContextMenuStrip();
-            contextMenu.Items.Add("Delete Buyer", null, ContextMenuOption1_Click);
+            contextMenu.Items.Add("Update Information", null, ContextMenuOption1_Click);
+            contextMenu.Items.Add("Delete Supplier", null, ContextMenuOption2_Click);
         }
-        public void AddBuyerInfoFun(string buyerName, string carName, String buyerId, String mobileNumber, string address)
+        public void AddBuyerInfoFun(string buyerName, string carName, long buyerId, long mobileNumber, string address)
         {
             Panel panel = new Panel();
             panel.Name = "BuyerData";
             panel.BackColor = Color.White;
             panel.AutoSize = true;
+            panel.Tag = buyerId;
             panel.Margin = new Padding(10);
             panel.Padding = new Padding(10);
             panel.BorderStyle = BorderStyle.FixedSingle;
 
             Label label1 = new Label();
             label1.Name = "BuyerNameLabel";
-            label1.Text = buyerName;
+            label1.Text = "Buyer Name : "+buyerName;
             label1.Location = new Point(12, 5);
             label1.ForeColor = Color.Black;
             label1.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -39,7 +43,7 @@ namespace Preowned_Car_Management_System
 
             Label label2 = new Label();
             label2.Name = "CarNameLabel";
-            label2.Text = carName;
+            label2.Text = "Car Name : "+carName;
             label2.Location = new Point(12, label1.Bottom + 5);
             label2.ForeColor = Color.Black;
             label2.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -47,7 +51,7 @@ namespace Preowned_Car_Management_System
 
             Label label3 = new Label();
             label3.Name = "BuyerIdLabel";
-            label3.Text = buyerId;
+            label3.Text = "Buyer Id : "+buyerId.ToString();
             label3.Location = new Point(12, label2.Bottom + 5);
             label3.ForeColor = Color.Black;
             label3.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -55,7 +59,7 @@ namespace Preowned_Car_Management_System
 
             Label mobileNumberLabel = new Label();
             mobileNumberLabel.Name = "MobileNumberLabel";
-            mobileNumberLabel.Text = mobileNumber;
+            mobileNumberLabel.Text = "Mobile Number : "+mobileNumber.ToString();
             mobileNumberLabel.Location = new Point(12, label3.Bottom + 5);
             mobileNumberLabel.ForeColor = Color.Black;
             mobileNumberLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -63,7 +67,7 @@ namespace Preowned_Car_Management_System
 
             Label addressLabel = new Label();
             addressLabel.Name = "CarInfoLabel";
-            addressLabel.Text = address;
+            addressLabel.Text = "Address : "+address;
             addressLabel.Location = new Point(12, mobileNumberLabel.Bottom + 5);
             addressLabel.ForeColor = Color.Black;
             addressLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -73,7 +77,6 @@ namespace Preowned_Car_Management_System
             addressLabel.MaximumSize = new Size(200, 0);
             addressLabel.TextAlign = ContentAlignment.TopLeft;
             addressLabel.Padding = new Padding(0);
-
 
 
             panel.Controls.Add(label1);
@@ -94,6 +97,97 @@ namespace Preowned_Car_Management_System
         private void ContextMenuOption1_Click(object sender, EventArgs e)
         {
 
+            if (contextMenu.SourceControl is Panel panel)
+            {
+
+                long buyerId = (long)panel.Tag;
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    String query = "SELECT * FROM BuyerTable WHERE BuyerId=@BuyerId";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+
+                        cmd.Parameters.AddWithValue("@BuyerId",buyerId );
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            UpdateBuyerDetailsForm updateBuyerDetailsForm = new UpdateBuyerDetailsForm();
+                            updateBuyerDetailsForm.buyerName = reader["BuyerName"].ToString();
+                            updateBuyerDetailsForm.carName = reader["CarName"].ToString();
+                            updateBuyerDetailsForm.mobileNumber = Convert.ToInt64(reader["MobileNumber"]);
+                            updateBuyerDetailsForm.address = reader["BuyerAddress"].ToString();
+
+                            if (updateBuyerDetailsForm.ShowDialog() == DialogResult.OK)
+                            {
+
+                                string updateQuery = "UPDATE BuyerTable SET BuyerName = @BuyerName,CarName = @CarName, MobileNumber = @MobileNumber, BuyerAddress = @BuyerAddress WHERE BuyerId = @BuyerId";
+
+                                using (SqlCommand upd = new SqlCommand(updateQuery, conn))
+                                {
+
+                                    upd.Parameters.AddWithValue("@BuyerName", updateBuyerDetailsForm.buyerName);
+                                    upd.Parameters.AddWithValue("@BuyerId", buyerId);
+                                    upd.Parameters.AddWithValue("@CarName", updateBuyerDetailsForm.carName);
+                                    upd.Parameters.AddWithValue("@MobileNumber", updateBuyerDetailsForm.mobileNumber);
+                                    upd.Parameters.AddWithValue("@BuyerAddress", updateBuyerDetailsForm.address);
+
+                                    reader.Close();
+                                    int result = upd.ExecuteNonQuery();
+                                    if (result > 0)
+                                    {
+
+                                        MessageBox.Show("Buyer Data Updated Successfully");
+                                        flowLayoutPanel1.Controls.Clear();
+                                        LoadExistingData();
+                                    }
+                                    else
+                                    {
+
+                                        MessageBox.Show("Failed to Update Data");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+        private void ContextMenuOption2_Click(object sender, EventArgs e)
+        {
+            DialogResult dresult = MessageBox.Show("Are you sure you want to delete this supplier?",
+                                                          "Confirm Deletion",
+                                                          MessageBoxButtons.OKCancel,
+                                                          MessageBoxIcon.Warning);
+            if (dresult == DialogResult.OK)
+            {
+                if (contextMenu.SourceControl is Panel panel)
+                {
+
+                    long buyerId = (long)panel.Tag;
+
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+
+                        String query = "DELETE FROM BuyerTable WHERE BuyerId = @BuyerId";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+
+                            cmd.Parameters.AddWithValue("@BuyerId", buyerId);
+                            conn.Open();
+                            int result = cmd.ExecuteNonQuery();
+                            if (result > 0)
+                            {
+                                MessageBox.Show("Buyer Data Deleted");
+                                flowLayoutPanel1.Controls.Clear();
+                                LoadExistingData();
+                            }
+                        }
+                    }
+                }
+            }
 
         }
         private void Panel_MouseClick(object sender, MouseEventArgs e)
@@ -114,13 +208,72 @@ namespace Preowned_Car_Management_System
             if (addBuyerInfo.ShowDialog() == DialogResult.OK)
             {
                 String buyerName = addBuyerInfo.buyerName;
-                String buyerId = addBuyerInfo.buyerId;
+                long buyerId = addBuyerInfo.buyerId;
                 String carName = addBuyerInfo.carName;
-                String mobileNumber = addBuyerInfo.mobileNumber;
+                long mobileNumber = addBuyerInfo.mobileNumber;
                 String address = addBuyerInfo.address;
+                using (SqlConnection conn = new SqlConnection(connectionString)) {
 
-                AddBuyerInfoFun(buyerName: buyerName, carName: carName, buyerId:buyerId,mobileNumber: mobileNumber, address: address);
+                    String query = "INSERT INTO BuyerTable(BuyerName,CarName,BuyerId,MobileNumber,BuyerAddress) VALUES (@BuyerName,@CarName,@BuyerId,@MobileNumber,@BuyerAddress);";
+                    using (SqlCommand cmd = new SqlCommand(query,conn)) {
+
+                        cmd.Parameters.AddWithValue("@BuyerName",buyerName);
+                        cmd.Parameters.AddWithValue("@CarName", carName);
+                        cmd.Parameters.AddWithValue("@BuyerId", buyerId);
+                        cmd.Parameters.AddWithValue("@MobileNumber", mobileNumber);
+                        cmd.Parameters.AddWithValue("@BuyerAddress", address);
+
+                        conn.Open();
+                        int result = cmd.ExecuteNonQuery();
+                        if (result > 0)
+                        {
+
+                            MessageBox.Show("Data Inserted Successfully");
+                        }
+                        else {
+
+                            MessageBox.Show("Data Insertion Failed");
+                        }
+                    }
+                }
+
+                    AddBuyerInfoFun(buyerName: buyerName, carName: carName, buyerId: buyerId, mobileNumber: mobileNumber, address: address);
             }
+        }
+        //if existing buyer then fetch through history table
+        private void LoadExistingData() {
+
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
+
+                String query = "SELECT * FROM BuyerTable";
+                using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query,conn)) { 
+                
+                    DataTable dataTable = new DataTable();
+                    sqlDataAdapter.Fill(dataTable);
+
+                    foreach (DataRow row in dataTable.Rows) { 
+                    
+                        String buyerName = row["BuyerName"].ToString();
+                        long buyerId = Convert.ToInt64(row["BuyerId"]);
+                        String carName = row["CarName"].ToString();
+                        long mobileNumber = Convert.ToInt64(row["MobileNumber"]);
+                        String address = row["BuyerAddress"].ToString();
+
+                        AddBuyerInfoFun(buyerName: buyerName, carName: carName, buyerId: buyerId, mobileNumber: mobileNumber, address: address);
+
+                    }
+                }
+            }
+        }
+
+        private void BuyersForm_Load(object sender, EventArgs e)
+        {
+            LoadExistingData();
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

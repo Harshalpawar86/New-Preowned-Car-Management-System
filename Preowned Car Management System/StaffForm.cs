@@ -22,7 +22,7 @@ namespace Preowned_Car_Management_System
             contextMenu = new ContextMenuStrip();
             contextMenu.Items.Add("Edit Information", null, ContextMenuOption1_Click);
         }
-        public void AddStaffInfoFun(String staffName,String staffGender,String staffMobileNumber,String staffEmail,String staffAddress,String jobDesignation) {
+        public void AddStaffInfoFun(String staffName,String staffBOD,String staffGender,String staffMobileNumber,String staffEmail,String staffAddress,String jobDesignation) {
             Panel panel = new Panel();
             panel.Name = "StaffData";
             panel.BackColor = Color.White;
@@ -32,13 +32,13 @@ namespace Preowned_Car_Management_System
             panel.BorderStyle = BorderStyle.FixedSingle;
 
 
-
+            
             Label StaffNameLabel = new Label();
             StaffNameLabel.Name = "StaffNameLabel";
             StaffNameLabel.Text = staffName;
             StaffNameLabel.Location = new Point(12,5);
             StaffNameLabel.ForeColor = Color.Black;
-            StaffNameLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
+            StaffNameLabel.Font = new Font("Modern No. 20", 9.5f, FontStyle.Regular);
             StaffNameLabel.AutoSize = true;
 
             Label StaffGenderLabel = new Label();
@@ -46,7 +46,7 @@ namespace Preowned_Car_Management_System
             StaffGenderLabel.Text = staffGender; ;
             StaffGenderLabel.Location = new Point(12, StaffNameLabel.Bottom + 5);
             StaffGenderLabel.ForeColor = Color.Black;
-            StaffGenderLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
+            StaffGenderLabel.Font = new Font("Modern No. 20", 9.5f, FontStyle.Regular);
             StaffGenderLabel.AutoSize = true;
 
             Label StaffMobileNumberLabel = new Label();
@@ -54,15 +54,23 @@ namespace Preowned_Car_Management_System
             StaffMobileNumberLabel.Text = staffMobileNumber; ;
             StaffMobileNumberLabel.Location = new Point(12, StaffGenderLabel.Bottom + 5);
             StaffMobileNumberLabel.ForeColor = Color.Black;
-            StaffMobileNumberLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
+            StaffMobileNumberLabel.Font = new Font("Modern No. 20", 9.5f, FontStyle.Regular);
             StaffMobileNumberLabel.AutoSize = true;
+
+            Label StaffDateOfBirthLabel = new Label();
+            StaffDateOfBirthLabel.Name = "StaffDateOfBirthLabel";
+            StaffDateOfBirthLabel.Text = staffBOD;
+            StaffDateOfBirthLabel.Location = new Point(12, StaffMobileNumberLabel.Bottom + 5);
+            StaffDateOfBirthLabel.ForeColor = Color.Black;
+            StaffDateOfBirthLabel.Font = new Font("Modern No. 20", 9.5f, FontStyle.Regular);
+            StaffDateOfBirthLabel.AutoSize = true;
 
             Label StaffEmailLabel = new Label();
             StaffEmailLabel.Name = "StaffEmailLabel";
             StaffEmailLabel.Text = staffEmail;
-            StaffEmailLabel.Location = new Point(12, StaffMobileNumberLabel.Bottom + 5);
+            StaffEmailLabel.Location = new Point(12, StaffDateOfBirthLabel.Bottom + 5);
             StaffEmailLabel.ForeColor = Color.Black;
-            StaffEmailLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
+            StaffEmailLabel.Font = new Font("Modern No. 20", 9.5f, FontStyle.Regular);
             StaffEmailLabel.AutoSize = true;
 
 
@@ -71,7 +79,7 @@ namespace Preowned_Car_Management_System
             JobDesignationLabel.Text = jobDesignation;
             JobDesignationLabel.Location = new Point(12, StaffEmailLabel.Bottom + 5);
             JobDesignationLabel.ForeColor = Color.Black;
-            JobDesignationLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
+            JobDesignationLabel.Font = new Font("Modern No. 20", 9.5f, FontStyle.Regular);
             JobDesignationLabel.AutoSize = true;
 
             Label StaffaddressLabel = new Label();
@@ -79,7 +87,7 @@ namespace Preowned_Car_Management_System
             StaffaddressLabel.Text = staffAddress;
             StaffaddressLabel.Location = new Point(12, JobDesignationLabel.Bottom + 5);
             StaffaddressLabel.ForeColor = Color.Black;
-            StaffaddressLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
+            StaffaddressLabel.Font = new Font("Modern No. 20", 9.5f, FontStyle.Regular);
             StaffaddressLabel.AutoSize = true;
             StaffaddressLabel.Width = 200;
             StaffaddressLabel.Height = 100;
@@ -127,10 +135,7 @@ namespace Preowned_Car_Management_System
 
         private void AddStaffButton_Click(object sender, EventArgs e)
         {
-            StaffAuthenticationForm form = new StaffAuthenticationForm();
-            if (form.ShowDialog() == DialogResult.OK) { 
-            
-                form.Hide();
+
                 AddStaffInfoForm addStaffInfoForm = new AddStaffInfoForm();
                 if (addStaffInfoForm.ShowDialog() == DialogResult.OK) { 
                 
@@ -138,13 +143,14 @@ namespace Preowned_Car_Management_System
                     String staffGender=addStaffInfoForm.staffGender;
                     String staffMobileNumber=addStaffInfoForm.staffMobileNumber;
                     String staffEmail=addStaffInfoForm.staffEmail;
+                    String staffDOB=addStaffInfoForm.staffBOD;
                     String staffAddress=addStaffInfoForm.staffAddress;
                     String jobDesignation=addStaffInfoForm.jobDesignation;
 
-                    AddStaffInfoFun(staffName:staffName,staffGender:staffGender,staffMobileNumber:staffMobileNumber,staffEmail:staffEmail,staffAddress:staffAddress,jobDesignation:jobDesignation);
+                    AddStaffInfoFun(staffName:staffName,staffGender:staffGender,staffBOD:staffDOB,staffMobileNumber:staffMobileNumber,staffEmail:staffEmail,staffAddress:staffAddress,jobDesignation:jobDesignation);
                 }
 
-            }
+            
         }
     }
 }
