@@ -58,6 +58,7 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 100);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -78,6 +79,7 @@
             this.Load += new System.EventHandler(this.BuyersForm_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

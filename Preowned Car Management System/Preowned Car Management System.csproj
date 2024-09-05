@@ -94,6 +94,12 @@
     <Compile Include="DashBoardForm.Designer.cs">
       <DependentUpon>DashBoardForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExistingBuyerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExistingBuyerForm.Designer.cs">
+      <DependentUpon>ExistingBuyerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExistingSupplierForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DashBoardForm.resx">
       <DependentUpon>DashBoardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExistingBuyerForm.resx">
+      <DependentUpon>ExistingBuyerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExistingSupplierForm.resx">
       <DependentUpon>ExistingSupplierForm.cs</DependentUpon>

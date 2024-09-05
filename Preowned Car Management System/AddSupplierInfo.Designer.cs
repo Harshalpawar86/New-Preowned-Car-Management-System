@@ -64,9 +64,11 @@
             // SupplierIdTextBox
             // 
             this.SupplierIdTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SupplierIdTextBox.BackColor = System.Drawing.Color.White;
             this.SupplierIdTextBox.Location = new System.Drawing.Point(545, 345);
             this.SupplierIdTextBox.Multiline = true;
             this.SupplierIdTextBox.Name = "SupplierIdTextBox";
+            this.SupplierIdTextBox.ReadOnly = true;
             this.SupplierIdTextBox.Size = new System.Drawing.Size(133, 35);
             this.SupplierIdTextBox.TabIndex = 64;
             // 
@@ -236,9 +238,11 @@
             // CarIdTextBox
             // 
             this.CarIdTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CarIdTextBox.BackColor = System.Drawing.Color.White;
             this.CarIdTextBox.Location = new System.Drawing.Point(545, 288);
             this.CarIdTextBox.Multiline = true;
             this.CarIdTextBox.Name = "CarIdTextBox";
+            this.CarIdTextBox.ReadOnly = true;
             this.CarIdTextBox.Size = new System.Drawing.Size(133, 35);
             this.CarIdTextBox.TabIndex = 75;
             // 

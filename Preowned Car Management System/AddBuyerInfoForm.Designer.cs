@@ -41,6 +41,8 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.BuyerNameTextBox = new System.Windows.Forms.TextBox();
             this.CarNameLabel = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.ExistingBuyerLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CarNameTextBox
@@ -88,9 +90,11 @@
             // BuyerIdTextBox
             // 
             this.BuyerIdTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BuyerIdTextBox.BackColor = System.Drawing.Color.White;
             this.BuyerIdTextBox.Location = new System.Drawing.Point(534, 309);
             this.BuyerIdTextBox.Multiline = true;
             this.BuyerIdTextBox.Name = "BuyerIdTextBox";
+            this.BuyerIdTextBox.ReadOnly = true;
             this.BuyerIdTextBox.Size = new System.Drawing.Size(133, 35);
             this.BuyerIdTextBox.TabIndex = 80;
             // 
@@ -184,11 +188,36 @@
             this.CarNameLabel.TabIndex = 70;
             this.CarNameLabel.Text = "Enter Buyer Name : ";
             // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label6.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(269, 643);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(158, 31);
+            this.label6.TabIndex = 86;
+            this.label6.Text = "Existing Buyer ? ";
+            // 
+            // ExistingBuyerLabel
+            // 
+            this.ExistingBuyerLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ExistingBuyerLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExistingBuyerLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.ExistingBuyerLabel.Location = new System.Drawing.Point(435, 643);
+            this.ExistingBuyerLabel.Name = "ExistingBuyerLabel";
+            this.ExistingBuyerLabel.Size = new System.Drawing.Size(122, 31);
+            this.ExistingBuyerLabel.TabIndex = 85;
+            this.ExistingBuyerLabel.Text = "Click Here";
+            this.ExistingBuyerLabel.Click += new System.EventHandler(this.ExistingBuyerLabel_Click);
+            // 
             // AddBuyerInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 735);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.ExistingBuyerLabel);
             this.Controls.Add(this.CarNameTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.MobileNumberTextBox);
@@ -227,5 +256,7 @@
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.TextBox BuyerNameTextBox;
         private System.Windows.Forms.Label CarNameLabel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label ExistingBuyerLabel;
     }
 }

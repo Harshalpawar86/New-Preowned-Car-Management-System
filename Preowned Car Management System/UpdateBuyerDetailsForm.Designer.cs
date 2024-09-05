@@ -178,6 +178,7 @@
             this.Controls.Add(this.CarNameLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "UpdateBuyerDetailsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UpdateBuyerDetailsForm";
             this.Load += new System.EventHandler(this.UpdateBuyerDetailsForm_Load);
             this.ResumeLayout(false);

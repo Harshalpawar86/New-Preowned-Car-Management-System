@@ -1,6 +1,6 @@
 ﻿namespace Preowned_Car_Management_System
 {
-    partial class ExistingSupplierForm
+    partial class ExistingBuyerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -54,7 +54,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1220, 100);
-            this.panel1.TabIndex = 0;
+            this.panel1.TabIndex = 1;
             // 
             // ClearButton
             // 
@@ -67,7 +67,7 @@
             this.ClearButton.TabIndex = 77;
             this.ClearButton.Text = "Clear\r\n";
             this.ClearButton.UseVisualStyleBackColor = true;
-            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click_1);
             // 
             // SearchTextBox
             // 
@@ -77,7 +77,7 @@
             this.SearchTextBox.Name = "SearchTextBox";
             this.SearchTextBox.Size = new System.Drawing.Size(426, 36);
             this.SearchTextBox.TabIndex = 76;
-            this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
+            this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged_1);
             // 
             // CarNameLabel
             // 
@@ -87,9 +87,9 @@
             this.CarNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
             this.CarNameLabel.Location = new System.Drawing.Point(171, 39);
             this.CarNameLabel.Name = "CarNameLabel";
-            this.CarNameLabel.Size = new System.Drawing.Size(233, 30);
+            this.CarNameLabel.Size = new System.Drawing.Size(202, 30);
             this.CarNameLabel.TabIndex = 75;
-            this.CarNameLabel.Text = "Search Supplier : ";
+            this.CarNameLabel.Text = "Search Buyer : ";
             // 
             // panel2
             // 
@@ -99,7 +99,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 656);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1220, 86);
-            this.panel2.TabIndex = 1;
+            this.panel2.TabIndex = 2;
             // 
             // CancelButton
             // 
@@ -112,7 +112,7 @@
             this.CancelButton.TabIndex = 79;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click_1);
             // 
             // AddButton
             // 
@@ -125,7 +125,7 @@
             this.AddButton.TabIndex = 78;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
-            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click_1);
             // 
             // tableLayoutPanel1
             // 
@@ -140,7 +140,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1220, 556);
-            this.tableLayoutPanel1.TabIndex = 2;
+            this.tableLayoutPanel1.TabIndex = 3;
             // 
             // dataGridView1
             // 
@@ -165,9 +165,8 @@
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(1214, 272);
             this.dataGridView2.TabIndex = 1;
-            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
-            // ExistingSupplierForm
+            // ExistingBuyerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -176,10 +175,10 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ExistingSupplierForm";
+            this.Name = "ExistingBuyerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ExistingSupplierForm";
-            this.Load += new System.EventHandler(this.ExistingSupplierForm_Load);
+            this.Text = "ExistingBuyerForm";
+            this.Load += new System.EventHandler(this.ExistingBuyerForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

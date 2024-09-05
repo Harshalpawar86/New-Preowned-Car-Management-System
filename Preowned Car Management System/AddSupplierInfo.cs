@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Dynamic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Preowned_Car_Management_System
 {
     public partial class AddSupplierInfo : Form
     {
+        String connectionString = DashBoardForm.connectionString;
         public String supplierName { set; get; }
         public String carName { set; get; }
         public long carId { set; get; }
@@ -25,10 +27,74 @@ namespace Preowned_Car_Management_System
         {
             InitializeComponent();
         }
+        private void LoadCarId()
+        {
+            long lastCarId = 101;
+            string queryStock = "SELECT MAX(CarId) FROM SupplierTable";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(queryStock, conn);
+                var result = cmd.ExecuteScalar();
+
+                if (result != DBNull.Value && result != null)
+                {
+                    lastCarId = Convert.ToInt64(result) + 1;  
+                }
+                else
+                {
+                    string queryHistory = "SELECT MAX(CarId) FROM HistoryTable";
+                    SqlCommand cmd2 = new SqlCommand(queryHistory, conn);
+                    var result2 = cmd2.ExecuteScalar();
+
+                    if (result2 != DBNull.Value && result2 != null)
+                    {
+                        lastCarId = Convert.ToInt64(result2) + 1;  
+                    }
+                }
+            }
+
+            CarIdTextBox.Text = lastCarId.ToString();
+        }
+        private void LoadSupplierId()
+        {
+            long lastSupplierId = 201;
+            string queryStock = "SELECT MAX(SupplierId) FROM SupplierTable";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(queryStock, conn);
+                var result = cmd.ExecuteScalar();
+
+                if (result != DBNull.Value && result != null)
+                {
+                    lastSupplierId = Convert.ToInt64(result) + 1;
+                }
+                else
+                {
+                    string queryHistory = "SELECT MAX(SupplierId) FROM HistoryTable";
+                    SqlCommand cmd2 = new SqlCommand(queryHistory, conn);
+                    var result2 = cmd2.ExecuteScalar();
+
+                    if (result2 != DBNull.Value && result2 != null)
+                    {
+                        lastSupplierId = Convert.ToInt64(result2) + 1;
+                    }
+                }
+            }
+
+            SupplierIdTextBox.Text = lastSupplierId.ToString();
+        }
+
 
         private void AddSupplierInfo_Load(object sender, EventArgs e)
         {
-
+            LoadCarId();
+            LoadSupplierId();
         }
         void getData() {
             supplierName = SupplierNameTextBox.Text;
@@ -76,12 +142,10 @@ namespace Preowned_Car_Management_System
             ExistingSupplierForm form = new ExistingSupplierForm("ForSupplier");
             if (form.ShowDialog()==DialogResult.OK) {
                 String supplierName = form.supplierName;
-                long supplierId = form.supplierId;
                 long mobileNumber = form.mobileNumber;
                 String address = form.address;
 
                 SupplierNameTextBox.Text = supplierName;
-                SupplierIdTextBox.Text=supplierId.ToString();
                 MobileNumberTextBox.Text = mobileNumber.ToString();
                 AddressTextBox.Text = address.ToString();
             }

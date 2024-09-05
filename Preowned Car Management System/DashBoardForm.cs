@@ -27,20 +27,13 @@ namespace Preowned_Car_Management_System
 
         }
 
-        private void StockButton_Click(object sender, EventArgs e)
-        {
-            
-        }
+
 
         private void DashBoardForm_Load(object sender, EventArgs e)
         {
            
         }
 
-        private void FormLoaderPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
         
 
         private void StockButton_Click_1(object sender, EventArgs e)
@@ -58,16 +51,7 @@ namespace Preowned_Car_Management_System
             form.Show();
         } 
         
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
- 
 
-        }
-
-        private void AddStockButton_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void SuppliersButton_Click(object sender, EventArgs e)
         {

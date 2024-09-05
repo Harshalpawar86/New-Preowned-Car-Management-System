@@ -41,7 +41,6 @@ namespace Preowned_Car_Management_System
         }
             private bool ValidateData()
             {
-            // Implement validation logic, e.g., ensure fields are not empty
             return !string.IsNullOrEmpty(BuyerNameTextBox.Text) &&
                    !string.IsNullOrEmpty(CarNameTextBox.Text) &&
                    long.TryParse(MobileNumberTextBox.Text, out _) &&

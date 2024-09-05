@@ -116,13 +116,13 @@ namespace Preowned_Car_Management_System
                             UpdateBuyerDetailsForm updateBuyerDetailsForm = new UpdateBuyerDetailsForm();
                             updateBuyerDetailsForm.buyerName = reader["BuyerName"].ToString();
                             updateBuyerDetailsForm.carName = reader["CarName"].ToString();
-                            updateBuyerDetailsForm.mobileNumber = Convert.ToInt64(reader["MobileNumber"]);
+                            updateBuyerDetailsForm.mobileNumber = Convert.ToInt64(reader["BuyerMobileNumber"]);
                             updateBuyerDetailsForm.address = reader["BuyerAddress"].ToString();
 
                             if (updateBuyerDetailsForm.ShowDialog() == DialogResult.OK)
                             {
 
-                                string updateQuery = "UPDATE BuyerTable SET BuyerName = @BuyerName,CarName = @CarName, MobileNumber = @MobileNumber, BuyerAddress = @BuyerAddress WHERE BuyerId = @BuyerId";
+                                string updateQuery = "UPDATE BuyerTable SET BuyerName = @BuyerName,CarName = @CarName, BuyerMobileNumber = @BuyerMobileNumber, BuyerAddress = @BuyerAddress WHERE BuyerId = @BuyerId";
 
                                 using (SqlCommand upd = new SqlCommand(updateQuery, conn))
                                 {
@@ -130,7 +130,7 @@ namespace Preowned_Car_Management_System
                                     upd.Parameters.AddWithValue("@BuyerName", updateBuyerDetailsForm.buyerName);
                                     upd.Parameters.AddWithValue("@BuyerId", buyerId);
                                     upd.Parameters.AddWithValue("@CarName", updateBuyerDetailsForm.carName);
-                                    upd.Parameters.AddWithValue("@MobileNumber", updateBuyerDetailsForm.mobileNumber);
+                                    upd.Parameters.AddWithValue("@BuyerMobileNumber", updateBuyerDetailsForm.mobileNumber);
                                     upd.Parameters.AddWithValue("@BuyerAddress", updateBuyerDetailsForm.address);
 
                                     reader.Close();
@@ -214,13 +214,13 @@ namespace Preowned_Car_Management_System
                 String address = addBuyerInfo.address;
                 using (SqlConnection conn = new SqlConnection(connectionString)) {
 
-                    String query = "INSERT INTO BuyerTable(BuyerName,CarName,BuyerId,MobileNumber,BuyerAddress) VALUES (@BuyerName,@CarName,@BuyerId,@MobileNumber,@BuyerAddress);";
+                    String query = "INSERT INTO BuyerTable(BuyerName,CarName,BuyerId,BuyerMobileNumber,BuyerAddress) VALUES (@BuyerName,@CarName,@BuyerId,@BuyerMobileNumber,@BuyerAddress);";
                     using (SqlCommand cmd = new SqlCommand(query,conn)) {
 
                         cmd.Parameters.AddWithValue("@BuyerName",buyerName);
                         cmd.Parameters.AddWithValue("@CarName", carName);
                         cmd.Parameters.AddWithValue("@BuyerId", buyerId);
-                        cmd.Parameters.AddWithValue("@MobileNumber", mobileNumber);
+                        cmd.Parameters.AddWithValue("@BuyerMobileNumber", mobileNumber);
                         cmd.Parameters.AddWithValue("@BuyerAddress", address);
 
                         conn.Open();
@@ -240,7 +240,6 @@ namespace Preowned_Car_Management_System
                     AddBuyerInfoFun(buyerName: buyerName, carName: carName, buyerId: buyerId, mobileNumber: mobileNumber, address: address);
             }
         }
-        //if existing buyer then fetch through history table
         private void LoadExistingData() {
 
             using (SqlConnection conn = new SqlConnection(connectionString)) {
@@ -256,7 +255,7 @@ namespace Preowned_Car_Management_System
                         String buyerName = row["BuyerName"].ToString();
                         long buyerId = Convert.ToInt64(row["BuyerId"]);
                         String carName = row["CarName"].ToString();
-                        long mobileNumber = Convert.ToInt64(row["MobileNumber"]);
+                        long mobileNumber = Convert.ToInt64(row["BuyerMobileNumber"]);
                         String address = row["BuyerAddress"].ToString();
 
                         AddBuyerInfoFun(buyerName: buyerName, carName: carName, buyerId: buyerId, mobileNumber: mobileNumber, address: address);

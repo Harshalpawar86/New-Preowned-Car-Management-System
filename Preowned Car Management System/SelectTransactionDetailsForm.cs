@@ -75,7 +75,6 @@ namespace Preowned_Car_Management_System
                             }
                         }
                     }
-                    MessageBox.Show("Owner Type = " + ownerType);
 
                      DialogResult = DialogResult.OK;
                 }
@@ -180,13 +179,14 @@ namespace Preowned_Car_Management_System
 
                     buyerId = Convert.ToInt64(row.Cells["BuyerId"].Value);
                     buyerName = row.Cells["BuyerName"].Value.ToString();
-                    buyerMobileNumber = Convert.ToInt64(row.Cells["MobileNumber"].Value);
+                    buyerMobileNumber = Convert.ToInt64(row.Cells["BuyerMobileNumber"].Value);
                     buyerAddress = row.Cells["BuyerAddress"].Value.ToString();
                     noException2 = true;
                 }
         }
             catch (Exception exp)
             {
+                MessageBox.Show(exp.ToString());
                 noException2 = false;
             }
 }
