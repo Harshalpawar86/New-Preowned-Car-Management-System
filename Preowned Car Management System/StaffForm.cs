@@ -152,5 +152,10 @@ namespace Preowned_Car_Management_System
 
             
         }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

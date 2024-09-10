@@ -94,6 +94,7 @@
             this.label4.Size = new System.Drawing.Size(607, 66);
             this.label4.TabIndex = 75;
             this.label4.Text = "Enter Maintenance Info : ";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // OKButton
             // 

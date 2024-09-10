@@ -33,6 +33,7 @@ namespace Preowned_Car_Management_System
 
         }
 
+     
         private void OKButton_Click(object sender, EventArgs e)
         {
             carId = CarIdTextBox.Text;
@@ -46,6 +47,11 @@ namespace Preowned_Car_Management_System
         private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
