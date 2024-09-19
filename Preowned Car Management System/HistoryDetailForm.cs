@@ -22,7 +22,7 @@ namespace Preowned_Car_Management_System
         {
             LoadHistoryDetails();
         }
-
+        
         private void LoadHistoryDetails()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -30,33 +30,38 @@ namespace Preowned_Car_Management_System
                 conn.Open();
                 string query = "SELECT * FROM HistoryTable WHERE CarId = @CarId";
 
+                
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@CarId", carId);
 
-                    using (SqlDataReader reader = cmd.ExecuteReader()){
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
 
-                        if (reader.Read()) {
+                        if (reader.Read())
+                        {
                             pictureBox1.Image = ConvertToImage((byte[])reader["CarImage"]);
                             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-                            richTextBox1.Text = $"Supplier Mobile Number : {reader["SupplierMobileNumber"].ToString()}\n" +
-                                                $"Buyer Mobile Number : {reader["BuyerMobileNumber"].ToString()}\n" +
-                                                $"Supplier Address : {reader["SupplierAddress"].ToString()}\n" +
-                                                $"Buyer Address : {reader["BuyerAddress"].ToString()}\n" +
-                                                $"Supplier Id : {reader["SupplierId"].ToString()}\n" +
-                                                $"Buyer Id : {reader["BuyerId"].ToString()}\n" +
-                                                $"Owner Type : {reader["OwnerType"].ToString()}\n" +
-                                                $"Car Info : {reader["CarInfo"].ToString()}\n" +
-                                                $"Car Id : {reader["CarId"].ToString()}\n" +
-                                                $"Car Name : {reader["CarName"].ToString()}\n" +
-                                                $"Supplier Name : {reader["SupplierName"].ToString()}\n" +
-                                                $"Buyer Name : {reader["BuyerName"].ToString()}\n" +
-                                                $"Amount Paid : {reader["AmountPaid"].ToString()}\n" +
-                                                $"Amount Received : {reader["AmountRecieved"].ToString()}\n" +
-                                                $"Staff Member : {reader["StaffMember"].ToString()}";
+                            label1.Text = $"Car Name: {reader["CarName"].ToString()}";
+                            label2.Text = $"Car Id: {reader["CarId"].ToString()}";
+                            label3.Text = $"Owner Type: {reader["OwnerType"].ToString()}";
+                            label4.Text = $"Supplier Name: {reader["SupplierName"].ToString()}";
+                            label5.Text = $"Supplier Id: {reader["SupplierId"].ToString()}";
+                            label6.Text = $"Buyer Name: {reader["BuyerName"].ToString()}";
+                            label7.Text = $"Buyer Id: {reader["BuyerId"].ToString()}";
+                            label8.Text = $"Amount Paid: {reader["AmountPaid"].ToString()}";
+                            label9.Text = $"Amount Received: {reader["AmountRecieved"].ToString()}";
+                            label10.Text = $"Profit: {reader["ProfitOrLoss"].ToString()}";
+                            label11.Text = $"Supplier Mobile Number: {reader["SupplierMobileNumber"].ToString()}";
+                            label12.Text = $"Buyer Mobile Number: {reader["BuyerMobileNumber"].ToString()}";
+                            label13.Text = $"Supplier Address: {reader["SupplierAddress"].ToString()}";
+                            label14.Text = $"Buyer Address: {reader["BuyerAddress"].ToString()}";
+                            label15.Text = $"Car Info: {reader["CarInfo"].ToString()}";
+                            label16.Text = $"Staff Member: {reader["StaffMember"].ToString()}";
+
                         }
                     }
-                
+
                 }
             }
         }
@@ -67,12 +72,6 @@ namespace Preowned_Car_Management_System
             {
                 return Image.FromStream(ms);
             }
-        }
-
-        
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

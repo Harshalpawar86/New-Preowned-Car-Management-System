@@ -187,9 +187,21 @@ namespace Preowned_Car_Management_System
                                         MessageBox.Show("Failed to Update Data");
                                     }
                                 }
+                                String updateQuery2 = "UPDATE StockTable SET CarName=@CarName";
+                                using (SqlCommand upd = new SqlCommand(updateQuery2, conn))
+                                {
+
+                                    upd.Parameters.AddWithValue("@CarName", updateSupplierInfoForm.carName);
+                                 
+
+                                    reader.Close();
+                                    int result = upd.ExecuteNonQuery();
+                                    
+                                }
                             }
                         }
                     }
+                    
                 }
             }
 

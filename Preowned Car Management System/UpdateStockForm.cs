@@ -32,7 +32,7 @@ namespace Preowned_Car_Management_System
             if (ValidateData())
             {
 
-                carName = CarInfoTextBox.Text;
+                carName = CarNameTextBox.Text;
                 purchaseAmount = Convert.ToInt64(PurchaseAmountTextBox.Text);
                 ownerType = OwnerTypeComboBox.Text;
                 carInfo = CarInfoTextBox.Text;

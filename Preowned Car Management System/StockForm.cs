@@ -195,6 +195,17 @@ namespace Preowned_Car_Management_System
                                     }
 
                                 }
+                                String updateQuery2 = "UPDATE SupplierTable SET CarName = @CarName ";
+                                using (SqlCommand upd = new SqlCommand(updateQuery2, conn))
+                                {
+
+                                    upd.Parameters.AddWithValue("@CarName", updateStockForm.carName);
+
+                                    reader.Close();
+                                    int result = upd.ExecuteNonQuery();
+                                   
+
+                                }
                             }
                         }
                     }
@@ -351,5 +362,7 @@ namespace Preowned_Car_Management_System
         {
 
         }
+
+       
     }
 }

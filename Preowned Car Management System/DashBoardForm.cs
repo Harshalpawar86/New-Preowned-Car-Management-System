@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,6 @@ namespace Preowned_Car_Management_System
     public partial class DashBoardForm : Form
     {
         public static String connectionString = "Data Source=LAPTOP-Q6RR7BFH\\SQLEXPRESS08;Initial Catalog=PreOwnedCarManagementDatabase;Integrated Security=True;";
-
         public DashBoardForm()
         {
             InitializeComponent();
