@@ -41,14 +41,17 @@
             this.MaintenanceCostTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.MaintenanceIdRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.GetCarIdButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // MaintenanceIdTextBox
             // 
             this.MaintenanceIdTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.MaintenanceIdTextBox.Location = new System.Drawing.Point(485, 244);
+            this.MaintenanceIdTextBox.BackColor = System.Drawing.Color.White;
+            this.MaintenanceIdTextBox.Location = new System.Drawing.Point(488, 244);
             this.MaintenanceIdTextBox.Multiline = true;
             this.MaintenanceIdTextBox.Name = "MaintenanceIdTextBox";
+            this.MaintenanceIdTextBox.ReadOnly = true;
             this.MaintenanceIdTextBox.Size = new System.Drawing.Size(133, 35);
             this.MaintenanceIdTextBox.TabIndex = 78;
             // 
@@ -58,7 +61,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label2.Location = new System.Drawing.Point(75, 241);
+            this.label2.Location = new System.Drawing.Point(78, 241);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(307, 30);
             this.label2.TabIndex = 77;
@@ -67,7 +70,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dateTimePicker1.Location = new System.Drawing.Point(449, 359);
+            this.dateTimePicker1.Location = new System.Drawing.Point(452, 359);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker1.TabIndex = 68;
@@ -78,7 +81,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label1.Location = new System.Drawing.Point(75, 351);
+            this.label1.Location = new System.Drawing.Point(78, 351);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(336, 30);
             this.label1.TabIndex = 76;
@@ -89,17 +92,18 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.Font = new System.Drawing.Font("Modern No. 20", 30.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label4.Location = new System.Drawing.Point(60, 62);
+            this.label4.Location = new System.Drawing.Point(63, 62);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(607, 66);
             this.label4.TabIndex = 75;
             this.label4.Text = "Enter Maintenance Info : ";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // OKButton
             // 
             this.OKButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.OKButton.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OKButton.Location = new System.Drawing.Point(137, 506);
+            this.OKButton.Location = new System.Drawing.Point(140, 506);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(210, 57);
             this.OKButton.TabIndex = 74;
@@ -111,7 +115,7 @@
             // 
             this.CancelButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CancelButton.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelButton.Location = new System.Drawing.Point(365, 506);
+            this.CancelButton.Location = new System.Drawing.Point(368, 506);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(210, 57);
             this.CancelButton.TabIndex = 73;
@@ -125,7 +129,7 @@
             this.costLabel.AutoSize = true;
             this.costLabel.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.costLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.costLabel.Location = new System.Drawing.Point(75, 297);
+            this.costLabel.Location = new System.Drawing.Point(78, 297);
             this.costLabel.Name = "costLabel";
             this.costLabel.Size = new System.Drawing.Size(320, 30);
             this.costLabel.TabIndex = 71;
@@ -134,9 +138,11 @@
             // CarIdTextBox
             // 
             this.CarIdTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CarIdTextBox.Location = new System.Drawing.Point(485, 193);
+            this.CarIdTextBox.BackColor = System.Drawing.Color.White;
+            this.CarIdTextBox.Location = new System.Drawing.Point(488, 193);
             this.CarIdTextBox.Multiline = true;
             this.CarIdTextBox.Name = "CarIdTextBox";
+            this.CarIdTextBox.ReadOnly = true;
             this.CarIdTextBox.Size = new System.Drawing.Size(133, 35);
             this.CarIdTextBox.TabIndex = 70;
             this.CarIdTextBox.TextChanged += new System.EventHandler(this.CarIdTextBox_TextChanged);
@@ -147,7 +153,7 @@
             this.CarIdLabel.AutoSize = true;
             this.CarIdLabel.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CarIdLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.CarIdLabel.Location = new System.Drawing.Point(75, 190);
+            this.CarIdLabel.Location = new System.Drawing.Point(78, 190);
             this.CarIdLabel.Name = "CarIdLabel";
             this.CarIdLabel.Size = new System.Drawing.Size(192, 30);
             this.CarIdLabel.TabIndex = 69;
@@ -156,7 +162,7 @@
             // MaintenanceCostTextBox
             // 
             this.MaintenanceCostTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.MaintenanceCostTextBox.Location = new System.Drawing.Point(485, 297);
+            this.MaintenanceCostTextBox.Location = new System.Drawing.Point(488, 297);
             this.MaintenanceCostTextBox.Multiline = true;
             this.MaintenanceCostTextBox.Name = "MaintenanceCostTextBox";
             this.MaintenanceCostTextBox.Size = new System.Drawing.Size(133, 35);
@@ -168,7 +174,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label3.Location = new System.Drawing.Point(75, 402);
+            this.label3.Location = new System.Drawing.Point(78, 402);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(333, 30);
             this.label3.TabIndex = 80;
@@ -176,17 +182,32 @@
             // 
             // MaintenanceIdRichTextBox
             // 
+            this.MaintenanceIdRichTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.MaintenanceIdRichTextBox.Location = new System.Drawing.Point(485, 409);
             this.MaintenanceIdRichTextBox.Name = "MaintenanceIdRichTextBox";
             this.MaintenanceIdRichTextBox.Size = new System.Drawing.Size(133, 61);
             this.MaintenanceIdRichTextBox.TabIndex = 81;
             this.MaintenanceIdRichTextBox.Text = "";
             // 
+            // GetCarIdButton
+            // 
+            this.GetCarIdButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.GetCarIdButton.Font = new System.Drawing.Font("Modern No. 20", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GetCarIdButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.GetCarIdButton.Location = new System.Drawing.Point(662, 193);
+            this.GetCarIdButton.Name = "GetCarIdButton";
+            this.GetCarIdButton.Size = new System.Drawing.Size(122, 35);
+            this.GetCarIdButton.TabIndex = 82;
+            this.GetCarIdButton.Text = "Get Car Id";
+            this.GetCarIdButton.UseVisualStyleBackColor = true;
+            this.GetCarIdButton.Click += new System.EventHandler(this.GetCarIdButton_Click);
+            // 
             // MaintenanceInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(713, 620);
+            this.ClientSize = new System.Drawing.Size(810, 620);
+            this.Controls.Add(this.GetCarIdButton);
             this.Controls.Add(this.MaintenanceIdRichTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.MaintenanceCostTextBox);
@@ -202,6 +223,7 @@
             this.Controls.Add(this.CarIdLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MaintenanceInfoForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MaintenanceInfoForm";
             this.Load += new System.EventHandler(this.MaintenanceInfoForm_Load);
             this.ResumeLayout(false);
@@ -224,5 +246,6 @@
         private System.Windows.Forms.TextBox MaintenanceCostTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RichTextBox MaintenanceIdRichTextBox;
+        private System.Windows.Forms.Button GetCarIdButton;
     }
 }

@@ -13,7 +13,11 @@ namespace Preowned_Car_Management_System
 {
     public partial class DashBoardForm : Form
     {
+
         public static String connectionString = "Data Source=LAPTOP-Q6RR7BFH\\SQLEXPRESS08;Initial Catalog=PreOwnedCarManagementDatabase;Integrated Security=True;";
+     
+
+       // public static String connectionString = "Data Source=MONU\\SQLEXPRESS;Initial Catalog=PreOwnedCarManagementDatabase;Integrated Security=True;TrustServerCertificate=True";
         public DashBoardForm()
         {
             InitializeComponent();

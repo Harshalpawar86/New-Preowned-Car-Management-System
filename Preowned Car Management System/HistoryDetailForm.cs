@@ -59,6 +59,14 @@ namespace Preowned_Car_Management_System
                             label15.Text = $"Car Info: {reader["CarInfo"].ToString()}";
                             label16.Text = $"Staff Member: {reader["StaffMember"].ToString()}";
 
+                            if (reader["MaintenanceId"] == DBNull.Value || reader["MaintenanceId"].ToString() == "0" || string.IsNullOrEmpty(reader["MaintenanceId"].ToString()))
+                            {
+                                label17.Text = "Maintenance Id : N/A";
+                            }
+                            else
+                            {
+                                label17.Text = $"Maintenance Id: {reader["MaintenanceId"].ToString()}";
+                            }
                         }
                     }
 

@@ -63,7 +63,7 @@ namespace Preowned_Car_Management_System
         private void label4_Click(object sender, EventArgs e)
         {
 
-        }
+        }       
         private void getData() {
 
             

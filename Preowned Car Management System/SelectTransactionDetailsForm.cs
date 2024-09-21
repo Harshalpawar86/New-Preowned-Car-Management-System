@@ -36,6 +36,8 @@ namespace Preowned_Car_Management_System
         public String purchaseDate { get; set; }
         public double profitOrLoss { get; set; }
 
+        public int maintenanceId { get; set; }
+
         private bool noException1 = false;
         private bool noException2 = false;
 
@@ -75,8 +77,27 @@ namespace Preowned_Car_Management_System
                             }
                         }
                     }
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
 
-                     DialogResult = DialogResult.OK;
+                        conn.Open();
+                        string query = "SELECT MaintenanceId FROM MaintenanceTable WHERE CarId = @CarId";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+
+                            cmd.Parameters.AddWithValue("@CarId", carId);
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+
+                                if (reader.Read())
+                                {
+                                    maintenanceId = Convert.ToInt32(reader["MaintenanceId"]);
+                                }
+                            }
+                        }
+                    }
+
+                    DialogResult = DialogResult.OK;
                 }
                 else
                 {

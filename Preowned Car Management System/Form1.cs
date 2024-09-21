@@ -29,9 +29,19 @@ namespace Preowned_Car_Management_System
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            
-            DashBoardForm dashBoardForm = new DashBoardForm();
-            dashBoardForm.Show();
+            //if (UseridTextbox.Text == "Monu@123" && PasswordTextbox.Text == "12345")
+            //{
+            //    DashBoardForm dashBoardForm = new DashBoardForm();
+            //    UseridTextbox.Text = "";
+            //    PasswordTextbox.Text = "";
+            //    dashBoardForm.Show();
+            //}
+            //else {
+
+            //    MessageBox.Show("Enter Valid User Id & Password");
+            //}
+            DashBoardForm form = new DashBoardForm();
+            form.Show();
           //  this.Hide();
         }
 

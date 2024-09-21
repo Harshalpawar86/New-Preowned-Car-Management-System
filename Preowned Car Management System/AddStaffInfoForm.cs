@@ -15,7 +15,7 @@ namespace Preowned_Car_Management_System
         public String staffName { get; set; }
         public String staffGender { get; set; }
         public String staffBOD { get; set; }
-        public String staffMobileNumber { get; set; }
+        public int staffMobileNumber { get; set; }
         public String staffEmail { get; set; }
         public String staffAddress { get; set; }
         public String jobDesignation { get; set; }
@@ -34,7 +34,7 @@ namespace Preowned_Car_Management_System
         {
             staffName=StaffNameTextBox.Text;
             staffGender=GenderComboBox.Text;
-            staffMobileNumber=StaffMobileTextBox.Text;
+            staffMobileNumber = Convert.ToInt32(textBox2.Text);
             staffEmail=StaffEmailTextBox.Text;
             staffBOD = dateTimePicker1.Value.ToString();
             staffAddress=richTextBox1.Text;
