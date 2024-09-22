@@ -144,6 +144,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectStaffForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectStaffForm.Designer.cs">
+      <DependentUpon>SelectStaffForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SelectTransactionDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +262,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SelectStaffForm.resx">
+      <DependentUpon>SelectStaffForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectTransactionDetailsForm.resx">
       <DependentUpon>SelectTransactionDetailsForm.cs</DependentUpon>
     </EmbeddedResource>

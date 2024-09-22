@@ -44,6 +44,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.StaffIdTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.SelectStaffButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // PurchaseAmountTextBox
@@ -215,6 +216,7 @@
             this.StaffIdTextBox.Location = new System.Drawing.Point(608, 521);
             this.StaffIdTextBox.Multiline = true;
             this.StaffIdTextBox.Name = "StaffIdTextBox";
+            this.StaffIdTextBox.ReadOnly = true;
             this.StaffIdTextBox.Size = new System.Drawing.Size(133, 35);
             this.StaffIdTextBox.TabIndex = 80;
             // 
@@ -230,11 +232,25 @@
             this.label1.TabIndex = 79;
             this.label1.Text = "Enter Staff Id : ";
             // 
+            // SelectStaffButton
+            // 
+            this.SelectStaffButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SelectStaffButton.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SelectStaffButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.SelectStaffButton.Location = new System.Drawing.Point(782, 521);
+            this.SelectStaffButton.Name = "SelectStaffButton";
+            this.SelectStaffButton.Size = new System.Drawing.Size(166, 35);
+            this.SelectStaffButton.TabIndex = 81;
+            this.SelectStaffButton.Text = "Select Staff";
+            this.SelectStaffButton.UseVisualStyleBackColor = true;
+            this.SelectStaffButton.Click += new System.EventHandler(this.SelectStaffButton_Click);
+            // 
             // SellCarForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(987, 739);
+            this.Controls.Add(this.SelectStaffButton);
             this.Controls.Add(this.StaffIdTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
@@ -278,5 +294,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox StaffIdTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button SelectStaffButton;
     }
 }

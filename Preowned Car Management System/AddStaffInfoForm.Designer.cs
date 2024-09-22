@@ -45,6 +45,8 @@
             this.JobDesignationComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.StaffIdTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label4
@@ -62,7 +64,7 @@
             // 
             this.OKButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.OKButton.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OKButton.Location = new System.Drawing.Point(236, 653);
+            this.OKButton.Location = new System.Drawing.Point(236, 699);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(210, 57);
             this.OKButton.TabIndex = 87;
@@ -74,7 +76,7 @@
             // 
             this.CancelButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CancelButton.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelButton.Location = new System.Drawing.Point(464, 653);
+            this.CancelButton.Location = new System.Drawing.Point(464, 699);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(210, 57);
             this.CancelButton.TabIndex = 86;
@@ -109,7 +111,7 @@
             this.StaffMobileTextBox.AutoSize = true;
             this.StaffMobileTextBox.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StaffMobileTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.StaffMobileTextBox.Location = new System.Drawing.Point(162, 288);
+            this.StaffMobileTextBox.Location = new System.Drawing.Point(162, 334);
             this.StaffMobileTextBox.Name = "StaffMobileTextBox";
             this.StaffMobileTextBox.Size = new System.Drawing.Size(282, 30);
             this.StaffMobileTextBox.TabIndex = 89;
@@ -121,7 +123,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label1.Location = new System.Drawing.Point(162, 234);
+            this.label1.Location = new System.Drawing.Point(162, 280);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(201, 30);
             this.label1.TabIndex = 91;
@@ -135,7 +137,7 @@
             this.GenderComboBox.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.GenderComboBox.Location = new System.Drawing.Point(572, 234);
+            this.GenderComboBox.Location = new System.Drawing.Point(572, 280);
             this.GenderComboBox.Name = "GenderComboBox";
             this.GenderComboBox.Size = new System.Drawing.Size(133, 24);
             this.GenderComboBox.TabIndex = 93;
@@ -143,7 +145,7 @@
             // textBox2
             // 
             this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox2.Location = new System.Drawing.Point(572, 350);
+            this.textBox2.Location = new System.Drawing.Point(572, 396);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(133, 35);
@@ -155,7 +157,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label2.Location = new System.Drawing.Point(162, 347);
+            this.label2.Location = new System.Drawing.Point(162, 393);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(303, 30);
             this.label2.TabIndex = 94;
@@ -167,7 +169,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label3.Location = new System.Drawing.Point(162, 463);
+            this.label3.Location = new System.Drawing.Point(162, 509);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(210, 30);
             this.label3.TabIndex = 98;
@@ -176,7 +178,7 @@
             // StaffEmailTextBox
             // 
             this.StaffEmailTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.StaffEmailTextBox.Location = new System.Drawing.Point(572, 407);
+            this.StaffEmailTextBox.Location = new System.Drawing.Point(572, 453);
             this.StaffEmailTextBox.Multiline = true;
             this.StaffEmailTextBox.Name = "StaffEmailTextBox";
             this.StaffEmailTextBox.Size = new System.Drawing.Size(133, 35);
@@ -188,7 +190,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label5.Location = new System.Drawing.Point(162, 404);
+            this.label5.Location = new System.Drawing.Point(162, 450);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(219, 30);
             this.label5.TabIndex = 96;
@@ -197,7 +199,7 @@
             // richTextBox1
             // 
             this.richTextBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.richTextBox1.Location = new System.Drawing.Point(572, 463);
+            this.richTextBox1.Location = new System.Drawing.Point(572, 509);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(133, 79);
             this.richTextBox1.TabIndex = 100;
@@ -214,7 +216,7 @@
             "Accountant",
             "Mechanic",
             "Office Boy"});
-            this.JobDesignationComboBox.Location = new System.Drawing.Point(572, 570);
+            this.JobDesignationComboBox.Location = new System.Drawing.Point(572, 616);
             this.JobDesignationComboBox.Name = "JobDesignationComboBox";
             this.JobDesignationComboBox.Size = new System.Drawing.Size(133, 24);
             this.JobDesignationComboBox.TabIndex = 102;
@@ -225,7 +227,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label6.Location = new System.Drawing.Point(162, 570);
+            this.label6.Location = new System.Drawing.Point(162, 616);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(311, 30);
             this.label6.TabIndex = 101;
@@ -233,18 +235,43 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(547, 293);
+            this.dateTimePicker1.Location = new System.Drawing.Point(547, 339);
             this.dateTimePicker1.MaxDate = new System.DateTime(2024, 8, 29, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker1.TabIndex = 103;
             this.dateTimePicker1.Value = new System.DateTime(2024, 8, 29, 0, 0, 0, 0);
             // 
+            // StaffIdTextBox
+            // 
+            this.StaffIdTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.StaffIdTextBox.BackColor = System.Drawing.Color.White;
+            this.StaffIdTextBox.Location = new System.Drawing.Point(572, 230);
+            this.StaffIdTextBox.Multiline = true;
+            this.StaffIdTextBox.Name = "StaffIdTextBox";
+            this.StaffIdTextBox.ReadOnly = true;
+            this.StaffIdTextBox.Size = new System.Drawing.Size(133, 35);
+            this.StaffIdTextBox.TabIndex = 105;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.label7.Location = new System.Drawing.Point(162, 227);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(134, 30);
+            this.label7.TabIndex = 104;
+            this.label7.Text = "Staff Id : ";
+            // 
             // AddStaffInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(909, 794);
+            this.Controls.Add(this.StaffIdTextBox);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.JobDesignationComboBox);
             this.Controls.Add(this.label6);
@@ -289,5 +316,7 @@
         private System.Windows.Forms.ComboBox JobDesignationComboBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox StaffIdTextBox;
+        private System.Windows.Forms.Label label7;
     }
 }

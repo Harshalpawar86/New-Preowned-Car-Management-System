@@ -156,5 +156,14 @@ namespace Preowned_Car_Management_System
                 MessageBox.Show("Please Enter All Fields..");
             }
         }
+
+        private void SelectStaffButton_Click(object sender, EventArgs e)
+        {
+            SelectStaffForm staffForm = new SelectStaffForm();
+            if (staffForm.ShowDialog() == DialogResult.OK)
+            {
+                StaffIdTextBox.Text = staffForm.staffId.ToString();
+            }
+        }
     }
 }
