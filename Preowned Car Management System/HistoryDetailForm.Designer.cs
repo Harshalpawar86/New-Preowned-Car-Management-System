@@ -28,288 +28,473 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.SellingDateTextBox = new System.Windows.Forms.Label();
+            this.CarIdTextBox = new System.Windows.Forms.Label();
+            this.CarNameLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.AmountLabel = new System.Windows.Forms.Label();
+            this.CarInfoLabel = new System.Windows.Forms.Label();
+            this.OwnerLabel = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.StaffMobileLabel = new System.Windows.Forms.Label();
+            this.StaffNameLabel = new System.Windows.Forms.Label();
+            this.StaffComissionLabel = new System.Windows.Forms.Label();
+            this.StaffIdLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.BuyingAmountLabel = new System.Windows.Forms.Label();
+            this.BuyerNameLabel = new System.Windows.Forms.Label();
+            this.BuyerMobileLabel = new System.Windows.Forms.Label();
+            this.BuyerIdLabel = new System.Windows.Forms.Label();
+            this.SellingAmtLabel = new System.Windows.Forms.Label();
+            this.SellerNameLabel = new System.Windows.Forms.Label();
+            this.SellerNumberLabel = new System.Windows.Forms.Label();
+            this.SellerIdLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.MaintenanceInfoLabel = new System.Windows.Forms.Label();
+            this.MaintenanceIdLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.Location = new System.Drawing.Point(72, 23);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(245, 245);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.label17, 0, 16);
-            this.tableLayoutPanel1.Controls.Add(this.label16, 0, 15);
-            this.tableLayoutPanel1.Controls.Add(this.label14, 0, 13);
-            this.tableLayoutPanel1.Controls.Add(this.label13, 0, 12);
-            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 11);
-            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 10);
-            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 9);
-            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label15, 0, 14);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(342, 23);
+            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 17;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.206555F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.206555F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.839127F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.839127F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.839127F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.839127F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.839127F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.839127F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.839127F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.839127F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.839127F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.839127F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.839127F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.839127F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.839127F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.839127F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.839127F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(661, 699);
-            this.tableLayoutPanel1.TabIndex = 2;
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1015, 734);
+            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
-            // label16
+            // pictureBox1
             // 
-            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label16.Location = new System.Drawing.Point(182, 611);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(296, 30);
-            this.label16.TabIndex = 67;
-            this.label16.Text = "Enter Supplier Name : ";
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(4, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(247, 176);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
-            // label14
+            // panel1
             // 
-            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label14.Location = new System.Drawing.Point(182, 531);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(296, 30);
-            this.label14.TabIndex = 65;
-            this.label14.Text = "Enter Supplier Name : ";
+            this.panel1.Controls.Add(this.SellingDateTextBox);
+            this.panel1.Controls.Add(this.CarIdTextBox);
+            this.panel1.Controls.Add(this.CarNameLabel);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(258, 4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(753, 176);
+            this.panel1.TabIndex = 1;
             // 
-            // label13
+            // SellingDateTextBox
             // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label13.Location = new System.Drawing.Point(182, 491);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(296, 30);
-            this.label13.TabIndex = 64;
-            this.label13.Text = "Enter Supplier Name : ";
+            this.SellingDateTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.SellingDateTextBox.AutoSize = true;
+            this.SellingDateTextBox.Font = new System.Drawing.Font("Modern No. 20", 30.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SellingDateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.SellingDateTextBox.Location = new System.Drawing.Point(3, 120);
+            this.SellingDateTextBox.Name = "SellingDateTextBox";
+            this.SellingDateTextBox.Size = new System.Drawing.Size(330, 53);
+            this.SellingDateTextBox.TabIndex = 70;
+            this.SellingDateTextBox.Text = "Selling Date : ";
             // 
-            // label12
+            // CarIdTextBox
             // 
-            this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label12.Location = new System.Drawing.Point(182, 451);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(296, 30);
-            this.label12.TabIndex = 63;
-            this.label12.Text = "Enter Supplier Name : ";
+            this.CarIdTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.CarIdTextBox.AutoSize = true;
+            this.CarIdTextBox.Font = new System.Drawing.Font("Modern No. 20", 30.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CarIdTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.CarIdTextBox.Location = new System.Drawing.Point(3, 67);
+            this.CarIdTextBox.Name = "CarIdTextBox";
+            this.CarIdTextBox.Size = new System.Drawing.Size(201, 53);
+            this.CarIdTextBox.TabIndex = 69;
+            this.CarIdTextBox.Text = "Car Id : ";
             // 
-            // label11
+            // CarNameLabel
             // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label11.Location = new System.Drawing.Point(182, 411);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(296, 30);
-            this.label11.TabIndex = 62;
-            this.label11.Text = "Enter Supplier Name : ";
+            this.CarNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.CarNameLabel.AutoSize = true;
+            this.CarNameLabel.Font = new System.Drawing.Font("Modern No. 20", 30.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CarNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.CarNameLabel.Location = new System.Drawing.Point(3, 14);
+            this.CarNameLabel.Name = "CarNameLabel";
+            this.CarNameLabel.Size = new System.Drawing.Size(560, 53);
+            this.CarNameLabel.TabIndex = 68;
+            this.CarNameLabel.Text = "Car Name : Lamborghini";
+            this.CarNameLabel.Click += new System.EventHandler(this.CarNameLabel_Click);
             // 
-            // label10
+            // tableLayoutPanel2
             // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label10.Location = new System.Drawing.Point(182, 371);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(296, 30);
-            this.label10.TabIndex = 61;
-            this.label10.Text = "Enter Supplier Name : ";
+            this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Controls.Add(this.panel2, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.panel4, 0, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 187);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(247, 543);
+            this.tableLayoutPanel2.TabIndex = 2;
             // 
-            // label9
+            // panel2
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label9.Location = new System.Drawing.Point(182, 331);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(296, 30);
-            this.label9.TabIndex = 60;
-            this.label9.Text = "Enter Supplier Name : ";
+            this.panel2.Controls.Add(this.panel6);
+            this.panel2.Controls.Add(this.panel5);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(4, 4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(239, 264);
+            this.panel2.TabIndex = 0;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // label8
+            // AmountLabel
             // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label8.Location = new System.Drawing.Point(182, 291);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(296, 30);
-            this.label8.TabIndex = 59;
-            this.label8.Text = "Enter Supplier Name : ";
+            this.AmountLabel.AutoSize = true;
+            this.AmountLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AmountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.AmountLabel.Location = new System.Drawing.Point(-4, 48);
+            this.AmountLabel.Name = "AmountLabel";
+            this.AmountLabel.Size = new System.Drawing.Size(48, 22);
+            this.AmountLabel.TabIndex = 82;
+            this.AmountLabel.Text = "Amt";
             // 
-            // label7
+            // CarInfoLabel
             // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label7.Location = new System.Drawing.Point(182, 251);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(296, 30);
-            this.label7.TabIndex = 58;
-            this.label7.Text = "Enter Supplier Name : ";
+            this.CarInfoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CarInfoLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CarInfoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.CarInfoLabel.Location = new System.Drawing.Point(0, 0);
+            this.CarInfoLabel.Name = "CarInfoLabel";
+            this.CarInfoLabel.Size = new System.Drawing.Size(239, 164);
+            this.CarInfoLabel.TabIndex = 78;
+            this.CarInfoLabel.Text = "Car Information :  ";
             // 
-            // label6
+            // OwnerLabel
             // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label6.Location = new System.Drawing.Point(182, 211);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(296, 30);
-            this.label6.TabIndex = 57;
-            this.label6.Text = "Enter Supplier Name : ";
+            this.OwnerLabel.AutoSize = true;
+            this.OwnerLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OwnerLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.OwnerLabel.Location = new System.Drawing.Point(-4, 14);
+            this.OwnerLabel.Name = "OwnerLabel";
+            this.OwnerLabel.Size = new System.Drawing.Size(135, 22);
+            this.OwnerLabel.TabIndex = 75;
+            this.OwnerLabel.Text = "Owner Type : ";
             // 
-            // label5
+            // panel4
             // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label5.Location = new System.Drawing.Point(182, 171);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(296, 30);
-            this.label5.TabIndex = 56;
-            this.label5.Text = "Enter Supplier Name : ";
+            this.panel4.Controls.Add(this.StaffMobileLabel);
+            this.panel4.Controls.Add(this.StaffNameLabel);
+            this.panel4.Controls.Add(this.StaffComissionLabel);
+            this.panel4.Controls.Add(this.StaffIdLabel);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(4, 275);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(239, 264);
+            this.panel4.TabIndex = 1;
             // 
-            // label4
+            // StaffMobileLabel
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label4.Location = new System.Drawing.Point(182, 131);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(296, 30);
-            this.label4.TabIndex = 55;
-            this.label4.Text = "Enter Supplier Name : ";
+            this.StaffMobileLabel.AutoSize = true;
+            this.StaffMobileLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StaffMobileLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.StaffMobileLabel.Location = new System.Drawing.Point(13, 76);
+            this.StaffMobileLabel.Name = "StaffMobileLabel";
+            this.StaffMobileLabel.Size = new System.Drawing.Size(216, 22);
+            this.StaffMobileLabel.TabIndex = 74;
+            this.StaffMobileLabel.Text = "Staff Mobile Number : ";
             // 
-            // label3
+            // StaffNameLabel
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label3.Location = new System.Drawing.Point(182, 91);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(296, 30);
-            this.label3.TabIndex = 54;
-            this.label3.Text = "Enter Supplier Name : ";
+            this.StaffNameLabel.AutoSize = true;
+            this.StaffNameLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StaffNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.StaffNameLabel.Location = new System.Drawing.Point(13, 11);
+            this.StaffNameLabel.Name = "StaffNameLabel";
+            this.StaffNameLabel.Size = new System.Drawing.Size(129, 22);
+            this.StaffNameLabel.TabIndex = 71;
+            this.StaffNameLabel.Text = "Staff Name : ";
             // 
-            // label2
+            // StaffComissionLabel
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label2.Location = new System.Drawing.Point(182, 49);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(296, 30);
-            this.label2.TabIndex = 53;
-            this.label2.Text = "Enter Supplier Name : ";
+            this.StaffComissionLabel.AutoSize = true;
+            this.StaffComissionLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StaffComissionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.StaffComissionLabel.Location = new System.Drawing.Point(13, 109);
+            this.StaffComissionLabel.Name = "StaffComissionLabel";
+            this.StaffComissionLabel.Size = new System.Drawing.Size(169, 22);
+            this.StaffComissionLabel.TabIndex = 73;
+            this.StaffComissionLabel.Text = "Staff Comission : ";
             // 
-            // label1
+            // StaffIdLabel
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label1.Location = new System.Drawing.Point(182, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(296, 30);
-            this.label1.TabIndex = 52;
-            this.label1.Text = "Enter Supplier Name : ";
+            this.StaffIdLabel.AutoSize = true;
+            this.StaffIdLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StaffIdLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.StaffIdLabel.Location = new System.Drawing.Point(13, 45);
+            this.StaffIdLabel.Name = "StaffIdLabel";
+            this.StaffIdLabel.Size = new System.Drawing.Size(99, 22);
+            this.StaffIdLabel.TabIndex = 72;
+            this.StaffIdLabel.Text = "Staff Id : ";
             // 
-            // label15
+            // tableLayoutPanel3
             // 
-            this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label15.Location = new System.Drawing.Point(182, 571);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(296, 30);
-            this.label15.TabIndex = 66;
-            this.label15.Text = "Enter Supplier Name : ";
+            this.tableLayoutPanel3.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 0, 1);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(258, 187);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(753, 543);
+            this.tableLayoutPanel3.TabIndex = 3;
             // 
-            // label17
+            // panel5
             // 
-            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.label17.Location = new System.Drawing.Point(182, 657);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(296, 30);
-            this.label17.TabIndex = 68;
-            this.label17.Text = "Enter Supplier Name : ";
+            this.panel5.Controls.Add(this.AmountLabel);
+            this.panel5.Controls.Add(this.OwnerLabel);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(239, 100);
+            this.panel5.TabIndex = 0;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.CarInfoLabel);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(0, 100);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(239, 164);
+            this.panel6.TabIndex = 1;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.panel3, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.panel7, 1, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(4, 4);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(745, 264);
+            this.tableLayoutPanel4.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.BuyingAmountLabel);
+            this.panel3.Controls.Add(this.BuyerNameLabel);
+            this.panel3.Controls.Add(this.BuyerMobileLabel);
+            this.panel3.Controls.Add(this.BuyerIdLabel);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(4, 4);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(365, 256);
+            this.panel3.TabIndex = 0;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.SellingAmtLabel);
+            this.panel7.Controls.Add(this.SellerNameLabel);
+            this.panel7.Controls.Add(this.SellerNumberLabel);
+            this.panel7.Controls.Add(this.SellerIdLabel);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(376, 4);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(365, 256);
+            this.panel7.TabIndex = 1;
+            // 
+            // BuyingAmountLabel
+            // 
+            this.BuyingAmountLabel.AutoSize = true;
+            this.BuyingAmountLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BuyingAmountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.BuyingAmountLabel.Location = new System.Drawing.Point(3, 75);
+            this.BuyingAmountLabel.Name = "BuyingAmountLabel";
+            this.BuyingAmountLabel.Size = new System.Drawing.Size(170, 22);
+            this.BuyingAmountLabel.TabIndex = 78;
+            this.BuyingAmountLabel.Text = "Buying Amount : ";
+            // 
+            // BuyerNameLabel
+            // 
+            this.BuyerNameLabel.AutoSize = true;
+            this.BuyerNameLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BuyerNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.BuyerNameLabel.Location = new System.Drawing.Point(3, 10);
+            this.BuyerNameLabel.Name = "BuyerNameLabel";
+            this.BuyerNameLabel.Size = new System.Drawing.Size(138, 22);
+            this.BuyerNameLabel.TabIndex = 75;
+            this.BuyerNameLabel.Text = "Buyer Name : ";
+            // 
+            // BuyerMobileLabel
+            // 
+            this.BuyerMobileLabel.AutoSize = true;
+            this.BuyerMobileLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BuyerMobileLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.BuyerMobileLabel.Location = new System.Drawing.Point(3, 108);
+            this.BuyerMobileLabel.Name = "BuyerMobileLabel";
+            this.BuyerMobileLabel.Size = new System.Drawing.Size(225, 22);
+            this.BuyerMobileLabel.TabIndex = 77;
+            this.BuyerMobileLabel.Text = "Buyer Mobile Number : ";
+            // 
+            // BuyerIdLabel
+            // 
+            this.BuyerIdLabel.AutoSize = true;
+            this.BuyerIdLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BuyerIdLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.BuyerIdLabel.Location = new System.Drawing.Point(3, 44);
+            this.BuyerIdLabel.Name = "BuyerIdLabel";
+            this.BuyerIdLabel.Size = new System.Drawing.Size(102, 22);
+            this.BuyerIdLabel.TabIndex = 76;
+            this.BuyerIdLabel.Text = "Buyer Id :";
+            // 
+            // SellingAmtLabel
+            // 
+            this.SellingAmtLabel.AutoSize = true;
+            this.SellingAmtLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SellingAmtLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.SellingAmtLabel.Location = new System.Drawing.Point(12, 75);
+            this.SellingAmtLabel.Name = "SellingAmtLabel";
+            this.SellingAmtLabel.Size = new System.Drawing.Size(169, 22);
+            this.SellingAmtLabel.TabIndex = 82;
+            this.SellingAmtLabel.Text = "Selling Amount : ";
+            // 
+            // SellerNameLabel
+            // 
+            this.SellerNameLabel.AutoSize = true;
+            this.SellerNameLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SellerNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.SellerNameLabel.Location = new System.Drawing.Point(12, 10);
+            this.SellerNameLabel.Name = "SellerNameLabel";
+            this.SellerNameLabel.Size = new System.Drawing.Size(137, 22);
+            this.SellerNameLabel.TabIndex = 79;
+            this.SellerNameLabel.Text = "Seller Name : ";
+            // 
+            // SellerNumberLabel
+            // 
+            this.SellerNumberLabel.AutoSize = true;
+            this.SellerNumberLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SellerNumberLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.SellerNumberLabel.Location = new System.Drawing.Point(12, 108);
+            this.SellerNumberLabel.Name = "SellerNumberLabel";
+            this.SellerNumberLabel.Size = new System.Drawing.Size(224, 22);
+            this.SellerNumberLabel.TabIndex = 81;
+            this.SellerNumberLabel.Text = "Seller Mobile Number : ";
+            // 
+            // SellerIdLabel
+            // 
+            this.SellerIdLabel.AutoSize = true;
+            this.SellerIdLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SellerIdLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.SellerIdLabel.Location = new System.Drawing.Point(12, 44);
+            this.SellerIdLabel.Name = "SellerIdLabel";
+            this.SellerIdLabel.Size = new System.Drawing.Size(101, 22);
+            this.SellerIdLabel.TabIndex = 80;
+            this.SellerIdLabel.Text = "Seller Id :";
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.panel8, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.panel9, 1, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(4, 275);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(745, 264);
+            this.tableLayoutPanel5.TabIndex = 1;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.MaintenanceInfoLabel);
+            this.panel8.Controls.Add(this.MaintenanceIdLabel);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(3, 3);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(366, 258);
+            this.panel8.TabIndex = 0;
+            // 
+            // panel9
+            // 
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(375, 3);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(367, 258);
+            this.panel9.TabIndex = 1;
+            // 
+            // MaintenanceInfoLabel
+            // 
+            this.MaintenanceInfoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MaintenanceInfoLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaintenanceInfoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.MaintenanceInfoLabel.Location = new System.Drawing.Point(0, 22);
+            this.MaintenanceInfoLabel.Name = "MaintenanceInfoLabel";
+            this.MaintenanceInfoLabel.Size = new System.Drawing.Size(366, 236);
+            this.MaintenanceInfoLabel.TabIndex = 78;
+            this.MaintenanceInfoLabel.Text = "Maintenance Information : ";
+            // 
+            // MaintenanceIdLabel
+            // 
+            this.MaintenanceIdLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MaintenanceIdLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaintenanceIdLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.MaintenanceIdLabel.Location = new System.Drawing.Point(0, 0);
+            this.MaintenanceIdLabel.Name = "MaintenanceIdLabel";
+            this.MaintenanceIdLabel.Size = new System.Drawing.Size(366, 22);
+            this.MaintenanceIdLabel.TabIndex = 79;
+            this.MaintenanceIdLabel.Text = "Maintenance Id : ";
             // 
             // HistoryDetailForm
             // 
@@ -317,38 +502,70 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1015, 734);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.pictureBox1);
             this.Name = "HistoryDetailForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HistoryDetailForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.HistoryDetailForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox pictureBox1;
+
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label CarNameLabel;
+        private System.Windows.Forms.Label CarIdTextBox;
+        private System.Windows.Forms.Label SellingDateTextBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label StaffNameLabel;
+        private System.Windows.Forms.Label StaffIdLabel;
+        private System.Windows.Forms.Label StaffMobileLabel;
+        private System.Windows.Forms.Label StaffComissionLabel;
+        private System.Windows.Forms.Label CarInfoLabel;
+        private System.Windows.Forms.Label OwnerLabel;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label AmountLabel;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label BuyingAmountLabel;
+        private System.Windows.Forms.Label BuyerNameLabel;
+        private System.Windows.Forms.Label BuyerMobileLabel;
+        private System.Windows.Forms.Label BuyerIdLabel;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label SellingAmtLabel;
+        private System.Windows.Forms.Label SellerNameLabel;
+        private System.Windows.Forms.Label SellerNumberLabel;
+        private System.Windows.Forms.Label SellerIdLabel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Label MaintenanceInfoLabel;
+        private System.Windows.Forms.Label MaintenanceIdLabel;
     }
 }

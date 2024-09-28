@@ -25,6 +25,7 @@ namespace Preowned_Car_Management_System
         
         private void LoadHistoryDetails()
         {
+            int staffId = 0;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -42,35 +43,75 @@ namespace Preowned_Car_Management_System
                         {
                             pictureBox1.Image = ConvertToImage((byte[])reader["CarImage"]);
                             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-                            label1.Text = $"Car Name: {reader["CarName"].ToString()}";
-                            label2.Text = $"Car Id: {reader["CarId"].ToString()}";
-                            label3.Text = $"Owner Type: {reader["OwnerType"].ToString()}";
-                            label4.Text = $"Supplier Name: {reader["SupplierName"].ToString()}";
-                            label5.Text = $"Supplier Id: {reader["SupplierId"].ToString()}";
-                            label6.Text = $"Buyer Name: {reader["BuyerName"].ToString()}";
-                            label7.Text = $"Buyer Id: {reader["BuyerId"].ToString()}";
-                            label8.Text = $"Amount Paid: {reader["AmountPaid"].ToString()}";
-                            label9.Text = $"Amount Received: {reader["AmountRecieved"].ToString()}";
-                            label10.Text = $"Profit: {reader["ProfitOrLoss"].ToString()}";
-                            label11.Text = $"Supplier Mobile Number: {reader["SupplierMobileNumber"].ToString()}";
-                            label12.Text = $"Buyer Mobile Number: {reader["BuyerMobileNumber"].ToString()}";
-                            label13.Text = $"Supplier Address: {reader["SupplierAddress"].ToString()}";
-                            label14.Text = $"Buyer Address: {reader["BuyerAddress"].ToString()}";
-                            label15.Text = $"Car Info: {reader["CarInfo"].ToString()}";
-                            label16.Text = $"Staff Member: {reader["StaffMember"].ToString()}";
+                            CarNameLabel.Text = $"Car Name: {reader["CarName"].ToString()}";
+                            CarIdTextBox.Text = $"Car Id: {reader["CarId"].ToString()}";
+                            OwnerLabel.Text = $"Owner Type: {reader["OwnerType"].ToString()}";
+                            SellerNameLabel.Text = $"Seller Name: {reader["SupplierName"].ToString()}";
+                            SellerIdLabel.Text = $"Seller Id: {reader["SupplierId"].ToString()}";
+                            BuyerNameLabel.Text = $"Buyer Name: {reader["BuyerName"].ToString()}";
+                            BuyerIdLabel.Text = $"Buyer Id: {reader["BuyerId"].ToString()}";
+                            SellingAmtLabel.Text = $"Selling Amount : {reader["AmountPaid"].ToString()}";
+                            BuyingAmountLabel.Text = $"Buying Amount : {reader["AmountRecieved"].ToString()}";
+                            SellingDateTextBox.Text = $"Selling Date : {reader["PurchaseDate"].ToString()}";
+                            double amt = Convert.ToDouble(reader["ProfitOrLoss"]);
+                            if (amt > 0)
+                            {
+                                AmountLabel.ForeColor = Color.LimeGreen;
+                                AmountLabel.Text = $"Profit : {reader["ProfitOrLoss"].ToString()}";
+                            }
+                            else {
+
+                                AmountLabel.ForeColor = Color.Red;
+                                AmountLabel.Text = $"Loss : {reader["ProfitOrLoss"].ToString()}";
+                            }
+                            SellerNumberLabel.Text = $"Seller Mobile Number: {reader["SupplierMobileNumber"].ToString()}";
+                            BuyerMobileLabel.Text = $"Buyer Mobile Number: {reader["BuyerMobileNumber"].ToString()}";
+                            //label13.Text = $"Supplier Address: {reader["SupplierAddress"].ToString()}";
+                            //label14.Text = $"Buyer Address: {reader["BuyerAddress"].ToString()}";
+                            CarInfoLabel.Text = $"Car Info: {reader["CarInfo"].ToString()}";
+                            staffId = Convert.ToInt32(reader["StaffId"]);
 
                             if (reader["MaintenanceId"] == DBNull.Value || reader["MaintenanceId"].ToString() == "0" || string.IsNullOrEmpty(reader["MaintenanceId"].ToString()))
                             {
-                                label17.Text = "Maintenance Id : N/A";
+                                MaintenanceIdLabel.Text = "Maintenance Id : N/A";
                             }
                             else
                             {
-                                label17.Text = $"Maintenance Id: {reader["MaintenanceId"].ToString()}";
+                                MaintenanceIdLabel.Text = $"Maintenance Id: {reader["MaintenanceId"].ToString()}";
+                            }
+                            if (MaintenanceIdLabel.Text == "Maintenance Id : N/A") {
+                                MaintenanceInfoLabel.Text = "Maintenance Information : N/A";
                             }
                         }
                     }
+                    
 
                 }
+                conn.Close();
+            }
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    String query = "SELECT * FROM StaffTable WHERE StaffId = @StaffId";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@StaffId", staffId);
+                        using (SqlDataReader reader = cmd.ExecuteReader()) {
+                            if (reader.Read()) { 
+                                StaffNameLabel.Text = $"Staff Name : {reader["StaffName"].ToString()}";
+                                StaffIdLabel.Text = $"Staff Id : {reader["StaffId"].ToString()}";
+                                StaffMobileLabel.Text = $"Staff Mobile Number : {reader["StaffNumber"].ToString()}";
+                            }
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex) {
+
+                MessageBox.Show("Error No staff Id Doesnt Exist "+staffId+"\n"+ex.Message);
             }
         }
 
@@ -82,7 +123,24 @@ namespace Preowned_Car_Management_System
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void CarNameLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
         }

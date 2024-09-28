@@ -82,7 +82,7 @@ namespace Preowned_Car_Management_System
                         {
 
                             conn.Open();
-                            string query = "INSERT INTO HISTORYTABLE (CarImage, SupplierMobileNumber, BuyerMobileNumber, SupplierAddress, BuyerAddress, SupplierId, BuyerId, OwnerType, CarInfo, CarId, CarName, SupplierName, BuyerName, AmountPaid, AmountRecieved, StaffMember, PurchaseDate, ProfitOrLoss,MaintenanceId) VALUES (@CarImage, @SupplierMobileNumber, @BuyerMobileNumber, @SupplierAddress, @BuyerAddress, @SupplierId, @BuyerId, @OwnerType, @CarInfo, @CarId, @CarName, @SupplierName, @BuyerName, @AmountPaid, @AmountRecieved, @StaffMember, @PurchaseDate, @ProfitOrLoss,@MaintenanceId)";
+                            string query = "INSERT INTO HISTORYTABLE (CarImage, SupplierMobileNumber, BuyerMobileNumber, SupplierAddress, BuyerAddress, SupplierId, BuyerId, OwnerType, CarInfo, CarId, CarName, SupplierName, BuyerName, AmountPaid, AmountRecieved, StaffId, PurchaseDate, ProfitOrLoss,MaintenanceId) VALUES (@CarImage, @SupplierMobileNumber, @BuyerMobileNumber, @SupplierAddress, @BuyerAddress, @SupplierId, @BuyerId, @OwnerType, @CarInfo, @CarId, @CarName, @SupplierName, @BuyerName, @AmountPaid, @AmountRecieved, @StaffId, @PurchaseDate, @ProfitOrLoss,@MaintenanceId)";
                             using (SqlCommand cmd = new SqlCommand(query, conn))
                             {
                                 // MessageBox.Show(""+form.carImage);//image here is String.Iameg.BitMap
@@ -101,7 +101,7 @@ namespace Preowned_Car_Management_System
                                 cmd.Parameters.AddWithValue("@BuyerName", form.buyerName);
                                 cmd.Parameters.AddWithValue("@AmountPaid", form.amountPaid);
                                 cmd.Parameters.AddWithValue("@AmountRecieved", form.amountRecieved);
-                                cmd.Parameters.AddWithValue("@StaffMember", form.staffMember);
+                                cmd.Parameters.AddWithValue("@StaffId", form.staffMember);
                                 cmd.Parameters.AddWithValue("@PurchaseDate", form.purchaseDate);
                                 cmd.Parameters.AddWithValue("@ProfitOrLoss", form.profitOrLoss);
                                 cmd.Parameters.AddWithValue("@MaintenanceId",form.maintenanceId);
