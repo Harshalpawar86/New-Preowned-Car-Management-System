@@ -36,8 +36,10 @@
             this.CarNameLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.AmountLabel = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.CarInfoLabel = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.AmountLabel = new System.Windows.Forms.Label();
             this.OwnerLabel = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.StaffMobileLabel = new System.Windows.Forms.Label();
@@ -45,33 +47,31 @@
             this.StaffComissionLabel = new System.Windows.Forms.Label();
             this.StaffIdLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
             this.BuyingAmountLabel = new System.Windows.Forms.Label();
             this.BuyerNameLabel = new System.Windows.Forms.Label();
             this.BuyerMobileLabel = new System.Windows.Forms.Label();
             this.BuyerIdLabel = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.SellingAmtLabel = new System.Windows.Forms.Label();
             this.SellerNameLabel = new System.Windows.Forms.Label();
             this.SellerNumberLabel = new System.Windows.Forms.Label();
             this.SellerIdLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
             this.MaintenanceInfoLabel = new System.Windows.Forms.Label();
             this.MaintenanceIdLabel = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -124,7 +124,7 @@
             this.SellingDateTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.SellingDateTextBox.AutoSize = true;
             this.SellingDateTextBox.Font = new System.Drawing.Font("Modern No. 20", 30.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SellingDateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.SellingDateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.SellingDateTextBox.Location = new System.Drawing.Point(3, 120);
             this.SellingDateTextBox.Name = "SellingDateTextBox";
             this.SellingDateTextBox.Size = new System.Drawing.Size(330, 53);
@@ -136,7 +136,7 @@
             this.CarIdTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.CarIdTextBox.AutoSize = true;
             this.CarIdTextBox.Font = new System.Drawing.Font("Modern No. 20", 30.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CarIdTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.CarIdTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.CarIdTextBox.Location = new System.Drawing.Point(3, 67);
             this.CarIdTextBox.Name = "CarIdTextBox";
             this.CarIdTextBox.Size = new System.Drawing.Size(201, 53);
@@ -148,7 +148,7 @@
             this.CarNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.CarNameLabel.AutoSize = true;
             this.CarNameLabel.Font = new System.Drawing.Font("Modern No. 20", 30.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CarNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.CarNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.CarNameLabel.Location = new System.Drawing.Point(3, 14);
             this.CarNameLabel.Name = "CarNameLabel";
             this.CarNameLabel.Size = new System.Drawing.Size(560, 53);
@@ -184,33 +184,53 @@
             this.panel2.TabIndex = 0;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // AmountLabel
+            // panel6
             // 
-            this.AmountLabel.AutoSize = true;
-            this.AmountLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AmountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.AmountLabel.Location = new System.Drawing.Point(-4, 48);
-            this.AmountLabel.Name = "AmountLabel";
-            this.AmountLabel.Size = new System.Drawing.Size(48, 22);
-            this.AmountLabel.TabIndex = 82;
-            this.AmountLabel.Text = "Amt";
+            this.panel6.Controls.Add(this.CarInfoLabel);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(0, 100);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(239, 164);
+            this.panel6.TabIndex = 1;
             // 
             // CarInfoLabel
             // 
             this.CarInfoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CarInfoLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CarInfoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.CarInfoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.CarInfoLabel.Location = new System.Drawing.Point(0, 0);
             this.CarInfoLabel.Name = "CarInfoLabel";
             this.CarInfoLabel.Size = new System.Drawing.Size(239, 164);
             this.CarInfoLabel.TabIndex = 78;
             this.CarInfoLabel.Text = "Car Information :  ";
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.AmountLabel);
+            this.panel5.Controls.Add(this.OwnerLabel);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(239, 100);
+            this.panel5.TabIndex = 0;
+            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
+            // 
+            // AmountLabel
+            // 
+            this.AmountLabel.AutoSize = true;
+            this.AmountLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AmountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
+            this.AmountLabel.Location = new System.Drawing.Point(-4, 48);
+            this.AmountLabel.Name = "AmountLabel";
+            this.AmountLabel.Size = new System.Drawing.Size(48, 22);
+            this.AmountLabel.TabIndex = 82;
+            this.AmountLabel.Text = "Amt";
+            // 
             // OwnerLabel
             // 
             this.OwnerLabel.AutoSize = true;
             this.OwnerLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OwnerLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.OwnerLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.OwnerLabel.Location = new System.Drawing.Point(-4, 14);
             this.OwnerLabel.Name = "OwnerLabel";
             this.OwnerLabel.Size = new System.Drawing.Size(135, 22);
@@ -233,7 +253,7 @@
             // 
             this.StaffMobileLabel.AutoSize = true;
             this.StaffMobileLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StaffMobileLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.StaffMobileLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.StaffMobileLabel.Location = new System.Drawing.Point(13, 76);
             this.StaffMobileLabel.Name = "StaffMobileLabel";
             this.StaffMobileLabel.Size = new System.Drawing.Size(216, 22);
@@ -244,7 +264,7 @@
             // 
             this.StaffNameLabel.AutoSize = true;
             this.StaffNameLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StaffNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.StaffNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.StaffNameLabel.Location = new System.Drawing.Point(13, 11);
             this.StaffNameLabel.Name = "StaffNameLabel";
             this.StaffNameLabel.Size = new System.Drawing.Size(129, 22);
@@ -255,18 +275,18 @@
             // 
             this.StaffComissionLabel.AutoSize = true;
             this.StaffComissionLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StaffComissionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.StaffComissionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.StaffComissionLabel.Location = new System.Drawing.Point(13, 109);
             this.StaffComissionLabel.Name = "StaffComissionLabel";
-            this.StaffComissionLabel.Size = new System.Drawing.Size(169, 22);
+            this.StaffComissionLabel.Size = new System.Drawing.Size(209, 22);
             this.StaffComissionLabel.TabIndex = 73;
-            this.StaffComissionLabel.Text = "Staff Comission : ";
+            this.StaffComissionLabel.Text = "Staff Comission : 1000";
             // 
             // StaffIdLabel
             // 
             this.StaffIdLabel.AutoSize = true;
             this.StaffIdLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StaffIdLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.StaffIdLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.StaffIdLabel.Location = new System.Drawing.Point(13, 45);
             this.StaffIdLabel.Name = "StaffIdLabel";
             this.StaffIdLabel.Size = new System.Drawing.Size(99, 22);
@@ -292,25 +312,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(753, 543);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.AmountLabel);
-            this.panel5.Controls.Add(this.OwnerLabel);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(239, 100);
-            this.panel5.TabIndex = 0;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.CarInfoLabel);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 100);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(239, 164);
-            this.panel6.TabIndex = 1;
-            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
@@ -324,7 +325,7 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 263F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(745, 264);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
@@ -340,6 +341,50 @@
             this.panel3.Size = new System.Drawing.Size(365, 256);
             this.panel3.TabIndex = 0;
             // 
+            // BuyingAmountLabel
+            // 
+            this.BuyingAmountLabel.AutoSize = true;
+            this.BuyingAmountLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BuyingAmountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
+            this.BuyingAmountLabel.Location = new System.Drawing.Point(3, 75);
+            this.BuyingAmountLabel.Name = "BuyingAmountLabel";
+            this.BuyingAmountLabel.Size = new System.Drawing.Size(170, 22);
+            this.BuyingAmountLabel.TabIndex = 78;
+            this.BuyingAmountLabel.Text = "Buying Amount : ";
+            // 
+            // BuyerNameLabel
+            // 
+            this.BuyerNameLabel.AutoSize = true;
+            this.BuyerNameLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BuyerNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
+            this.BuyerNameLabel.Location = new System.Drawing.Point(3, 10);
+            this.BuyerNameLabel.Name = "BuyerNameLabel";
+            this.BuyerNameLabel.Size = new System.Drawing.Size(138, 22);
+            this.BuyerNameLabel.TabIndex = 75;
+            this.BuyerNameLabel.Text = "Buyer Name : ";
+            // 
+            // BuyerMobileLabel
+            // 
+            this.BuyerMobileLabel.AutoSize = true;
+            this.BuyerMobileLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BuyerMobileLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
+            this.BuyerMobileLabel.Location = new System.Drawing.Point(3, 108);
+            this.BuyerMobileLabel.Name = "BuyerMobileLabel";
+            this.BuyerMobileLabel.Size = new System.Drawing.Size(225, 22);
+            this.BuyerMobileLabel.TabIndex = 77;
+            this.BuyerMobileLabel.Text = "Buyer Mobile Number : ";
+            // 
+            // BuyerIdLabel
+            // 
+            this.BuyerIdLabel.AutoSize = true;
+            this.BuyerIdLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BuyerIdLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
+            this.BuyerIdLabel.Location = new System.Drawing.Point(3, 44);
+            this.BuyerIdLabel.Name = "BuyerIdLabel";
+            this.BuyerIdLabel.Size = new System.Drawing.Size(102, 22);
+            this.BuyerIdLabel.TabIndex = 76;
+            this.BuyerIdLabel.Text = "Buyer Id :";
+            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.SellingAmtLabel);
@@ -352,55 +397,11 @@
             this.panel7.Size = new System.Drawing.Size(365, 256);
             this.panel7.TabIndex = 1;
             // 
-            // BuyingAmountLabel
-            // 
-            this.BuyingAmountLabel.AutoSize = true;
-            this.BuyingAmountLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BuyingAmountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.BuyingAmountLabel.Location = new System.Drawing.Point(3, 75);
-            this.BuyingAmountLabel.Name = "BuyingAmountLabel";
-            this.BuyingAmountLabel.Size = new System.Drawing.Size(170, 22);
-            this.BuyingAmountLabel.TabIndex = 78;
-            this.BuyingAmountLabel.Text = "Buying Amount : ";
-            // 
-            // BuyerNameLabel
-            // 
-            this.BuyerNameLabel.AutoSize = true;
-            this.BuyerNameLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BuyerNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.BuyerNameLabel.Location = new System.Drawing.Point(3, 10);
-            this.BuyerNameLabel.Name = "BuyerNameLabel";
-            this.BuyerNameLabel.Size = new System.Drawing.Size(138, 22);
-            this.BuyerNameLabel.TabIndex = 75;
-            this.BuyerNameLabel.Text = "Buyer Name : ";
-            // 
-            // BuyerMobileLabel
-            // 
-            this.BuyerMobileLabel.AutoSize = true;
-            this.BuyerMobileLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BuyerMobileLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.BuyerMobileLabel.Location = new System.Drawing.Point(3, 108);
-            this.BuyerMobileLabel.Name = "BuyerMobileLabel";
-            this.BuyerMobileLabel.Size = new System.Drawing.Size(225, 22);
-            this.BuyerMobileLabel.TabIndex = 77;
-            this.BuyerMobileLabel.Text = "Buyer Mobile Number : ";
-            // 
-            // BuyerIdLabel
-            // 
-            this.BuyerIdLabel.AutoSize = true;
-            this.BuyerIdLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BuyerIdLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.BuyerIdLabel.Location = new System.Drawing.Point(3, 44);
-            this.BuyerIdLabel.Name = "BuyerIdLabel";
-            this.BuyerIdLabel.Size = new System.Drawing.Size(102, 22);
-            this.BuyerIdLabel.TabIndex = 76;
-            this.BuyerIdLabel.Text = "Buyer Id :";
-            // 
             // SellingAmtLabel
             // 
             this.SellingAmtLabel.AutoSize = true;
             this.SellingAmtLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SellingAmtLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.SellingAmtLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.SellingAmtLabel.Location = new System.Drawing.Point(12, 75);
             this.SellingAmtLabel.Name = "SellingAmtLabel";
             this.SellingAmtLabel.Size = new System.Drawing.Size(169, 22);
@@ -411,7 +412,7 @@
             // 
             this.SellerNameLabel.AutoSize = true;
             this.SellerNameLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SellerNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.SellerNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.SellerNameLabel.Location = new System.Drawing.Point(12, 10);
             this.SellerNameLabel.Name = "SellerNameLabel";
             this.SellerNameLabel.Size = new System.Drawing.Size(137, 22);
@@ -422,7 +423,7 @@
             // 
             this.SellerNumberLabel.AutoSize = true;
             this.SellerNumberLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SellerNumberLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.SellerNumberLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.SellerNumberLabel.Location = new System.Drawing.Point(12, 108);
             this.SellerNumberLabel.Name = "SellerNumberLabel";
             this.SellerNumberLabel.Size = new System.Drawing.Size(224, 22);
@@ -433,7 +434,7 @@
             // 
             this.SellerIdLabel.AutoSize = true;
             this.SellerIdLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SellerIdLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.SellerIdLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.SellerIdLabel.Location = new System.Drawing.Point(12, 44);
             this.SellerIdLabel.Name = "SellerIdLabel";
             this.SellerIdLabel.Size = new System.Drawing.Size(101, 22);
@@ -466,6 +467,30 @@
             this.panel8.Size = new System.Drawing.Size(366, 258);
             this.panel8.TabIndex = 0;
             // 
+            // MaintenanceInfoLabel
+            // 
+            this.MaintenanceInfoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MaintenanceInfoLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaintenanceInfoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
+            this.MaintenanceInfoLabel.Location = new System.Drawing.Point(0, 22);
+            this.MaintenanceInfoLabel.Name = "MaintenanceInfoLabel";
+            this.MaintenanceInfoLabel.Size = new System.Drawing.Size(366, 236);
+            this.MaintenanceInfoLabel.TabIndex = 78;
+            this.MaintenanceInfoLabel.Text = "Maintenance Information : This is Demo Maintenance Information for Demo purposes " +
+    "only.";
+            this.MaintenanceInfoLabel.Click += new System.EventHandler(this.MaintenanceInfoLabel_Click);
+            // 
+            // MaintenanceIdLabel
+            // 
+            this.MaintenanceIdLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MaintenanceIdLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaintenanceIdLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
+            this.MaintenanceIdLabel.Location = new System.Drawing.Point(0, 0);
+            this.MaintenanceIdLabel.Name = "MaintenanceIdLabel";
+            this.MaintenanceIdLabel.Size = new System.Drawing.Size(366, 22);
+            this.MaintenanceIdLabel.TabIndex = 79;
+            this.MaintenanceIdLabel.Text = "Maintenance Id : ";
+            // 
             // panel9
             // 
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -473,28 +498,6 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(367, 258);
             this.panel9.TabIndex = 1;
-            // 
-            // MaintenanceInfoLabel
-            // 
-            this.MaintenanceInfoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MaintenanceInfoLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MaintenanceInfoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.MaintenanceInfoLabel.Location = new System.Drawing.Point(0, 22);
-            this.MaintenanceInfoLabel.Name = "MaintenanceInfoLabel";
-            this.MaintenanceInfoLabel.Size = new System.Drawing.Size(366, 236);
-            this.MaintenanceInfoLabel.TabIndex = 78;
-            this.MaintenanceInfoLabel.Text = "Maintenance Information : ";
-            // 
-            // MaintenanceIdLabel
-            // 
-            this.MaintenanceIdLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.MaintenanceIdLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MaintenanceIdLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
-            this.MaintenanceIdLabel.Location = new System.Drawing.Point(0, 0);
-            this.MaintenanceIdLabel.Name = "MaintenanceIdLabel";
-            this.MaintenanceIdLabel.Size = new System.Drawing.Size(366, 22);
-            this.MaintenanceIdLabel.TabIndex = 79;
-            this.MaintenanceIdLabel.Text = "Maintenance Id : ";
             // 
             // HistoryDetailForm
             // 
@@ -513,12 +516,12 @@
             this.panel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel6.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();

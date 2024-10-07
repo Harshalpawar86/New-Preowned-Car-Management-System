@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Preowned_Car_Management_System
 {
@@ -36,7 +37,7 @@ namespace Preowned_Car_Management_System
                 Label carIdLabel = new Label
                 {
                     Name = "CarIdLabel",
-                    Text = carId,
+                    Text = "Car Id : "+carId,
                     Location = new Point(12, 5),
                     ForeColor = Color.Black,
                     Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular),
@@ -46,7 +47,7 @@ namespace Preowned_Car_Management_System
                 Label maintenanceIdLabel = new Label
                 {
                     Name = "MaintenanceIdLabel",
-                    Text = maintenanceId,
+                    Text = "Maintenance Id : "+maintenanceId,
                     Location = new Point(12, carIdLabel.Bottom + 5),
                     ForeColor = Color.Black,
                     Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular),
@@ -56,7 +57,7 @@ namespace Preowned_Car_Management_System
                 Label maintenanceDateLabel = new Label
                 {
                     Name = "MaintenanceDateDateLabel",
-                    Text = maintenanceDate,
+                    Text = "Maintenance Date : "+maintenanceDate,
                     Location = new Point(12, maintenanceIdLabel.Bottom + 5),
                     ForeColor = Color.Black,
                     Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular),
@@ -66,7 +67,7 @@ namespace Preowned_Car_Management_System
                 Label maintenanceCostLabel = new Label
                 {
                     Name = "MaintenanceCostLabel",
-                    Text = maintenanceCost,
+                    Text = "Maintenance Cost : "+maintenanceCost,
                     Location = new Point(12, maintenanceDateLabel.Bottom + 5),
                     ForeColor = Color.Black,
                     Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular),
@@ -76,7 +77,7 @@ namespace Preowned_Car_Management_System
                 Label maintenanceInfoLabel = new Label
                 {
                     Name = "MaintenanceInfoLabel",
-                    Text = maintenanceInfo,
+                    Text = "Maintenance Information : "+maintenanceInfo,
                     Location = new Point(12, maintenanceCostLabel.Bottom + 5),
                     ForeColor = Color.Black,
                     Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular),
@@ -200,6 +201,85 @@ namespace Preowned_Car_Management_System
 
         private void AddMaintenanceButton_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void MaintenanceForm_Load_1(object sender, EventArgs e)
+        {
+            LoadExistingData();
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            if (SearchTextBox.Text == null || SearchTextBox.Text == "")
+            {
+                MessageBox.Show("Please Enter Car Id to Search Maintenance Records..");
+
+            }
+            else
+            {
+                searchId(SearchTextBox.Text);
+
+            }
+        }
+        private void searchId(String name) {
+
+            flowLayoutPanel1.Controls.Clear();
+            try
+            {
+
+                String query = "SELECT * FROM MaintenanceTable WHERE CarId=@CarId";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("CarId", name);
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                String carId = reader["CarId"].ToString();
+                                String maintenanceId = reader["MaintenanceId"].ToString();
+                                String maintenanceCost = reader["MaintenanceCost"].ToString();
+                                String maintenanceDate = reader["MaintenanceDate"].ToString();
+                                String maintenanceInfo = reader["MaintenanceInfo"].ToString();
+
+                                AddMaintenanceRecord(carId, maintenanceId, maintenanceCost, maintenanceDate, maintenanceInfo);
+
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Maintenance Record not found in the database.", "No Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.ToString());
+            }
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            SearchTextBox.Clear();
+            LoadExistingData();
+        }
+
+        private void AddBuyerButton_Click(object sender, EventArgs e)
+        {
             try
             {
                 MaintenanceInfoForm addMaintenanceForm = new MaintenanceInfoForm();
@@ -209,7 +289,7 @@ namespace Preowned_Car_Management_System
                     int maintenanceId = Convert.ToInt32(addMaintenanceForm.maintenanceId);
                     string maintenanceDate = addMaintenanceForm.maintenanceDate;
                     string maintenanceInfo = addMaintenanceForm.maintenanceInfo;
-                    double maintenanceCost =Convert.ToDouble( addMaintenanceForm.maintenanceCost);
+                    double maintenanceCost = Convert.ToDouble(addMaintenanceForm.maintenanceCost);
 
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     {
@@ -242,17 +322,12 @@ namespace Preowned_Car_Management_System
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred while adding the maintenance record: {ex.Message}");
-            } 
+            }
         }
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
-        }
-
-        private void MaintenanceForm_Load_1(object sender, EventArgs e)
-        {
-            LoadExistingData();
         }
     }
 }

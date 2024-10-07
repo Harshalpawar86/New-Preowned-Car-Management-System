@@ -140,7 +140,12 @@ namespace Preowned_Car_Management_System
 
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void MaintenanceInfoLabel_Click(object sender, EventArgs e)
         {
 
         }

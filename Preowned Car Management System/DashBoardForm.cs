@@ -13,23 +13,19 @@ namespace Preowned_Car_Management_System
 {
     public partial class DashBoardForm : Form
     {
+        Form loginForm;
 
         public static String connectionString = "Data Source=LAPTOP-Q6RR7BFH\\SQLEXPRESS08;Initial Catalog=PreOwnedCarManagementDatabase;Integrated Security=True;";
      
 
        // public static String connectionString = "Data Source=MONU\\SQLEXPRESS;Initial Catalog=PreOwnedCarManagementDatabase;Integrated Security=True;TrustServerCertificate=True";
-        public DashBoardForm()
+        public DashBoardForm(Form loginForm)
         {
+            this.loginForm = loginForm;
             InitializeComponent();
-            LoginForm form = new LoginForm();
-            this.Size = form.Size;
           
         }
 
-        private void DashPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
 
 
@@ -38,63 +34,155 @@ namespace Preowned_Car_Management_System
            
         }
 
-        
-
-        private void StockButton_Click_1(object sender, EventArgs e)
-        {
-            StockForm stockForm = new StockForm();
-            LoadGivenForm(stockForm);
-            
-        }
         void LoadGivenForm(Form form) {
 
-            flowLayoutPanel1.Controls.Clear();
+            panel15.Visible = false;
+            FormLoadingPanel.Controls.Clear();
             form.TopLevel = false;
-            flowLayoutPanel1.Controls.Add(form);
+            FormLoadingPanel.Controls.Add(form);
             form.Dock = DockStyle.Fill;
             form.Show();
         } 
         
 
+ 
 
-        private void SuppliersButton_Click(object sender, EventArgs e)
-        {
-            SupplierForm supplierForm = new SupplierForm();
-            LoadGivenForm(supplierForm);
+        private void LoadProfile() {
+        
+
         }
 
-        private void BuyersButton_Click(object sender, EventArgs e)
+        private void panel16_MouseClick(object sender, MouseEventArgs e)
         {
-            BuyersForm buyersForm = new BuyersForm();
-            LoadGivenForm(buyersForm);
+            
         }
 
-        private void AccessoriesButton_Click(object sender, EventArgs e)
+        private void panel16_Click(object sender, EventArgs e)
         {
-            AccessoriesForm accessoriesForm = new AccessoriesForm();
-            LoadGivenForm(accessoriesForm);
+            LoadProfile();
+
         }
 
-        private void MaintenanceButton_Click(object sender, EventArgs e)
+        private void label2_Click(object sender, EventArgs e)
         {
-            MaintenanceForm maintenanceForm = new MaintenanceForm();
-            LoadGivenForm(maintenanceForm);
+            LoadProfile();
+
+        }
+
+        private void panel17_Click(object sender, EventArgs e)
+        {
+            LoadProfile();
+        }
+
+        private void flowLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void StockButton_Click(object sender, EventArgs e)
+        {
+            StockForm form = new StockForm();
+            LoadGivenForm(form);
+        }
+
+        private void panel15_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint_1(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
+
+        private void FormLoadingPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void SupplierButton_Click(object sender, EventArgs e)
+        {
+            SupplierForm form = new SupplierForm();
+            LoadGivenForm(form);
+        }
+
+        private void BuyerButton_Click(object sender, EventArgs e)
+        {
+            BuyersForm form = new BuyersForm();
+            LoadGivenForm(form);
+        }
+
+        private void MaintenanceButton_Click(object sender, EventArgs e)
+        {
+            MaintenanceForm form = new MaintenanceForm();
+            LoadGivenForm(form);
+        }
+
+        private void AccessoriesButton_Click(object sender, EventArgs e)
+        {
+            AccessoriesForm form = new AccessoriesForm();
+            LoadGivenForm(form);
+        }
+
         private void StaffButton_Click(object sender, EventArgs e)
         {
-            StaffForm staffForm = new StaffForm();
-            LoadGivenForm(staffForm);
+            StaffForm form = new StaffForm();
+            LoadGivenForm(form);
         }
 
         private void HistoryButton_Click(object sender, EventArgs e)
         {
-            HistoryForm historyForm = new HistoryForm();
-            LoadGivenForm(historyForm);
+            HistoryForm form = new HistoryForm();
+            LoadGivenForm(form);
+        }
+
+        private void panel18_Click(object sender, EventArgs e)
+        {
+            panel15.Visible = true;
+            FormLoadingPanel.Controls.Clear();
+           
+        }
+
+        private void DashBoardForm_Leave(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void DashBoardForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            loginForm.Close();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            LoginForm form = new LoginForm();
+            form.Show();
+            this.Hide();
+        }
+
+        private void panel17_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel16_Click_1(object sender, EventArgs e)
+        {
+            SeeProfile();
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+            SeeProfile();
+        }
+        void SeeProfile() { 
+        
+            ProfileForm form = new ProfileForm();
+            form.Show();
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -220,46 +221,7 @@ namespace Preowned_Car_Management_System
 
         private void AddStockButton_Click(object sender, EventArgs e)
         {
-            AddSupplierInfo addSupplierInfo = new AddSupplierInfo();
-            if (addSupplierInfo.ShowDialog() == DialogResult.OK)
-            {
-                String supplierName = addSupplierInfo.supplierName;
-                long carId = addSupplierInfo.carId;
-                long supplierId = addSupplierInfo.supplierId;
-                String carName = addSupplierInfo.carName;
-                long mobileNumber = addSupplierInfo.mobileNumber;
-                String address = addSupplierInfo.address;
-                double amountPaid = addSupplierInfo.amountPaid;
-
-                using (SqlConnection conn = new SqlConnection(connectionString)) {
-
-                    string query = "INSERT INTO SupplierTable (SupplierId, CarId, SupplierName, CarName, SupplierMobileNumber, AmountPaid, SupplierAddress) "+"VALUES (@SupplierId, @CarId, @SupplierName, @CarName, @SupplierMobileNumber, @AmountPaid, @SupplierAddress)";
-                    using (SqlCommand cmd = new SqlCommand(query,conn)) {
-
-                        cmd.Parameters.AddWithValue("@SupplierId", addSupplierInfo.supplierId);
-                        cmd.Parameters.AddWithValue("@CarId", addSupplierInfo.carId);
-                        cmd.Parameters.AddWithValue("@SupplierName", addSupplierInfo.supplierName);
-                        cmd.Parameters.AddWithValue("@CarName", addSupplierInfo.carName);
-                        cmd.Parameters.AddWithValue("@SupplierMobileNumber", addSupplierInfo.mobileNumber);
-                        cmd.Parameters.AddWithValue("@AmountPaid", addSupplierInfo.amountPaid);
-                        cmd.Parameters.AddWithValue("@SupplierAddress", addSupplierInfo.address);
-
-                        conn.Open();
-                        int result = cmd.ExecuteNonQuery();
-                        if (result > 0)
-                        {
-
-                            MessageBox.Show("Data Inserted Successfully..");
-                        }
-                        else {
-
-                            MessageBox.Show("Data Insertion Failed..");
-                        }
-                    }
-                }
-
-                    AddSupplierInfo(supplierName: supplierName, carName: carName, amountPaid: amountPaid, carId: carId, supplierId: supplierId, mobileNumber: mobileNumber, address: address);
-            }
+            
         }
         private void LoadExistingData() {
 
@@ -302,6 +264,121 @@ namespace Preowned_Car_Management_System
 
         }
 
+        private void flowLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
+        {
 
+        }
+
+        private void AddSupplierButton_Click(object sender, EventArgs e)
+        {
+            AddSupplierInfo addSupplierInfo = new AddSupplierInfo();
+            if (addSupplierInfo.ShowDialog() == DialogResult.OK)
+            {
+                String supplierName = addSupplierInfo.supplierName;
+                long carId = addSupplierInfo.carId;
+                long supplierId = addSupplierInfo.supplierId;
+                String carName = addSupplierInfo.carName;
+                long mobileNumber = addSupplierInfo.mobileNumber;
+                String address = addSupplierInfo.address;
+                double amountPaid = addSupplierInfo.amountPaid;
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    string query = "INSERT INTO SupplierTable (SupplierId, CarId, SupplierName, CarName, SupplierMobileNumber, AmountPaid, SupplierAddress) " + "VALUES (@SupplierId, @CarId, @SupplierName, @CarName, @SupplierMobileNumber, @AmountPaid, @SupplierAddress)";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+
+                        cmd.Parameters.AddWithValue("@SupplierId", addSupplierInfo.supplierId);
+                        cmd.Parameters.AddWithValue("@CarId", addSupplierInfo.carId);
+                        cmd.Parameters.AddWithValue("@SupplierName", addSupplierInfo.supplierName);
+                        cmd.Parameters.AddWithValue("@CarName", addSupplierInfo.carName);
+                        cmd.Parameters.AddWithValue("@SupplierMobileNumber", addSupplierInfo.mobileNumber);
+                        cmd.Parameters.AddWithValue("@AmountPaid", addSupplierInfo.amountPaid);
+                        cmd.Parameters.AddWithValue("@SupplierAddress", addSupplierInfo.address);
+
+                        conn.Open();
+                        int result = cmd.ExecuteNonQuery();
+                        if (result > 0)
+                        {
+
+                            MessageBox.Show("Data Inserted Successfully..");
+                        }
+                        else
+                        {
+
+                            MessageBox.Show("Data Insertion Failed..");
+                        }
+                    }
+                }
+
+                AddSupplierInfo(supplierName: supplierName, carName: carName, amountPaid: amountPaid, carId: carId, supplierId: supplierId, mobileNumber: mobileNumber, address: address);
+            }
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            if (SearchTextBox.Text == null || SearchTextBox.Text == "")
+            {
+                MessageBox.Show("Please Enter Car Name to Search");
+
+            }
+            else
+            {
+                searchSupplier(SearchTextBox.Text.Trim());
+
+            }
+        }
+        void searchSupplier(String name) {
+
+            flowLayoutPanel1.Controls.Clear();
+            try
+            {
+
+                String query = "SELECT * FROM SupplierTable WHERE SupplierName=@SupplierName";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("SupplierName", name);
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                String supplierName = reader["SupplierName"].ToString();
+                                String carName = reader["CarName"].ToString();
+                                double amountPaid = Convert.ToDouble(reader["AmountPaid"]);
+                                long carId = Convert.ToInt64(reader["CarId"]);
+                                long supplierId = Convert.ToInt64(reader["SupplierId"]);
+                                long mobileNumber = Convert.ToInt64(reader["SupplierMobileNumber"]);
+                                String address = reader["SupplierAddress"].ToString();
+                                AddSupplierInfo(supplierName: supplierName, carName: carName, amountPaid: amountPaid, carId: carId, supplierId: supplierId, mobileNumber: mobileNumber, address: address);
+
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Supplier not found in the database.", "No Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.ToString());
+            }
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            SearchTextBox.Clear();
+            LoadExistingData();
+        }
     }
 }

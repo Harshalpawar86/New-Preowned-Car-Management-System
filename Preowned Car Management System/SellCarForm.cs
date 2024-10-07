@@ -18,6 +18,8 @@ namespace Preowned_Car_Management_System
     {
         String connectionString = DashBoardForm.connectionString;
         SelectTransactionDetailsForm form = new SelectTransactionDetailsForm();
+        //SellAccessoriesForm accForm = new SellAccessoriesForm();
+
 
         public SellCarForm()
         {
@@ -73,76 +75,10 @@ namespace Preowned_Car_Management_System
                                                                   "Confirm To Sell",
                                                                   MessageBoxButtons.OKCancel,
                                                                   MessageBoxIcon.Information);
-                    if (dresult == DialogResult.OK)
-                    {
-                        form.amountRecieved = Convert.ToDouble(SellingAmountTextBox.Text);
-                        form.staffMember = StaffIdTextBox.Text;
-                        form.profitOrLoss = form.amountRecieved - form.amountPaid;
-                        using (SqlConnection conn = new SqlConnection(connectionString))
-                        {
+                    if (dresult == DialogResult.OK) {
 
-                            conn.Open();
-                            string query = "INSERT INTO HISTORYTABLE (CarImage, SupplierMobileNumber, BuyerMobileNumber, SupplierAddress, BuyerAddress, SupplierId, BuyerId, OwnerType, CarInfo, CarId, CarName, SupplierName, BuyerName, AmountPaid, AmountRecieved, StaffId, PurchaseDate, ProfitOrLoss,MaintenanceId) VALUES (@CarImage, @SupplierMobileNumber, @BuyerMobileNumber, @SupplierAddress, @BuyerAddress, @SupplierId, @BuyerId, @OwnerType, @CarInfo, @CarId, @CarName, @SupplierName, @BuyerName, @AmountPaid, @AmountRecieved, @StaffId, @PurchaseDate, @ProfitOrLoss,@MaintenanceId)";
-                            using (SqlCommand cmd = new SqlCommand(query, conn))
-                            {
-                                // MessageBox.Show(""+form.carImage);//image here is String.Iameg.BitMap
-                                cmd.Parameters.AddWithValue("@CarImage", ConvertToByteArray(form.carImage));
-                                cmd.Parameters.AddWithValue("@SupplierMobileNumber", form.supplierMobileNumber);
-                                cmd.Parameters.AddWithValue("@BuyerMobileNumber", form.buyerMobileNumber);
-                                cmd.Parameters.AddWithValue("@SupplierAddress", form.supplierAddress);
-                                cmd.Parameters.AddWithValue("@BuyerAddress", form.buyerAddress);
-                                cmd.Parameters.AddWithValue("@SupplierId", form.supplierId);
-                                cmd.Parameters.AddWithValue("@BuyerId", form.buyerId);
-                                cmd.Parameters.AddWithValue("@OwnerType", form.ownerType);
-                                cmd.Parameters.AddWithValue("@CarInfo", form.carInfo);
-                                cmd.Parameters.AddWithValue("@CarId", form.carId);
-                                cmd.Parameters.AddWithValue("@CarName", form.carName);
-                                cmd.Parameters.AddWithValue("@SupplierName", form.supplierName);
-                                cmd.Parameters.AddWithValue("@BuyerName", form.buyerName);
-                                cmd.Parameters.AddWithValue("@AmountPaid", form.amountPaid);
-                                cmd.Parameters.AddWithValue("@AmountRecieved", form.amountRecieved);
-                                cmd.Parameters.AddWithValue("@StaffId", form.staffMember);
-                                cmd.Parameters.AddWithValue("@PurchaseDate", form.purchaseDate);
-                                cmd.Parameters.AddWithValue("@ProfitOrLoss", form.profitOrLoss);
-                                cmd.Parameters.AddWithValue("@MaintenanceId",form.maintenanceId);
 
-                                cmd.ExecuteNonQuery();
-                            }
-                        }
-                        using (SqlConnection conn = new SqlConnection(connectionString))
-                        {
-
-                            conn.Open();
-                            String query = "DELETE FROM StockTable WHERE CarId = @CarId";
-                            using (SqlCommand cmd = new SqlCommand(query, conn))
-                            {
-                                cmd.Parameters.AddWithValue("@CarId", form.carId);
-                                cmd.ExecuteNonQuery();
-                            }
-                        }
-                        using (SqlConnection conn = new SqlConnection(connectionString))
-                        {
-
-                            conn.Open();
-                            String query = "DELETE FROM SupplierTable WHERE SupplierId = @SupplierId";
-                            using (SqlCommand cmd = new SqlCommand(query, conn))
-                            {
-                                cmd.Parameters.AddWithValue("@SupplierId", form.supplierId);
-                                cmd.ExecuteNonQuery();
-                            }
-                        }
-                        using (SqlConnection conn = new SqlConnection(connectionString))
-                        {
-
-                            conn.Open();
-                            String query = "DELETE FROM BuyerTable WHERE BuyerId = @BuyerId";
-                            using (SqlCommand cmd = new SqlCommand(query, conn))
-                            {
-                                cmd.Parameters.AddWithValue("@BuyerId", form.buyerId);
-                                cmd.ExecuteNonQuery();
-                            }
-                        }
-                        DialogResult = DialogResult.OK;
+                            sellCar(dresult);
                     }
                 }
                 catch (Exception exp) {
@@ -163,6 +99,80 @@ namespace Preowned_Car_Management_System
             if (staffForm.ShowDialog() == DialogResult.OK)
             {
                 StaffIdTextBox.Text = staffForm.staffId.ToString();
+            }
+        }
+        void sellCar(DialogResult dresult){
+
+            if (dresult == DialogResult.OK)
+            {
+                form.amountRecieved = Convert.ToDouble(SellingAmountTextBox.Text);
+                form.staffMember = StaffIdTextBox.Text;
+                form.profitOrLoss = form.amountRecieved - form.amountPaid;
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open();
+                    string query = "INSERT INTO HISTORYTABLE (CarImage, SupplierMobileNumber, BuyerMobileNumber, SupplierAddress, BuyerAddress, SupplierId, BuyerId, OwnerType, CarInfo, CarId, CarName, SupplierName, BuyerName, AmountPaid, AmountRecieved, StaffId, PurchaseDate, ProfitOrLoss,MaintenanceId) VALUES (@CarImage, @SupplierMobileNumber, @BuyerMobileNumber, @SupplierAddress, @BuyerAddress, @SupplierId, @BuyerId, @OwnerType, @CarInfo, @CarId, @CarName, @SupplierName, @BuyerName, @AmountPaid, @AmountRecieved, @StaffId, @PurchaseDate, @ProfitOrLoss,@MaintenanceId)";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        // MessageBox.Show(""+form.carImage);//image here is String.Iameg.BitMap
+                        cmd.Parameters.AddWithValue("@CarImage", ConvertToByteArray(form.carImage));
+                        cmd.Parameters.AddWithValue("@SupplierMobileNumber", form.supplierMobileNumber);
+                        cmd.Parameters.AddWithValue("@BuyerMobileNumber", form.buyerMobileNumber);
+                        cmd.Parameters.AddWithValue("@SupplierAddress", form.supplierAddress);
+                        cmd.Parameters.AddWithValue("@BuyerAddress", form.buyerAddress);
+                        cmd.Parameters.AddWithValue("@SupplierId", form.supplierId);
+                        cmd.Parameters.AddWithValue("@BuyerId", form.buyerId);
+                        cmd.Parameters.AddWithValue("@OwnerType", form.ownerType);
+                        cmd.Parameters.AddWithValue("@CarInfo", form.carInfo);
+                        cmd.Parameters.AddWithValue("@CarId", form.carId);
+                        cmd.Parameters.AddWithValue("@CarName", form.carName);
+                        cmd.Parameters.AddWithValue("@SupplierName", form.supplierName);
+                        cmd.Parameters.AddWithValue("@BuyerName", form.buyerName);
+                        cmd.Parameters.AddWithValue("@AmountPaid", form.amountPaid);
+                        cmd.Parameters.AddWithValue("@AmountRecieved", form.amountRecieved);
+                        cmd.Parameters.AddWithValue("@StaffId", form.staffMember);
+                        cmd.Parameters.AddWithValue("@PurchaseDate", form.purchaseDate);
+                        cmd.Parameters.AddWithValue("@ProfitOrLoss", form.profitOrLoss);
+                        cmd.Parameters.AddWithValue("@MaintenanceId", form.maintenanceId);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open();
+                    String query = "DELETE FROM StockTable WHERE CarId = @CarId";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@CarId", form.carId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open();
+                    String query = "DELETE FROM SupplierTable WHERE SupplierId = @SupplierId";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@SupplierId", form.supplierId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open();
+                    String query = "DELETE FROM BuyerTable WHERE BuyerId = @BuyerId";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@BuyerId", form.buyerId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                DialogResult = DialogResult.OK;
             }
         }
     }

@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace Preowned_Car_Management_System
 {
-    public partial class LoginForm : Form
+    public partial class demo : Form
     {
-        public LoginForm()
+        public demo()
         {
             InitializeComponent();
-        }
-
-        private void LoginButton_Click(object sender, EventArgs e)
-        {
-            DashBoardForm form = new DashBoardForm(this);
-            form.Show();
-            this.Hide();
         }
     }
 }

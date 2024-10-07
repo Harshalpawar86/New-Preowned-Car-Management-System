@@ -204,41 +204,7 @@ namespace Preowned_Car_Management_System
 
         private void AddStockButton_Click(object sender, EventArgs e)
         {
-            AddBuyerInfoForm addBuyerInfo = new AddBuyerInfoForm();
-            if (addBuyerInfo.ShowDialog() == DialogResult.OK)
-            {
-                String buyerName = addBuyerInfo.buyerName;
-                long buyerId = addBuyerInfo.buyerId;
-                String carName = addBuyerInfo.carName;
-                long mobileNumber = addBuyerInfo.mobileNumber;
-                String address = addBuyerInfo.address;
-                using (SqlConnection conn = new SqlConnection(connectionString)) {
-
-                    String query = "INSERT INTO BuyerTable(BuyerName,CarName,BuyerId,BuyerMobileNumber,BuyerAddress) VALUES (@BuyerName,@CarName,@BuyerId,@BuyerMobileNumber,@BuyerAddress);";
-                    using (SqlCommand cmd = new SqlCommand(query,conn)) {
-
-                        cmd.Parameters.AddWithValue("@BuyerName",buyerName);
-                        cmd.Parameters.AddWithValue("@CarName", carName);
-                        cmd.Parameters.AddWithValue("@BuyerId", buyerId);
-                        cmd.Parameters.AddWithValue("@BuyerMobileNumber", mobileNumber);
-                        cmd.Parameters.AddWithValue("@BuyerAddress", address);
-
-                        conn.Open();
-                        int result = cmd.ExecuteNonQuery();
-                        if (result > 0)
-                        {
-
-                            MessageBox.Show("Data Inserted Successfully");
-                        }
-                        else {
-
-                            MessageBox.Show("Data Insertion Failed");
-                        }
-                    }
-                }
-
-                    AddBuyerInfoFun(buyerName: buyerName, carName: carName, buyerId: buyerId, mobileNumber: mobileNumber, address: address);
-            }
+            
         }
         private void LoadExistingData() {
 
@@ -270,9 +236,111 @@ namespace Preowned_Car_Management_System
             LoadExistingData();
         }
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
+        private void searchBuyer(String name) {
 
+            flowLayoutPanel1.Controls.Clear();
+            try
+            {
+
+                String query = "SELECT * FROM BuyerTable WHERE BuyerName=@BuyerName";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("BuyerName", name);
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                String buyerName = reader["BuyerName"].ToString();
+                                String carName = reader["CarName"].ToString();
+                                long buyerId = Convert.ToInt64(reader["BuyerId"]);
+                                long mobileNumber = Convert.ToInt64(reader["BuyerMobileNumber"]);
+                                String address = reader["BuyerAddress"].ToString();
+
+                                AddBuyerInfoFun(buyerName: buyerName, carName: carName, buyerId: buyerId, mobileNumber: mobileNumber, address: address);
+
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Supplier not found in the database.", "No Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.ToString());
+            }
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            if (SearchTextBox.Text == null || SearchTextBox.Text == "")
+            {
+                MessageBox.Show("Please Enter Car Name to Search");
+
+            }
+            else
+            {
+                searchBuyer(SearchTextBox.Text);
+
+            }
+        }
+
+        private void AddBuyerButton_Click(object sender, EventArgs e)
+        {
+            AddBuyerInfoForm addBuyerInfo = new AddBuyerInfoForm();
+            if (addBuyerInfo.ShowDialog() == DialogResult.OK)
+            {
+                String buyerName = addBuyerInfo.buyerName;
+                long buyerId = addBuyerInfo.buyerId;
+                String carName = addBuyerInfo.carName;
+                long mobileNumber = addBuyerInfo.mobileNumber;
+                String address = addBuyerInfo.address;
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    String query = "INSERT INTO BuyerTable(BuyerName,CarName,BuyerId,BuyerMobileNumber,BuyerAddress) VALUES (@BuyerName,@CarName,@BuyerId,@BuyerMobileNumber,@BuyerAddress);";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+
+                        cmd.Parameters.AddWithValue("@BuyerName", buyerName);
+                        cmd.Parameters.AddWithValue("@CarName", carName);
+                        cmd.Parameters.AddWithValue("@BuyerId", buyerId);
+                        cmd.Parameters.AddWithValue("@BuyerMobileNumber", mobileNumber);
+                        cmd.Parameters.AddWithValue("@BuyerAddress", address);
+
+                        conn.Open();
+                        int result = cmd.ExecuteNonQuery();
+                        if (result > 0)
+                        {
+
+                            MessageBox.Show("Data Inserted Successfully");
+                        }
+                        else
+                        {
+
+                            MessageBox.Show("Data Insertion Failed");
+                        }
+                    }
+                }
+
+                AddBuyerInfoFun(buyerName: buyerName, carName: carName, buyerId: buyerId, mobileNumber: mobileNumber, address: address);
+            }
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            SearchTextBox.Clear();
+            LoadExistingData();
         }
     }
 }

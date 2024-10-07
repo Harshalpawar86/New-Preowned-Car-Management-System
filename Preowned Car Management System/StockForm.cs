@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Preowned_Car_Management_System
@@ -195,12 +190,12 @@ namespace Preowned_Car_Management_System
                                     }
 
                                 }
-                                String updateQuery2 = "UPDATE SupplierTable SET CarName = @CarName ";
+                                String updateQuery2 = "UPDATE SupplierTable SET CarName = @CarName WHERE CarId=@CarId";
                                 using (SqlCommand upd = new SqlCommand(updateQuery2, conn))
                                 {
 
                                     upd.Parameters.AddWithValue("@CarName", updateStockForm.carName);
-
+                                    upd.Parameters.AddWithValue("@CarId", carId);
                                     reader.Close();
                                     int result = upd.ExecuteNonQuery();
                                    
@@ -259,30 +254,40 @@ namespace Preowned_Car_Management_System
             }
         }
         private void LoadExistingData() {
+            try
+            {
 
-            using (SqlConnection conn = new SqlConnection(connectionString)) {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
 
-                String query = "SELECT * FROM StockTable";
-                using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query,conn)) { 
-                
-                    DataTable dataTable = new DataTable();
-                    sqlDataAdapter.Fill(dataTable);
+                    String query = "SELECT * FROM StockTable";
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn))
+                    {
 
-                    foreach (DataRow row in dataTable.Rows) {
+                        DataTable dataTable = new DataTable();
+                        sqlDataAdapter.Fill(dataTable);
 
-                        string carName = row["CarName"].ToString();
-                        long carId = Convert.ToInt64(row["CarId"]);
-                        long supplierId = Convert.ToInt64(row["SupplierId"]);
-                        string carDate = row["PurchaseDate"].ToString();
-                        Image image = convertFromBytes((byte[])row["CarImage"]);
-                        string ownerType = row["OwnerType"].ToString();
-                        string carInfoLabel = row["CarInfo"].ToString();
-                        double purchaseAmount = Convert.ToDouble(row["CarId"]);
+                        foreach (DataRow row in dataTable.Rows)
+                        {
 
-                        AddStockInfo(carName: carName, carId: carId, supplierId: supplierId, carDate: carDate, image: image, ownerType: ownerType, carInfoLabel: carInfoLabel, purchaseAmount: purchaseAmount);
+                            string carName = row["CarName"].ToString();
+                            long carId = Convert.ToInt64(row["CarId"]);
+                            long supplierId = Convert.ToInt64(row["SupplierId"]);
+                            string carDate = row["PurchaseDate"].ToString();
+                            Image image = convertFromBytes((byte[])row["CarImage"]);
+                            string ownerType = row["OwnerType"].ToString();
+                            string carInfoLabel = row["CarInfo"].ToString();
+                            double purchaseAmount = Convert.ToDouble(row["PurchaseAmount"]);
 
+                            AddStockInfo(carName: carName, carId: carId, supplierId: supplierId, carDate: carDate, image: image, ownerType: ownerType, carInfoLabel: carInfoLabel, purchaseAmount: purchaseAmount);
+
+                        }
                     }
                 }
+            }
+            catch (Exception exp) {
+
+                MessageBox.Show(exp.ToString());
             }
         }
         private Image convertFromBytes(byte[] imageBytes) {
@@ -313,6 +318,76 @@ namespace Preowned_Car_Management_System
         }
         private void AddStockButton_Click(object sender, EventArgs e)
         {
+            
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        void searchCar(string carName)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            try {
+
+                String query = "SELECT * FROM StockTable WHERE CarName=@CarName";
+
+                using (SqlConnection conn = new SqlConnection(connectionString)) {
+                    using (SqlCommand cmd = new SqlCommand(query,conn)) {
+                        cmd.Parameters.AddWithValue("CarName",carName);
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                long carId = Convert.ToInt64(reader["CarId"]);
+                                long supplierId = Convert.ToInt64(reader["SupplierId"]);
+                                String carDate = reader["PurchaseDate"].ToString();
+                                Image image = convertFromBytes((byte[])reader["CarImage"]);
+                                String ownerType = reader["OwnerType"].ToString();
+                                String carInfoLabel = reader["CarInfo"].ToString();
+                                double purchaseAmount = Convert.ToDouble(reader["PurchaseAmount"]);
+                                AddStockInfo(carName: carName, carId: carId, supplierId: supplierId, carDate: carDate, image: image, ownerType: ownerType, carInfoLabel: carInfoLabel, purchaseAmount: purchaseAmount);
+
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Car not found in the database.", "No Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+
+            } catch (Exception e) {
+
+                MessageBox.Show(e.ToString());
+            }
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void AddStockButton_Click_1(object sender, EventArgs e)
+        {
             AddStockPopupForm addStockPopupForm = new AddStockPopupForm();
             if (addStockPopupForm.ShowDialog() == DialogResult.OK)
             {
@@ -320,17 +395,19 @@ namespace Preowned_Car_Management_System
                 long carId = addStockPopupForm.carId;
                 long supplierId = addStockPopupForm.supplierId;
                 string carDate = addStockPopupForm.carDate;
-                String imageString = addStockPopupForm.ImagePath;  
+                String imageString = addStockPopupForm.ImagePath;
                 string ownerType = addStockPopupForm.ownerType;
                 string carInfoLabel = addStockPopupForm.carInfo;
-                double purchaseAmount=addStockPopupForm.purchaseAmount;
-                
-                using (SqlConnection conn = new SqlConnection(connectionString)) {
+                double purchaseAmount = addStockPopupForm.purchaseAmount;
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
 
                     String query = "INSERT INTO StockTable(CarName,CarId,SupplierId,PurchaseAmount,carImage,PurchaseDate,OwnerType,CarInfo) VALUES (@CarName,@CarId,@SupplierId,@PurchaseAmount,@carImage,@PurchaseDate,@OwnerType,@CarInfo);";
-                    using (SqlCommand cmd = new SqlCommand(query,conn)) {
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
 
-                        cmd.Parameters.AddWithValue("@CarName",carName);
+                        cmd.Parameters.AddWithValue("@CarName", carName);
                         cmd.Parameters.AddWithValue("@CarId", carId);
                         cmd.Parameters.AddWithValue("@SupplierId", supplierId);
                         cmd.Parameters.AddWithValue("@PurchaseAmount", purchaseAmount);
@@ -346,23 +423,42 @@ namespace Preowned_Car_Management_System
 
                             MessageBox.Show("Data Inserted Successfully");
                         }
-                        else {
+                        else
+                        {
 
                             MessageBox.Show("Data Insertion Failed");
                         }
                     }
                 }
 
-                AddStockInfo(carName:carName, carId:carId, supplierId:supplierId,carDate:carDate,image:Image.FromFile(imageString), ownerType:ownerType, carInfoLabel:carInfoLabel,purchaseAmount:purchaseAmount);
+                AddStockInfo(carName: carName, carId: carId, supplierId: supplierId, carDate: carDate, image: Image.FromFile(imageString), ownerType: ownerType, carInfoLabel: carInfoLabel, purchaseAmount: purchaseAmount);
             }
-
         }
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void SearchButton_Click_1(object sender, EventArgs e)
+        {
+            if (SearchTextBox.Text == null || SearchTextBox.Text == "")
+            {
+                MessageBox.Show("Please Enter Car Name to Search");
+
+            }
+            else
+            {
+                searchCar(SearchTextBox.Text.Trim());
+
+            }
+        }
+
+        private void ClearButton_Click_1(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            SearchTextBox.Clear();
+            LoadExistingData();
+        }
+
+        private void flowLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
         {
 
         }
-
-       
     }
 }

@@ -20,6 +20,8 @@ namespace Preowned_Car_Management_System
         public String staffEmail { get; set; }
         public String staffAddress { get; set; }
         public String jobDesignation { get; set; }
+        public String userName { get; set; }
+        public String password { get; set; }
 
         public long staffId { get; set; }
 
@@ -50,17 +52,17 @@ namespace Preowned_Car_Management_System
                 {
                     lastSupplierId = Convert.ToInt64(result) + 1;
                 }
-                else
-                {
-                    string queryHistory = "SELECT MAX(SupplierId) FROM HistoryTable";
-                    SqlCommand cmd2 = new SqlCommand(queryHistory, conn);
-                    var result2 = cmd2.ExecuteScalar();
+                //else
+                //{
+                //    string queryHistory = "SELECT MAX(SupplierId) FROM HistoryTable";
+                //    SqlCommand cmd2 = new SqlCommand(queryHistory, conn);
+                //    var result2 = cmd2.ExecuteScalar();
 
-                    if (result2 != DBNull.Value && result2 != null)
-                    {
-                        lastSupplierId = Convert.ToInt64(result2) + 1;
-                    }
-                }
+                //    if (result2 != DBNull.Value && result2 != null)
+                //    {
+                //        lastSupplierId = Convert.ToInt64(result2) + 1;
+                //    }
+                //}
             }
 
             StaffIdTextBox.Text = lastSupplierId.ToString();
@@ -76,6 +78,8 @@ namespace Preowned_Car_Management_System
             staffAddress=richTextBox1.Text;
             staffId = Convert.ToInt32(StaffIdTextBox.Text);
             jobDesignation=JobDesignationComboBox.Text;
+            userName = UserNameTextBox.Text;
+            password = PasswordTextBox.Text;
             DialogResult = DialogResult.OK;
         }
 

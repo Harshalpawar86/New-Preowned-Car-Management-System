@@ -16,21 +16,66 @@ namespace Preowned_Car_Management_System
         public String accessoriesName { get; set; }
         public String accessoriesDate { get; set; }
 
-        public String accessoriesCount { get;set; }
+        public int accessoriesCount { get;set; }
+        bool noException = false;
+        bool getImage = false;
+
         public AddAccessoriesForm()
         {
             InitializeComponent();
         }
+        void getData() {
+
+            accessoriesName = AccessoriesNameTextBox.Text;
+            accessoriesDate = dateTimePicker1.Value.ToString();
+            accessoriesCount = Convert.ToInt32(AccessoriesCountTextBox.Text);
+        }
         private void OKButton_Click(object sender, EventArgs e)
         {
-            accessoriesName = AccessoriesNameTextBox.Text;
-            accessoriesDate= dateTimePicker1.Value.ToString();
-            accessoriesCount = AccessoriesCountTextBox.Text;
-            DialogResult = DialogResult.OK;
-        }
+            
 
+            noException = false;
+            if (ValidateData())
+            {
+                try
+                {
+                    getData();
+                    noException = true;
+                }
+                catch (Exception exp)
+                {
+
+                    noException = false;
+                }
+            }
+            else
+            {
+
+                MessageBox.Show("Please Enter Valid Data");
+            }
+            if (getImage == false)
+            {
+
+                MessageBox.Show("Please Select image");
+            }
+            if (noException == true && getImage == true)
+            {
+                DialogResult = DialogResult.OK;
+            }
+
+
+
+        }
+        private bool ValidateData()
+        {
+
+            return !string.IsNullOrEmpty(AccessoriesNameTextBox.Text) &&
+                   int.TryParse(AccessoriesCountTextBox.Text, out _) &&
+                   !string.IsNullOrEmpty(dateTimePicker1.Text);
+        }
         private void photo_button_Click(object sender, EventArgs e)
         {
+            getImage = false;
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
 
@@ -39,6 +84,7 @@ namespace Preowned_Car_Management_System
                 {
 
                     ImagePath = openFileDialog.FileName;
+                    getImage = true;
 
                 }
             }
