@@ -13,7 +13,7 @@ namespace Preowned_Car_Management_System
     public partial class UpdateStockForm : Form
     {
         public String carName { get; set; }
-        public double purchaseAmount { get; set; }
+        public decimal purchaseAmount { get; set; }
         public Image image { get; set; }
         public String ownerType { get; set; }
         public String carInfo { get; set;}
@@ -29,7 +29,8 @@ namespace Preowned_Car_Management_System
         private void OKButton_Click(object sender, EventArgs e)
         {
             bool temp = false;
-            if (ValidateData())
+            if (
+                ValidateData())
             {
 
                 carName = CarNameTextBox.Text;
@@ -56,7 +57,7 @@ namespace Preowned_Car_Management_System
 
             return !string.IsNullOrEmpty(CarNameTextBox.Text) &&
                    !string.IsNullOrEmpty(OwnerTypeComboBox.Text) &&
-                   double.TryParse(PurchaseAmountTextBox.Text, out _) &&
+                   decimal.TryParse(PurchaseAmountTextBox.Text, out _) &&
                    !string.IsNullOrEmpty(CarInfoTextBox.Text);
         }
 
@@ -67,6 +68,7 @@ namespace Preowned_Car_Management_System
             PurchaseAmountTextBox.Text = purchaseAmount.ToString();
             OwnerTypeComboBox.Text = ownerType;
             CarInfoTextBox.Text = carInfo;
+            
         }
 
         private void photo_button_Click(object sender, EventArgs e)
@@ -83,6 +85,7 @@ namespace Preowned_Car_Management_System
                     getImage = true;
                 }
             }
+  
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

@@ -3,25 +3,30 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Preowned_Car_Management_System
 {
     public partial class DashBoardForm : Form
     {
         Form loginForm;
+        long id;
+        bool manager = false;
 
         public static String connectionString = "Data Source=LAPTOP-Q6RR7BFH\\SQLEXPRESS08;Initial Catalog=PreOwnedCarManagementDatabase;Integrated Security=True;";
      
 
        // public static String connectionString = "Data Source=MONU\\SQLEXPRESS;Initial Catalog=PreOwnedCarManagementDatabase;Integrated Security=True;TrustServerCertificate=True";
-        public DashBoardForm(Form loginForm)
+        public DashBoardForm(Form loginForm,long id)
         {
             this.loginForm = loginForm;
+            this.id = id;
             InitializeComponent();
           
         }
@@ -31,7 +36,75 @@ namespace Preowned_Car_Management_System
 
         private void DashBoardForm_Load(object sender, EventArgs e)
         {
-           
+            CheckManager();
+            LoadStaffName();
+            
+        }
+        void CheckManager() {
+            String name = "";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    String query = "SELECT StaffJob FROM StaffTable WHERE StaffId=@StaffId";
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+
+                        cmd.Parameters.AddWithValue("@StaffId", id);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+
+                            if (reader.Read())
+                            {
+                                name = reader["StaffJob"].ToString();
+                            }
+                        }
+                    }
+                 //   MessageBox.Show("Name : "+name);
+                    if (name == "Manager" || name== "Sales Manager") {
+                    
+                        manager = true;
+                    }
+                    
+                }
+            }
+            catch (Exception exp)
+            {
+
+                MessageBox.Show(exp.Message);
+            }
+        }
+        void LoadStaffName() {
+            String name = "";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    String query = "SELECT StaffName FROM StaffTable WHERE StaffId=@StaffId";
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+
+                        cmd.Parameters.AddWithValue("@StaffId", id);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+
+                            if (reader.Read())
+                            {
+                                name = reader["StaffName"].ToString();
+                            }
+                        }
+                    }
+                    UserNameLabel.Text = name;
+                }
+            }
+            catch (Exception exp) { 
+            
+                MessageBox.Show(exp.Message);
+            }
         }
 
         void LoadGivenForm(Form form) {
@@ -47,11 +120,7 @@ namespace Preowned_Car_Management_System
 
  
 
-        private void LoadProfile() {
-        
-
-        }
-
+    
         private void panel16_MouseClick(object sender, MouseEventArgs e)
         {
             
@@ -59,19 +128,16 @@ namespace Preowned_Car_Management_System
 
         private void panel16_Click(object sender, EventArgs e)
         {
-            LoadProfile();
 
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
-            LoadProfile();
 
         }
 
         private void panel17_Click(object sender, EventArgs e)
         {
-            LoadProfile();
         }
 
         private void flowLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
@@ -131,14 +197,29 @@ namespace Preowned_Car_Management_System
 
         private void StaffButton_Click(object sender, EventArgs e)
         {
-            StaffForm form = new StaffForm();
-            LoadGivenForm(form);
+            if (manager == true)
+            {
+                StaffForm form = new StaffForm();
+                LoadGivenForm(form);
+            }
+            else {
+
+                MessageBox.Show("Your are not Allowed to Access this Tab");
+            }
         }
 
         private void HistoryButton_Click(object sender, EventArgs e)
         {
-            HistoryForm form = new HistoryForm();
-            LoadGivenForm(form);
+            if (manager == true)
+            {
+                HistoryForm form = new HistoryForm();
+                LoadGivenForm(form);
+            }
+            else
+            {
+
+                MessageBox.Show("Your are not Allowed to Access this Tab");
+            }
         }
 
         private void panel18_Click(object sender, EventArgs e)
@@ -160,9 +241,15 @@ namespace Preowned_Car_Management_System
 
         private void button9_Click(object sender, EventArgs e)
         {
-            LoginForm form = new LoginForm();
-            form.Show();
-            this.Hide();
+            DialogResult result = MessageBox.Show("Are you sure you want to log out?", "Logout Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+
+            if (result == DialogResult.Yes)
+            {
+                LoginForm form = new LoginForm();
+                form.Show();
+                this.Hide();
+            }
+
         }
 
         private void panel17_Paint(object sender, PaintEventArgs e)
@@ -181,8 +268,32 @@ namespace Preowned_Car_Management_System
         }
         void SeeProfile() { 
         
-            ProfileForm form = new ProfileForm();
+            ProfileForm form = new ProfileForm(id);
             form.Show();
+        }
+
+        private void ReportsButton_Click(object sender, EventArgs e)
+        {
+            if (manager == true)
+            {
+                ReportsForm form = new ReportsForm();
+                LoadGivenForm(form);
+            }
+            else
+            {
+
+                MessageBox.Show("Your are not Allowed to Access this Tab");
+            }
+        }
+
+        private void panel18_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel17_Click_1(object sender, EventArgs e)
+        {
+            SeeProfile();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Preowned_Car_Management_System
             contextMenu.Items.Add("Update Information", null, ContextMenuOption1_Click);
             contextMenu.Items.Add("Delete Supplier", null, ContextMenuOption2_Click);
         }
-        public void AddSupplierInfo(string supplierName, string carName, double amountPaid,long carId, long supplierId, long mobileNumber, string address)
+        public void AddSupplierInfo(string supplierName, string carName, decimal amountPaid,long carId, long supplierId, long mobileNumber, string address)
         {
             Panel panel = new Panel();
             panel.Name = "SupplierData";
@@ -106,7 +106,7 @@ namespace Preowned_Car_Management_System
         }
         private void ContextMenuOption2_Click(object sender, EventArgs e)
         {
-            DialogResult dresult = MessageBox.Show("Are you sure you want to delete this supplier?",
+            DialogResult dresult = MessageBox.Show("Are you sure you want to delete this supplier?\nStock for this Supplier will also be deleted!!",
                                                           "Confirm Deletion",
                                                           MessageBoxButtons.OKCancel,
                                                           MessageBoxIcon.Warning);
@@ -121,11 +121,13 @@ namespace Preowned_Car_Management_System
                     {
 
                         String query = "DELETE FROM SupplierTable WHERE CarId = @CarId";
+                        String query2 = "DELETE FROM StockTable WHERE CarId = @CarId";
+                        conn.Open();
+
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
 
                             cmd.Parameters.AddWithValue("@CarId", carId);
-                            conn.Open();
                             int result = cmd.ExecuteNonQuery();
                             if (result > 0)
                             {
@@ -133,6 +135,12 @@ namespace Preowned_Car_Management_System
                                 flowLayoutPanel1.Controls.Clear();
                                 LoadExistingData();
                             }
+                        }
+                        using (SqlCommand cmd = new SqlCommand(query2, conn))
+                        {
+
+                            cmd.Parameters.AddWithValue("@CarId", carId);
+                            cmd.ExecuteNonQuery();
                         }
                     }
                 }
@@ -159,7 +167,7 @@ namespace Preowned_Car_Management_System
                             updateSupplierInfoForm.carName = reader["CarName"].ToString();
                             updateSupplierInfoForm.mobileNumber = Convert.ToInt64(reader["SupplierMobileNumber"]);
                             updateSupplierInfoForm.address = reader["SupplierAddress"].ToString();
-                            updateSupplierInfoForm.amountPaid = Convert.ToDouble(reader["AmountPaid"]);
+                            updateSupplierInfoForm.amountPaid = Convert.ToDecimal(reader["AmountPaid"]);
 
                             if (updateSupplierInfoForm.ShowDialog() == DialogResult.OK) {
 
@@ -240,7 +248,7 @@ namespace Preowned_Car_Management_System
                         long supplierId = Convert.ToInt64(row["SupplierId"]);
                         String carName = row["CarName"].ToString();
                         long mobileNumber = Convert.ToInt64(row["SupplierMobileNumber"]);
-                        double amountPaid = Convert.ToDouble(row["AmountPaid"]);
+                        decimal amountPaid = Convert.ToDecimal(row["AmountPaid"]);
                         String address = row["SupplierAddress"].ToString();
 
                         AddSupplierInfo(supplierName:supplierName,carId:carId,supplierId:supplierId,carName:carName,mobileNumber:mobileNumber,amountPaid:amountPaid,address:address);
@@ -280,7 +288,7 @@ namespace Preowned_Car_Management_System
                 String carName = addSupplierInfo.carName;
                 long mobileNumber = addSupplierInfo.mobileNumber;
                 String address = addSupplierInfo.address;
-                double amountPaid = addSupplierInfo.amountPaid;
+                decimal amountPaid = addSupplierInfo.amountPaid;
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
@@ -320,7 +328,7 @@ namespace Preowned_Car_Management_System
         {
             if (SearchTextBox.Text == null || SearchTextBox.Text == "")
             {
-                MessageBox.Show("Please Enter Car Name to Search");
+                MessageBox.Show("Please Enter Supplier Name to Search");
 
             }
             else
@@ -350,7 +358,7 @@ namespace Preowned_Car_Management_System
                             {
                                 String supplierName = reader["SupplierName"].ToString();
                                 String carName = reader["CarName"].ToString();
-                                double amountPaid = Convert.ToDouble(reader["AmountPaid"]);
+                                decimal amountPaid = Convert.ToDecimal(reader["AmountPaid"]);
                                 long carId = Convert.ToInt64(reader["CarId"]);
                                 long supplierId = Convert.ToInt64(reader["SupplierId"]);
                                 long mobileNumber = Convert.ToInt64(reader["SupplierMobileNumber"]);

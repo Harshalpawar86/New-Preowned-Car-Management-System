@@ -30,11 +30,11 @@ namespace Preowned_Car_Management_System
         public String carName { get; set; }
         public String supplierName { get; set; }
         public String buyerName { get; set; }
-        public double amountPaid { get; set; }
-        public double amountRecieved { get; set; }
+        public decimal amountPaid { get; set; }
+        public decimal amountRecieved { get; set; }
         public String staffMember { get; set; }
         public String purchaseDate { get; set; }
-        public double profitOrLoss { get; set; }
+        public decimal profitOrLoss { get; set; }
 
         public int maintenanceId { get; set; }
 
@@ -46,6 +46,9 @@ namespace Preowned_Car_Management_System
             InitializeComponent();
             SupplierDataGridView.CellClick += SupplierDataGridView_CellClick;
             BuyerDataGridView.CellClick += BuyerDataGridView_CellClick;
+            SupplierDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            BuyerDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
         }
 
         private void OKButton_Click(object sender, EventArgs e)
@@ -106,7 +109,7 @@ namespace Preowned_Car_Management_System
                 }
             }catch (Exception exp) {
 
-                MessageBox.Show(exp.ToString());
+            //    MessageBox.Show(exp.ToString());
             }
         }
         private Image convertImage(byte[] imageData) {
@@ -154,6 +157,8 @@ namespace Preowned_Car_Management_System
         {
             LoadSupplierData();
             LoadBuyerData();
+            SupplierDataGridView.ClearSelection();
+            BuyerDataGridView.ClearSelection();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -166,8 +171,7 @@ namespace Preowned_Car_Management_System
             noException1 = false;
             try
             {
-
-                if (e.RowIndex>=0)
+                if (e.RowIndex >= 0)
                 {
                     DataGridViewRow row = SupplierDataGridView.Rows[e.RowIndex];
 
@@ -175,15 +179,14 @@ namespace Preowned_Car_Management_System
                     carId = Convert.ToInt64(row.Cells["CarId"].Value);
                     supplierName = row.Cells["SupplierName"].Value.ToString();
                     carName = row.Cells["CarName"].Value.ToString();
-                  //  ownerType = row.Cells["OwnerType"].Value.ToString();
                     supplierMobileNumber = Convert.ToInt64(row.Cells["SupplierMobileNumber"].Value);
-                    amountPaid = Convert.ToDouble(row.Cells["AmountPaid"].Value);
+                    amountPaid = Convert.ToDecimal(row.Cells["AmountPaid"].Value);
                     supplierAddress = row.Cells["SupplierAddress"].Value.ToString();
                     noException1 = true;
                 }
             }
-            catch (Exception exp) {
-                MessageBox.Show(exp.ToString());
+            catch (Exception exp)
+            {
                 noException1 = false;
             }
         }
@@ -193,7 +196,6 @@ namespace Preowned_Car_Management_System
             noException2 = false;
             try
             {
-
                 if (e.RowIndex >= 0)
                 {
                     DataGridViewRow row = BuyerDataGridView.Rows[e.RowIndex];
@@ -204,12 +206,89 @@ namespace Preowned_Car_Management_System
                     buyerAddress = row.Cells["BuyerAddress"].Value.ToString();
                     noException2 = true;
                 }
-        }
+            }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.ToString());
                 noException2 = false;
             }
-}
+        }
+
+        private void SearchSupplierButton_Click(object sender, EventArgs e)
+        {
+
+            string searchText = SupplierSearchTextBox.Text;
+            SearchSupplier(searchText);
+        }
+
+        private void SupplierSearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = SupplierSearchTextBox.Text;
+            SearchSupplier(searchText);
+        }
+        private void SearchSupplier(string searchText)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM SupplierTable WHERE SupplierName LIKE @SearchText";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@SearchText", "%" + searchText + "%");
+
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dataTable = new DataTable();
+                        sqlDataAdapter.Fill(dataTable);
+
+                        SupplierDataGridView.DataSource = dataTable;
+                    }
+                }
+            }
+        }
+
+        private void ClearSupplierButton_Click(object sender, EventArgs e)
+        {
+            SupplierSearchTextBox.Clear();
+            SupplierDataGridView.ClearSelection();
+
+        }
+
+        private void SearchBuyersButton_Click(object sender, EventArgs e)
+        {
+            string searchText = BuyerSearchTextBox.Text;
+            SearchBuyer(searchText);
+        }
+        private void SearchBuyer(string searchText)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM BuyerTable WHERE BuyerName LIKE @SearchText";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@SearchText", "%" + searchText + "%");
+
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dataTable = new DataTable();
+                        sqlDataAdapter.Fill(dataTable);
+
+                        BuyerDataGridView.DataSource = dataTable;
+                    }
+                }
+            }
+        }
+
+        private void BuyerSearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = BuyerSearchTextBox.Text;
+            SearchBuyer(searchText);
+        }
+
+        private void ClearBuyerSearchButton_Click(object sender, EventArgs e)
+        {
+            BuyerSearchTextBox.Clear();
+            BuyerDataGridView.ClearSelection();
+        }
     }
 }

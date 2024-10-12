@@ -18,7 +18,7 @@ namespace Preowned_Car_Management_System
         public int maintenanceId { get; set; }
         public String maintenanceDate { get; set; }
         public String maintenanceInfo { get; set; }
-        public double maintenanceCost { get; set; }
+        public decimal maintenanceCost { get; set; }
 
         public MaintenanceInfoForm()
         {
@@ -84,7 +84,7 @@ namespace Preowned_Car_Management_System
             {
                 carId =Convert.ToInt32( CarIdTextBox.Text);
                 maintenanceId = Convert.ToInt32(MaintenanceIdTextBox.Text);
-                maintenanceCost = Convert.ToDouble(MaintenanceCostTextBox.Text);
+                maintenanceCost = Convert.ToDecimal(MaintenanceCostTextBox.Text);
                 maintenanceDate = dateTimePicker1.Value.ToString();
                 maintenanceInfo = MaintenanceIdRichTextBox.Text;
                 exception = false;

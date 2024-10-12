@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Preowned_Car_Management_System
 {
@@ -16,11 +17,11 @@ namespace Preowned_Car_Management_System
         {
             InitializeComponent();
             contextMenu = new ContextMenuStrip();
-            contextMenu.Items.Add("Update Information", null, ContextMenuOption1_Click);
-            contextMenu.Items.Add("Sell Car", null, ContextMenuOption2_Click);
-            contextMenu.Items.Add("Delete Car", null, ContextMenuOption3_Click);
+            contextMenu.Items.Add("Add Accessories",null, ContextMenuOption1_Click);
+            contextMenu.Items.Add("Update Information", null, ContextMenuOption2_Click);
+            contextMenu.Items.Add("Sell Car", null, ContextMenuOption3_Click);
         }
-        public void AddStockInfo(String carName, long carId,long supplierId ,String carDate, Image image, String ownerType,double purchaseAmount, String carInfoLabel)
+        public void AddStockInfo(String carName, long carId,long supplierId ,String carDate, Image image, String ownerType,decimal purchaseAmount, String carInfoLabel,String accCount="N/A")
         {
             Panel panel = new Panel();
             panel.Name = "StockData";
@@ -88,10 +89,21 @@ namespace Preowned_Car_Management_System
             PurchaseAmountLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
             PurchaseAmountLabel.AutoSize = true;
 
+            Label AccessoryDetailLabel = new Label();
+            AccessoryDetailLabel.Name = "AccessoryDetailLabel";
+            AccessoryDetailLabel.Text = "Accessories Count : " + accCount;
+            AccessoryDetailLabel.Location = new Point(12, PurchaseAmountLabel.Bottom + 2);
+            AccessoryDetailLabel.ForeColor = Color.Black;
+            AccessoryDetailLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
+            AccessoryDetailLabel.AutoSize = true;
+
+
+
+
             Label vehicleInfoLabel = new Label();
             vehicleInfoLabel.Name = "CarInfoLabel";
             vehicleInfoLabel.Text = "Car Information : "+carInfoLabel;
-            vehicleInfoLabel.Location = new Point(12, PurchaseAmountLabel.Bottom + 5);
+            vehicleInfoLabel.Location = new Point(12, AccessoryDetailLabel.Bottom + 5);
             vehicleInfoLabel.ForeColor = Color.Black;
             vehicleInfoLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
             vehicleInfoLabel.AutoSize = true;
@@ -110,6 +122,7 @@ namespace Preowned_Car_Management_System
             panel.Controls.Add(SupplierIdLabel);
             panel.Controls.Add(CarDateLabel);
             panel.Controls.Add(OwnerTypeLabel);
+            panel.Controls.Add(AccessoryDetailLabel);
             panel.Controls.Add(vehicleInfoLabel);
 
             panel.MouseClick += Panel_MouseClick;
@@ -120,6 +133,7 @@ namespace Preowned_Car_Management_System
             CarDateLabel.MouseClick += Panel_MouseClick;
             OwnerTypeLabel.MouseClick += Panel_MouseClick;
             SupplierIdLabel.MouseClick += Panel_MouseClick;
+            AccessoryDetailLabel.MouseClick += Panel_MouseClick;
             vehicleInfoLabel.MouseClick += Panel_MouseClick;
 
             flowLayoutPanel1.Controls.Add(panel);
@@ -140,21 +154,51 @@ namespace Preowned_Car_Management_System
         {
             LoadExistingData();
         }
-        private void ContextMenuOption1_Click(object sender, EventArgs e) {
+        private void ContextMenuOption1_Click(object sender, EventArgs e)
+        {
+            if (contextMenu.SourceControl is Panel panel)
+            {
+                long carId = (long)panel.Tag;
 
-            if (contextMenu.SourceControl is Panel panel) {
+                SellAccessoriesForm form = new SellAccessoriesForm(carId);
+                if (form.ShowDialog() == DialogResult.OK) {
+
+                    LoadExistingData();
+                }
+            }
+        }
+
+        private void ContextMenuOption3_Click(object sender, EventArgs e) {
+
+            SellCarForm form = new SellCarForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                flowLayoutPanel1.Controls.Clear();
+                LoadExistingData();
+            }
+
+        }
+        private void ContextMenuOption2_Click(object sender, EventArgs e)
+        {
+
+
+            if (contextMenu.SourceControl is Panel panel)
+            {
 
                 long carId = (long)panel.Tag;
-                using (SqlConnection conn = new SqlConnection(connectionString)) {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
 
                     String query = "SELECT * FROM StockTable WHERE CarId = @CarId ";
-                    using (SqlCommand cmd = new SqlCommand(query,conn)) {
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
 
-                        cmd.Parameters.AddWithValue("@CarId",carId);
+                        cmd.Parameters.AddWithValue("@CarId", carId);
                         conn.Open();
                         SqlDataReader reader = cmd.ExecuteReader();
-                        if (reader.Read()) { 
-                        
+                        if (reader.Read())
+                        {
+
                             UpdateStockForm updateStockForm = new UpdateStockForm();
                             updateStockForm.carName = reader["CarName"].ToString();
                             updateStockForm.purchaseAmount = Convert.ToInt64(reader["PurchaseAmount"]);
@@ -162,17 +206,19 @@ namespace Preowned_Car_Management_System
                             updateStockForm.ownerType = reader["OwnerType"].ToString();
                             updateStockForm.carInfo = reader["CarInfo"].ToString();
 
-                            if (updateStockForm.ShowDialog()==DialogResult.OK) {
+                            if (updateStockForm.ShowDialog() == DialogResult.OK)
+                            {
 
                                 String updateQuery = "UPDATE StockTable SET CarName = @CarName, PurchaseAmount = @PurchaseAmount, CarImage = @CarImage, OwnerType = @OwnerType, CarInfo = @CarInfo WHERE CarId = @CarId";
-                                using (SqlCommand upd = new SqlCommand(updateQuery,conn)) {
+                                using (SqlCommand upd = new SqlCommand(updateQuery, conn))
+                                {
 
-                                    upd.Parameters.AddWithValue("@CarName",updateStockForm.carName);
-                                    upd.Parameters.AddWithValue("@PurchaseAmount",updateStockForm.purchaseAmount);
-                                    upd.Parameters.AddWithValue("@CarImage",convertToByte(updateStockForm.image));
+                                    upd.Parameters.AddWithValue("@CarName", updateStockForm.carName);
+                                    upd.Parameters.AddWithValue("@PurchaseAmount", updateStockForm.purchaseAmount);
+                                    upd.Parameters.AddWithValue("@CarImage", convertToByte(updateStockForm.image));
                                     upd.Parameters.AddWithValue("@OwnerType", updateStockForm.ownerType);
                                     upd.Parameters.AddWithValue("@CarInfo", updateStockForm.carInfo);
-                                    upd.Parameters.AddWithValue("@CarId",carId);
+                                    upd.Parameters.AddWithValue("@CarId", carId);
 
                                     reader.Close();
                                     int result = upd.ExecuteNonQuery();
@@ -198,7 +244,7 @@ namespace Preowned_Car_Management_System
                                     upd.Parameters.AddWithValue("@CarId", carId);
                                     reader.Close();
                                     int result = upd.ExecuteNonQuery();
-                                   
+
 
                                 }
                             }
@@ -206,60 +252,18 @@ namespace Preowned_Car_Management_System
                     }
                 }
             }
+
         }
-        private void ContextMenuOption2_Click(object sender, EventArgs e)
-        {
-
-            SellCarForm form = new SellCarForm();
-            if (form.ShowDialog()==DialogResult.OK) {
-                
-                flowLayoutPanel1.Controls.Clear();
-                LoadExistingData();
-            }
-            
-        }
-        private void ContextMenuOption3_Click(object sender, EventArgs e)
-        {
-
-            DialogResult dresult = MessageBox.Show("Are you sure you want to delete this Stock ?",
-                                                          "Confirm Deletion",
-                                                          MessageBoxButtons.OKCancel,
-                                                          MessageBoxIcon.Warning);
-            if (dresult == DialogResult.OK)
-            {
-                if (contextMenu.SourceControl is Panel panel)
-                {
-
-                    long carId = (long)panel.Tag;
-
-                    using (SqlConnection conn = new SqlConnection(connectionString))
-                    {
-
-                        String query = "DELETE FROM StockTable WHERE CarId = @CarId";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-
-                            cmd.Parameters.AddWithValue("@CarId", carId);
-                            conn.Open();
-                            int result = cmd.ExecuteNonQuery();
-                            if (result > 0)
-                            {
-                                MessageBox.Show("Stock Data Deleted");
-                                flowLayoutPanel1.Controls.Clear();
-                                LoadExistingData();
-                            }
-                        }
-                    }
-                }
-            }
-        }
+       
         private void LoadExistingData() {
+            flowLayoutPanel1.Controls.Clear();
             try
             {
+                int count = 0;
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-
+                    conn.Open();
                     String query = "SELECT * FROM StockTable";
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn))
                     {
@@ -277,9 +281,35 @@ namespace Preowned_Car_Management_System
                             Image image = convertFromBytes((byte[])row["CarImage"]);
                             string ownerType = row["OwnerType"].ToString();
                             string carInfoLabel = row["CarInfo"].ToString();
-                            double purchaseAmount = Convert.ToDouble(row["PurchaseAmount"]);
 
-                            AddStockInfo(carName: carName, carId: carId, supplierId: supplierId, carDate: carDate, image: image, ownerType: ownerType, carInfoLabel: carInfoLabel, purchaseAmount: purchaseAmount);
+                            decimal purchaseAmount = Convert.ToDecimal(row["PurchaseAmount"]);
+
+                            String accQuery = "SELECT CarId, COUNT(*) AS Count FROM AccessorySales WHERE CarId = @CarId GROUP BY CarId;";
+                            using (SqlCommand cmd = new SqlCommand(accQuery, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@CarId", carId);
+
+
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        count = reader.GetInt32(1); // Get the count
+                                       // MessageBox.Show("Accesssory Count : " + count);
+                                    }
+                                }
+                            }
+                            String accCount;
+                            if (count == 0)
+                            {
+
+                                accCount = "N/A";
+                            }
+                            else {
+                            
+                                accCount=count.ToString();
+                            }
+                            AddStockInfo(carName: carName, carId: carId, supplierId: supplierId, carDate: carDate, image: image, ownerType: ownerType, carInfoLabel: carInfoLabel, purchaseAmount: purchaseAmount,accCount:accCount);
 
                         }
                     }
@@ -329,15 +359,18 @@ namespace Preowned_Car_Management_System
         void searchCar(string carName)
         {
             flowLayoutPanel1.Controls.Clear();
-            try {
-
+            try
+            {
                 String query = "SELECT * FROM StockTable WHERE CarName=@CarName";
 
-                using (SqlConnection conn = new SqlConnection(connectionString)) {
-                    using (SqlCommand cmd = new SqlCommand(query,conn)) {
-                        cmd.Parameters.AddWithValue("CarName",carName);
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@CarName", carName);
                         conn.Open();
                         SqlDataReader reader = cmd.ExecuteReader();
+
                         if (reader.HasRows)
                         {
                             while (reader.Read())
@@ -348,9 +381,27 @@ namespace Preowned_Car_Management_System
                                 Image image = convertFromBytes((byte[])reader["CarImage"]);
                                 String ownerType = reader["OwnerType"].ToString();
                                 String carInfoLabel = reader["CarInfo"].ToString();
-                                double purchaseAmount = Convert.ToDouble(reader["PurchaseAmount"]);
-                                AddStockInfo(carName: carName, carId: carId, supplierId: supplierId, carDate: carDate, image: image, ownerType: ownerType, carInfoLabel: carInfoLabel, purchaseAmount: purchaseAmount);
+                                decimal purchaseAmount = Convert.ToDecimal(reader["PurchaseAmount"]);
 
+                                int count = 0; // Initialize count here
+
+                                // Use a new connection for the accessory count query
+                                using (SqlConnection conn2 = new SqlConnection(connectionString))
+                                {
+                                    String accQuery = "SELECT COUNT(*) AS Count FROM AccessorySales WHERE CarId = @CarId;";
+
+                                    using (SqlCommand cmd2 = new SqlCommand(accQuery, conn2))
+                                    {
+                                        cmd2.Parameters.AddWithValue("@CarId", carId);
+                                        conn2.Open(); // Open the new connection
+
+                                        // Execute the query and retrieve the count
+                                        count = (int)cmd2.ExecuteScalar(); // Use ExecuteScalar for a single value
+                                    }
+                                }
+
+                                String accCount = (count == 0) ? "N/A" : count.ToString();
+                                AddStockInfo(carName: carName, carId: carId, supplierId: supplierId, carDate: carDate, image: image, ownerType: ownerType, carInfoLabel: carInfoLabel, purchaseAmount: purchaseAmount, accCount: accCount);
                             }
                         }
                         else
@@ -359,12 +410,13 @@ namespace Preowned_Car_Management_System
                         }
                     }
                 }
-
-            } catch (Exception e) {
-
+            }
+            catch (Exception e)
+            {
                 MessageBox.Show(e.ToString());
             }
         }
+
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
@@ -398,7 +450,7 @@ namespace Preowned_Car_Management_System
                 String imageString = addStockPopupForm.ImagePath;
                 string ownerType = addStockPopupForm.ownerType;
                 string carInfoLabel = addStockPopupForm.carInfo;
-                double purchaseAmount = addStockPopupForm.purchaseAmount;
+                decimal purchaseAmount = addStockPopupForm.purchaseAmount;
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {

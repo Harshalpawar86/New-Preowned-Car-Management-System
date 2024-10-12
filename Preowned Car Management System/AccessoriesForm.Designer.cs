@@ -120,6 +120,7 @@
             this.ClearButton.TabIndex = 2;
             this.ClearButton.Text = "X";
             this.ClearButton.UseVisualStyleBackColor = false;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // SearchButton
             // 

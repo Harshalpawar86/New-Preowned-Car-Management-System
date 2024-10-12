@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,12 @@ namespace Preowned_Car_Management_System
 {
     public partial class AddAccessoriesForm : Form
     {
+        String connectionString = DashBoardForm.connectionString;
         public String ImagePath { get; set; }
         public String accessoriesName { get; set; }
         public String accessoriesDate { get; set; }
+        public double accessoriesPrice { get;set; }
+        public long accessoryId { get; set; } 
 
         public int accessoriesCount { get;set; }
         bool noException = false;
@@ -29,6 +33,8 @@ namespace Preowned_Car_Management_System
             accessoriesName = AccessoriesNameTextBox.Text;
             accessoriesDate = dateTimePicker1.Value.ToString();
             accessoriesCount = Convert.ToInt32(AccessoriesCountTextBox.Text);
+            accessoriesPrice = Convert.ToDouble(PriceTextBox.Text);
+            accessoryId = Convert.ToInt64(AccessoryIdTextBox.Text);
         }
         private void OKButton_Click(object sender, EventArgs e)
         {
@@ -71,6 +77,7 @@ namespace Preowned_Car_Management_System
 
             return !string.IsNullOrEmpty(AccessoriesNameTextBox.Text) &&
                    int.TryParse(AccessoriesCountTextBox.Text, out _) &&
+                   double.TryParse(PriceTextBox.Text, out _) &&
                    !string.IsNullOrEmpty(dateTimePicker1.Text);
         }
         private void photo_button_Click(object sender, EventArgs e)
@@ -97,7 +104,41 @@ namespace Preowned_Car_Management_System
 
         private void AddAccessoriesForm_Load(object sender, EventArgs e)
         {
+            LoadAccessoryId();
+        }
+        void LoadAccessoryId() {
 
+            
+
+                long lastaccessoryId = 601;
+                string queryStock = "SELECT MAX(AccessoryId) FROM AccessoryTable";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(queryStock, conn);
+                    var result = cmd.ExecuteScalar();
+
+                    if (result != DBNull.Value && result != null)
+                    {
+                        lastaccessoryId = Convert.ToInt64(result) + 1;
+                    }
+                else
+                {
+                    string queryHistory = "SELECT MAX(AccessoryId) FROM AccessorySales";
+                    SqlCommand cmd2 = new SqlCommand(queryHistory, conn);
+                    var result2 = cmd2.ExecuteScalar();
+
+                    if (result2 != DBNull.Value && result2 != null)
+                    {
+                        lastaccessoryId = Convert.ToInt64(result2) + 1;
+                    }
+                }
+            }
+
+                AccessoryIdTextBox.Text = lastaccessoryId.ToString();
+            
         }
     }
 }

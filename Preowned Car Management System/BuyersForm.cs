@@ -20,7 +20,7 @@ namespace Preowned_Car_Management_System
             InitializeComponent();
             contextMenu = new ContextMenuStrip();
             contextMenu.Items.Add("Update Information", null, ContextMenuOption1_Click);
-            contextMenu.Items.Add("Delete Supplier", null, ContextMenuOption2_Click);
+            contextMenu.Items.Add("Delete Buyer", null, ContextMenuOption2_Click);
         }
         public void AddBuyerInfoFun(string buyerName, string carName, long buyerId, long mobileNumber, string address)
         {
@@ -157,7 +157,7 @@ namespace Preowned_Car_Management_System
         }
         private void ContextMenuOption2_Click(object sender, EventArgs e)
         {
-            DialogResult dresult = MessageBox.Show("Are you sure you want to delete this supplier?",
+            DialogResult dresult = MessageBox.Show("Are you sure you want to delete this Buyer?",
                                                           "Confirm Deletion",
                                                           MessageBoxButtons.OKCancel,
                                                           MessageBoxIcon.Warning);
@@ -284,7 +284,7 @@ namespace Preowned_Car_Management_System
         {
             if (SearchTextBox.Text == null || SearchTextBox.Text == "")
             {
-                MessageBox.Show("Please Enter Car Name to Search");
+                MessageBox.Show("Please Enter Buyer Name to Search");
 
             }
             else

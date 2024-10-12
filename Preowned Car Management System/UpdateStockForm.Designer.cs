@@ -79,7 +79,7 @@
             // 
             this.OKButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.OKButton.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OKButton.Location = new System.Drawing.Point(297, 577);
+            this.OKButton.Location = new System.Drawing.Point(282, 577);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(125, 42);
             this.OKButton.TabIndex = 61;

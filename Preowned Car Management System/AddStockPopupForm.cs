@@ -19,7 +19,7 @@ namespace Preowned_Car_Management_System
         public String ownerType { get; set; }
         public String carDate { get; set; }
         public String carInfo { get; set; }
-        public double purchaseAmount { get; set; }
+        public decimal purchaseAmount { get; set; }
 
         private bool noException = false;
         private bool getImage = false;
@@ -62,7 +62,7 @@ namespace Preowned_Car_Management_System
             carDate = dateTimePicker1.Value.ToString("dd / MM / yyyy");
             ownerType = OwnerTypeComboBox.Text;
             carInfo = CarInfoTextBox.Text;
-            purchaseAmount = double.Parse(PurchaseAmountTextBox.Text);
+            purchaseAmount = decimal.Parse(PurchaseAmountTextBox.Text);
 
         }
 
@@ -97,7 +97,7 @@ namespace Preowned_Car_Management_System
                    !string.IsNullOrEmpty(OwnerTypeComboBox.Text) &&
                    !string.IsNullOrEmpty(CarIdTextBox.Text) &&
                    long.TryParse(SupplierIdTextBox.Text, out _) &&
-                   double.TryParse(PurchaseAmountTextBox.Text, out _) &&
+                   decimal.TryParse(PurchaseAmountTextBox.Text, out _) &&
                    !string.IsNullOrEmpty(dateTimePicker1.Text);
         }
 

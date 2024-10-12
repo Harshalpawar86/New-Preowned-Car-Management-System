@@ -21,7 +21,7 @@ namespace Preowned_Car_Management_System
         public long supplierId { set; get; }
         public long mobileNumber { set; get; }
         public String address { set; get; }
-        public double amountPaid { set; get; }
+        public decimal amountPaid { set; get; }
 
         public AddSupplierInfo()
         {
@@ -101,7 +101,7 @@ namespace Preowned_Car_Management_System
             carName = CarNameTextBox.Text;
             supplierId = long.Parse(SupplierIdTextBox.Text);
             mobileNumber = long.Parse(MobileNumberTextBox.Text);
-            amountPaid = double.Parse(AmountPaidTextBox.Text);
+            amountPaid = decimal.Parse(AmountPaidTextBox.Text);
             address = AddressTextBox.Text;
             carId = long.Parse(CarIdTextBox.Text);
 

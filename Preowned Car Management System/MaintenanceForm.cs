@@ -289,7 +289,7 @@ namespace Preowned_Car_Management_System
                     int maintenanceId = Convert.ToInt32(addMaintenanceForm.maintenanceId);
                     string maintenanceDate = addMaintenanceForm.maintenanceDate;
                     string maintenanceInfo = addMaintenanceForm.maintenanceInfo;
-                    double maintenanceCost = Convert.ToDouble(addMaintenanceForm.maintenanceCost);
+                    decimal maintenanceCost = Convert.ToDecimal(addMaintenanceForm.maintenanceCost);
 
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     {

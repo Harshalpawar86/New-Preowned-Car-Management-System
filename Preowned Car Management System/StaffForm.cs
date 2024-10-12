@@ -23,7 +23,7 @@ namespace Preowned_Car_Management_System
             contextMenu = new ContextMenuStrip();
             contextMenu.Items.Add("Update Information", null, ContextMenuOption1_Click);
         }
-        public void AddStaffInfoFun(String userName,String staffName, String staffBOD,long staffId, String staffGender, int staffMobileNumber, String staffEmail, String staffAddress, String jobDesignation)
+        public void AddStaffInfoFun(String userName,String staffName, String staffBOD,long staffId, String staffGender, long staffMobileNumber, String staffEmail, String staffAddress, String jobDesignation)
         {
             Panel panel = new Panel();
             panel.Name = "StaffData";
@@ -162,7 +162,7 @@ namespace Preowned_Car_Management_System
 
                             UpdateStaffForm updateStaffForm = new UpdateStaffForm();
                             updateStaffForm.staffName = reader["StaffName"].ToString();
-                            updateStaffForm.staffMobileNumber = Convert.ToInt32(reader["StaffNumber"]);
+                            updateStaffForm.staffMobileNumber = Convert.ToInt64(reader["StaffNumber"]);
                             updateStaffForm.staffEmail = reader["StaffMail"].ToString();
                             updateStaffForm.staffAddress= reader["StaffAddress"].ToString();
                             updateStaffForm.staffJob = reader["StaffJob"].ToString();
@@ -224,7 +224,7 @@ namespace Preowned_Car_Management_System
                             String staffName = row["StaffName"].ToString();
                             String staffGender = row["StaffGender"].ToString();
                             String staffDOB = row["StaffDOB"].ToString();
-                            int staffNumber = Convert.ToInt32(row["StaffNumber"]);
+                            long staffNumber = Convert.ToInt64(row["StaffNumber"]);
                             String staffMail = row["StaffMail"].ToString();
                             String staffAddress = row["StaffAddress"].ToString();
                             String staffJob = row["StaffJob"].ToString();
@@ -255,14 +255,13 @@ namespace Preowned_Car_Management_System
 
         private void StaffForm_Load(object sender, EventArgs e)
         {
-            LoadExistingData();
-        }
+            LoadExistingData();        }
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
             if (SearchTextBox.Text == null || SearchTextBox.Text == "")
             {
-                MessageBox.Show("Please Enter Car Name to Search");
+                MessageBox.Show("Please Enter Staff Name to Search");
 
             }
             else
@@ -337,7 +336,7 @@ namespace Preowned_Car_Management_System
                     String StaffName = addStaffInfoForm.staffName;
                     String StaffGender = addStaffInfoForm.staffGender;
                     String StaffDOB = addStaffInfoForm.staffBOD;
-                    int StaffNumber = addStaffInfoForm.staffMobileNumber;
+                    long StaffNumber = addStaffInfoForm.staffMobileNumber;
                     String StaffMail = addStaffInfoForm.staffEmail;
                     String StaffAddress = addStaffInfoForm.staffAddress;
                     String StaffJob = addStaffInfoForm.jobDesignation;

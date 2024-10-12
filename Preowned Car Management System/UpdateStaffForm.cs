@@ -15,6 +15,9 @@ namespace Preowned_Car_Management_System
         public String staffName { get; set; }
         public long staffMobileNumber { get; set; }
         public String staffEmail { get; set; }
+
+
+
         public String staffAddress { get; set; }
         public String staffJob { get; set; }
         public String password { get; set; }

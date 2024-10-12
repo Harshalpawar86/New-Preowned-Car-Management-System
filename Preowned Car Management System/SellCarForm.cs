@@ -63,7 +63,7 @@ namespace Preowned_Car_Management_System
                    long.TryParse(SupplierIdTextBox.Text, out _) &&
                    long.TryParse(BuyerIdTextBox.Text, out _) &&
                    long.TryParse(CarIdTextBox.Text, out _) &&
-                   double.TryParse(PurchaseAmountTextBox.Text, out _) &&
+                   decimal.TryParse(PurchaseAmountTextBox.Text, out _) &&
                    !string.IsNullOrEmpty(SellingAmountTextBox.Text);
         }
         private void OKButton_Click(object sender, EventArgs e)
@@ -105,7 +105,7 @@ namespace Preowned_Car_Management_System
 
             if (dresult == DialogResult.OK)
             {
-                form.amountRecieved = Convert.ToDouble(SellingAmountTextBox.Text);
+                form.amountRecieved = Convert.ToDecimal(SellingAmountTextBox.Text);
                 form.staffMember = StaffIdTextBox.Text;
                 form.profitOrLoss = form.amountRecieved - form.amountPaid;
                 using (SqlConnection conn = new SqlConnection(connectionString))

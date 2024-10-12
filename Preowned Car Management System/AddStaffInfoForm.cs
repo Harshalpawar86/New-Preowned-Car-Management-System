@@ -16,7 +16,7 @@ namespace Preowned_Car_Management_System
         public String staffName { get; set; }
         public String staffGender { get; set; }
         public String staffBOD { get; set; }
-        public int staffMobileNumber { get; set; }
+        public long staffMobileNumber { get; set; }
         public String staffEmail { get; set; }
         public String staffAddress { get; set; }
         public String jobDesignation { get; set; }
@@ -70,19 +70,44 @@ namespace Preowned_Car_Management_System
 
         private void OKButton_Click(object sender, EventArgs e)
         {
-            staffName=StaffNameTextBox.Text;
-            staffGender=GenderComboBox.Text;
-            staffMobileNumber = Convert.ToInt32(textBox2.Text);
-            staffEmail=StaffEmailTextBox.Text;
-            staffBOD = dateTimePicker1.Value.ToString();
-            staffAddress=richTextBox1.Text;
-            staffId = Convert.ToInt32(StaffIdTextBox.Text);
-            jobDesignation=JobDesignationComboBox.Text;
-            userName = UserNameTextBox.Text;
-            password = PasswordTextBox.Text;
-            DialogResult = DialogResult.OK;
-        }
+            if (validateData() == false)
+            {
+                DialogResult = DialogResult.OK;
+            }
+            else {
 
+                MessageBox.Show("Please Enter Valid Data");
+            }
+        }
+        bool validateData() {
+            bool exception = false;
+            try
+            {
+                staffName = StaffNameTextBox.Text;
+                staffGender = GenderComboBox.Text;
+                staffMobileNumber = Convert.ToInt64(textBox2.Text);
+                staffEmail = StaffEmailTextBox.Text;
+                staffBOD = dateTimePicker1.Value.ToString();
+                staffAddress = richTextBox1.Text;
+                staffId = Convert.ToInt32(StaffIdTextBox.Text);
+                jobDesignation = JobDesignationComboBox.Text;
+                userName = UserNameTextBox.Text;
+                password = PasswordTextBox.Text;
+                exception = false;
+            }
+            catch (Exception exp) {
+
+                exception = true;
+            }
+            if (exception == false) { 
+            
+                if(staffMobileNumber.ToString().Length==10 && staffEmail.EndsWith("@gmail.com"))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;

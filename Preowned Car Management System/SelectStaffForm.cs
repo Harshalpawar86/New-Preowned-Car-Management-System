@@ -21,18 +21,28 @@ namespace Preowned_Car_Management_System
         public SelectStaffForm()
         {
             InitializeComponent();
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void SelectStaffForm_Load(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString)) {
+            dataGridView1.ClearSelection();
+            LoadExistingData();
+        }
+        void LoadExistingData() {
+
+            dataGridView1.ClearSelection();            
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
                 String query = "SELECT * FROM StaffTable";
-                using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query,conn)) {
+                using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn))
+                {
                     DataTable dt = new DataTable();
                     sqlDataAdapter.Fill(dt);
-                    dataGridView1.DataSource=dt;
+                    dataGridView1.DataSource = dt;
                 }
             }
+            dataGridView1.ClearSelection();
         }
 
         private void OkButton_Click(object sender, EventArgs e)
@@ -40,6 +50,10 @@ namespace Preowned_Car_Management_System
             if (noException1 == true)
             {
                 DialogResult = DialogResult.OK;
+            }
+            else {
+
+                MessageBox.Show("Please Enter Valid Data");
             }
         }
 
@@ -49,6 +63,57 @@ namespace Preowned_Car_Management_System
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+                             
+  
+
+        private void BuyerStaffTextBox_TextChanged_1(object sender, EventArgs e)
+        {
+            String name = BuyerStaffTextBox.Text;
+            SearchStaff(name);
+        }
+        void SearchStaff(String searchText) {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM StaffTable WHERE StaffName LIKE @SearchText";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@SearchText", "%" + searchText + "%");
+
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dataTable = new DataTable();
+                        sqlDataAdapter.Fill(dataTable);
+
+                        dataGridView1.DataSource = dataTable;
+                    }
+                }
+            }
+
+        }
+
+        private void SearchStaffButton_Click(object sender, EventArgs e)
+        {
+            String name = BuyerStaffTextBox.Text;
+            SearchStaff(name);
+        }
+
+        private void ClearSearchButton_Click(object sender, EventArgs e)
+        {
+            BuyerStaffTextBox.Clear();
+            LoadExistingData();
+        }
+
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             noException1 = false;
             try
@@ -64,7 +129,7 @@ namespace Preowned_Car_Management_System
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.ToString());
+               // MessageBox.Show(exp.ToString());
                 noException1 = false;
             }
         }

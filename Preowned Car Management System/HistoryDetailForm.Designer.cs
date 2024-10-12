@@ -39,6 +39,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.CarInfoLabel = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.mCostLabel = new System.Windows.Forms.Label();
             this.AmountLabel = new System.Windows.Forms.Label();
             this.OwnerLabel = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -49,6 +50,8 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.TotalBuyingAmountLabel = new System.Windows.Forms.Label();
+            this.AccessoryAmountLabel = new System.Windows.Forms.Label();
             this.BuyingAmountLabel = new System.Windows.Forms.Label();
             this.BuyerNameLabel = new System.Windows.Forms.Label();
             this.BuyerMobileLabel = new System.Windows.Forms.Label();
@@ -63,6 +66,8 @@
             this.MaintenanceInfoLabel = new System.Windows.Forms.Label();
             this.MaintenanceIdLabel = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.AccessoryInformtaionLabel = new System.Windows.Forms.Label();
+            this.TotalProfitLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -77,6 +82,7 @@
             this.panel7.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -188,9 +194,9 @@
             // 
             this.panel6.Controls.Add(this.CarInfoLabel);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 100);
+            this.panel6.Location = new System.Drawing.Point(0, 143);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(239, 164);
+            this.panel6.Size = new System.Drawing.Size(239, 121);
             this.panel6.TabIndex = 1;
             // 
             // CarInfoLabel
@@ -200,20 +206,34 @@
             this.CarInfoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.CarInfoLabel.Location = new System.Drawing.Point(0, 0);
             this.CarInfoLabel.Name = "CarInfoLabel";
-            this.CarInfoLabel.Size = new System.Drawing.Size(239, 164);
+            this.CarInfoLabel.Size = new System.Drawing.Size(239, 121);
             this.CarInfoLabel.TabIndex = 78;
             this.CarInfoLabel.Text = "Car Information :  ";
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.TotalProfitLabel);
+            this.panel5.Controls.Add(this.mCostLabel);
             this.panel5.Controls.Add(this.AmountLabel);
             this.panel5.Controls.Add(this.OwnerLabel);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(239, 100);
+            this.panel5.Size = new System.Drawing.Size(239, 143);
             this.panel5.TabIndex = 0;
             this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
+            // 
+            // mCostLabel
+            // 
+            this.mCostLabel.AutoSize = true;
+            this.mCostLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mCostLabel.ForeColor = System.Drawing.Color.Red;
+            this.mCostLabel.Location = new System.Drawing.Point(-4, 79);
+            this.mCostLabel.Name = "mCostLabel";
+            this.mCostLabel.Size = new System.Drawing.Size(186, 22);
+            this.mCostLabel.TabIndex = 83;
+            this.mCostLabel.Text = "Maintenance Cost : ";
+            this.mCostLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // AmountLabel
             // 
@@ -278,9 +298,9 @@
             this.StaffComissionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.StaffComissionLabel.Location = new System.Drawing.Point(13, 109);
             this.StaffComissionLabel.Name = "StaffComissionLabel";
-            this.StaffComissionLabel.Size = new System.Drawing.Size(209, 22);
+            this.StaffComissionLabel.Size = new System.Drawing.Size(169, 22);
             this.StaffComissionLabel.TabIndex = 73;
-            this.StaffComissionLabel.Text = "Staff Comission : 1000";
+            this.StaffComissionLabel.Text = "Staff Comission : ";
             // 
             // StaffIdLabel
             // 
@@ -331,6 +351,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.TotalBuyingAmountLabel);
+            this.panel3.Controls.Add(this.AccessoryAmountLabel);
             this.panel3.Controls.Add(this.BuyingAmountLabel);
             this.panel3.Controls.Add(this.BuyerNameLabel);
             this.panel3.Controls.Add(this.BuyerMobileLabel);
@@ -341,12 +363,34 @@
             this.panel3.Size = new System.Drawing.Size(365, 256);
             this.panel3.TabIndex = 0;
             // 
+            // TotalBuyingAmountLabel
+            // 
+            this.TotalBuyingAmountLabel.AutoSize = true;
+            this.TotalBuyingAmountLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalBuyingAmountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
+            this.TotalBuyingAmountLabel.Location = new System.Drawing.Point(3, 171);
+            this.TotalBuyingAmountLabel.Name = "TotalBuyingAmountLabel";
+            this.TotalBuyingAmountLabel.Size = new System.Drawing.Size(223, 22);
+            this.TotalBuyingAmountLabel.TabIndex = 80;
+            this.TotalBuyingAmountLabel.Text = "Total Buying Amount : ";
+            // 
+            // AccessoryAmountLabel
+            // 
+            this.AccessoryAmountLabel.AutoSize = true;
+            this.AccessoryAmountLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AccessoryAmountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
+            this.AccessoryAmountLabel.Location = new System.Drawing.Point(3, 139);
+            this.AccessoryAmountLabel.Name = "AccessoryAmountLabel";
+            this.AccessoryAmountLabel.Size = new System.Drawing.Size(206, 22);
+            this.AccessoryAmountLabel.TabIndex = 79;
+            this.AccessoryAmountLabel.Text = "Accessories Amount : ";
+            // 
             // BuyingAmountLabel
             // 
             this.BuyingAmountLabel.AutoSize = true;
             this.BuyingAmountLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BuyingAmountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
-            this.BuyingAmountLabel.Location = new System.Drawing.Point(3, 75);
+            this.BuyingAmountLabel.Location = new System.Drawing.Point(3, 108);
             this.BuyingAmountLabel.Name = "BuyingAmountLabel";
             this.BuyingAmountLabel.Size = new System.Drawing.Size(170, 22);
             this.BuyingAmountLabel.TabIndex = 78;
@@ -368,7 +412,7 @@
             this.BuyerMobileLabel.AutoSize = true;
             this.BuyerMobileLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BuyerMobileLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
-            this.BuyerMobileLabel.Location = new System.Drawing.Point(3, 108);
+            this.BuyerMobileLabel.Location = new System.Drawing.Point(3, 74);
             this.BuyerMobileLabel.Name = "BuyerMobileLabel";
             this.BuyerMobileLabel.Size = new System.Drawing.Size(225, 22);
             this.BuyerMobileLabel.TabIndex = 77;
@@ -443,6 +487,7 @@
             // 
             // tableLayoutPanel5
             // 
+            this.tableLayoutPanel5.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel5.ColumnCount = 2;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -462,9 +507,9 @@
             this.panel8.Controls.Add(this.MaintenanceInfoLabel);
             this.panel8.Controls.Add(this.MaintenanceIdLabel);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(3, 3);
+            this.panel8.Location = new System.Drawing.Point(4, 4);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(366, 258);
+            this.panel8.Size = new System.Drawing.Size(365, 256);
             this.panel8.TabIndex = 0;
             // 
             // MaintenanceInfoLabel
@@ -474,10 +519,9 @@
             this.MaintenanceInfoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.MaintenanceInfoLabel.Location = new System.Drawing.Point(0, 22);
             this.MaintenanceInfoLabel.Name = "MaintenanceInfoLabel";
-            this.MaintenanceInfoLabel.Size = new System.Drawing.Size(366, 236);
+            this.MaintenanceInfoLabel.Size = new System.Drawing.Size(365, 234);
             this.MaintenanceInfoLabel.TabIndex = 78;
-            this.MaintenanceInfoLabel.Text = "Maintenance Information : This is Demo Maintenance Information for Demo purposes " +
-    "only.";
+            this.MaintenanceInfoLabel.Text = "Maintenance Information :";
             this.MaintenanceInfoLabel.Click += new System.EventHandler(this.MaintenanceInfoLabel_Click);
             // 
             // MaintenanceIdLabel
@@ -487,17 +531,40 @@
             this.MaintenanceIdLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.MaintenanceIdLabel.Location = new System.Drawing.Point(0, 0);
             this.MaintenanceIdLabel.Name = "MaintenanceIdLabel";
-            this.MaintenanceIdLabel.Size = new System.Drawing.Size(366, 22);
+            this.MaintenanceIdLabel.Size = new System.Drawing.Size(365, 22);
             this.MaintenanceIdLabel.TabIndex = 79;
             this.MaintenanceIdLabel.Text = "Maintenance Id : ";
             // 
             // panel9
             // 
+            this.panel9.Controls.Add(this.AccessoryInformtaionLabel);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(375, 3);
+            this.panel9.Location = new System.Drawing.Point(376, 4);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(367, 258);
+            this.panel9.Size = new System.Drawing.Size(365, 256);
             this.panel9.TabIndex = 1;
+            // 
+            // AccessoryInformtaionLabel
+            // 
+            this.AccessoryInformtaionLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AccessoryInformtaionLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AccessoryInformtaionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
+            this.AccessoryInformtaionLabel.Location = new System.Drawing.Point(0, 0);
+            this.AccessoryInformtaionLabel.Name = "AccessoryInformtaionLabel";
+            this.AccessoryInformtaionLabel.Size = new System.Drawing.Size(365, 256);
+            this.AccessoryInformtaionLabel.TabIndex = 81;
+            this.AccessoryInformtaionLabel.Text = "Accessories Information : ";
+            // 
+            // TotalProfitLabel
+            // 
+            this.TotalProfitLabel.AutoSize = true;
+            this.TotalProfitLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalProfitLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
+            this.TotalProfitLabel.Location = new System.Drawing.Point(-4, 112);
+            this.TotalProfitLabel.Name = "TotalProfitLabel";
+            this.TotalProfitLabel.Size = new System.Drawing.Size(136, 22);
+            this.TotalProfitLabel.TabIndex = 84;
+            this.TotalProfitLabel.Text = "Total Profit : ";
             // 
             // HistoryDetailForm
             // 
@@ -529,6 +596,7 @@
             this.panel7.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -570,5 +638,10 @@
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label MaintenanceInfoLabel;
         private System.Windows.Forms.Label MaintenanceIdLabel;
+        private System.Windows.Forms.Label AccessoryInformtaionLabel;
+        private System.Windows.Forms.Label TotalBuyingAmountLabel;
+        private System.Windows.Forms.Label AccessoryAmountLabel;
+        private System.Windows.Forms.Label mCostLabel;
+        private System.Windows.Forms.Label TotalProfitLabel;
     }
 }

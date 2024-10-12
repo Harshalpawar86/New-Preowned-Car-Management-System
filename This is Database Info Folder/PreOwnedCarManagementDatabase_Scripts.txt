@@ -1,0 +1,133 @@
+USE [PreOwnedCarManagementDatabase]
+GO
+/****** Object:  Table [dbo].[AccessorySales]    Script Date: 10/12/2024 7:09:21 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AccessorySales](
+	[CarId] [int] NULL,
+	[AccessoryId] [int] NULL,
+	[AccessoryName] [varchar](100) NULL,
+	[AccessoryPrice] [decimal](10, 2) NULL,
+	[AccessorySoldCount] [int] NULL,
+	[TotalPrice] [decimal](10, 2) NULL,
+	[SaleDate] [datetime] NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AccessoryTable]    Script Date: 10/12/2024 7:09:21 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AccessoryTable](
+	[AccessoryName] [varchar](100) NULL,
+	[AccessoryDate] [varchar](100) NULL,
+	[AccessoryCount] [int] NULL,
+	[AccessoryImage] [varbinary](max) NULL,
+	[AccessoryPrice] [decimal](10, 2) NULL,
+	[AccessoryId] [int] NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[BuyerTable]    Script Date: 10/12/2024 7:09:21 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BuyerTable](
+	[BuyerName] [varchar](100) NULL,
+	[CarName] [varchar](100) NULL,
+	[BuyerId] [int] NULL,
+	[BuyerMobileNumber] [bigint] NULL,
+	[BuyerAddress] [varchar](200) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[HistoryTable]    Script Date: 10/12/2024 7:09:21 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HistoryTable](
+	[CarImage] [varbinary](max) NULL,
+	[SupplierMobileNumber] [bigint] NULL,
+	[BuyerMobileNumber] [bigint] NULL,
+	[SupplierAddress] [varchar](500) NULL,
+	[BuyerAddress] [varchar](500) NULL,
+	[SupplierId] [bigint] NULL,
+	[BuyerId] [bigint] NULL,
+	[OwnerType] [varchar](100) NULL,
+	[CarInfo] [varchar](max) NULL,
+	[CarId] [bigint] NULL,
+	[CarName] [varchar](100) NULL,
+	[SupplierName] [varchar](100) NULL,
+	[BuyerName] [varchar](100) NULL,
+	[AmountPaid] [decimal](10, 2) NULL,
+	[AmountRecieved] [decimal](10, 2) NULL,
+	[StaffId] [bigint] NULL,
+	[PurchaseDate] [varchar](100) NULL,
+	[ProfitOrLoss] [decimal](10, 2) NULL,
+	[MaintenanceId] [int] NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MaintenanceTable]    Script Date: 10/12/2024 7:09:21 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MaintenanceTable](
+	[CarId] [int] NULL,
+	[MaintenanceId] [int] NULL,
+	[MaintenanceDate] [varchar](100) NULL,
+	[MaintenanceCost] [int] NULL,
+	[MaintenanceInfo] [varchar](200) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[StaffTable]    Script Date: 10/12/2024 7:09:21 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[StaffTable](
+	[StaffName] [varchar](100) NULL,
+	[StaffGender] [varchar](100) NULL,
+	[StaffDOB] [varchar](100) NULL,
+	[StaffNumber] [bigint] NULL,
+	[StaffMail] [varchar](100) NULL,
+	[StaffAddress] [varchar](100) NULL,
+	[StaffJob] [varchar](100) NULL,
+	[StaffId] [int] NULL,
+	[StaffUserName] [varchar](100) NULL,
+	[StaffPassword] [varchar](100) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[StockTable]    Script Date: 10/12/2024 7:09:21 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[StockTable](
+	[CarName] [varchar](100) NULL,
+	[CarId] [bigint] NULL,
+	[SupplierId] [bigint] NULL,
+	[PurchaseAmount] [decimal](10, 2) NULL,
+	[PurchaseDate] [varchar](50) NULL,
+	[CarImage] [varbinary](max) NULL,
+	[OwnerType] [varchar](100) NULL,
+	[CarInfo] [varchar](max) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SupplierTable]    Script Date: 10/12/2024 7:09:21 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SupplierTable](
+	[SupplierId] [int] NULL,
+	[CarId] [int] NULL,
+	[SupplierName] [varchar](100) NULL,
+	[CarName] [varchar](100) NULL,
+	[SupplierMobileNumber] [bigint] NULL,
+	[AmountPaid] [decimal](18, 2) NULL,
+	[SupplierAddress] [varchar](500) NULL
+) ON [PRIMARY]
+GO

@@ -172,6 +172,7 @@
             this.ReportsButton.TabIndex = 2;
             this.ReportsButton.Text = "R E P O R T S";
             this.ReportsButton.UseVisualStyleBackColor = false;
+            this.ReportsButton.Click += new System.EventHandler(this.ReportsButton_Click);
             // 
             // panel12
             // 
@@ -190,13 +191,13 @@
             this.HistoryButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.HistoryButton.FlatAppearance.BorderSize = 0;
             this.HistoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HistoryButton.Font = new System.Drawing.Font("Britannic Bold", 16.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HistoryButton.Font = new System.Drawing.Font("Britannic Bold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HistoryButton.ForeColor = System.Drawing.Color.White;
             this.HistoryButton.Location = new System.Drawing.Point(0, 0);
             this.HistoryButton.Name = "HistoryButton";
             this.HistoryButton.Size = new System.Drawing.Size(295, 60);
             this.HistoryButton.TabIndex = 2;
-            this.HistoryButton.Text = "H I S T O R Y";
+            this.HistoryButton.Text = "T R A N S A C T I O N S";
             this.HistoryButton.UseVisualStyleBackColor = false;
             this.HistoryButton.Click += new System.EventHandler(this.HistoryButton_Click);
             // 
@@ -389,6 +390,7 @@
             this.panel18.Size = new System.Drawing.Size(256, 133);
             this.panel18.TabIndex = 0;
             this.panel18.Click += new System.EventHandler(this.panel18_Click);
+            this.panel18.Paint += new System.Windows.Forms.PaintEventHandler(this.panel18_Paint);
             // 
             // panel1
             // 
@@ -466,6 +468,7 @@
             this.panel17.Name = "panel17";
             this.panel17.Size = new System.Drawing.Size(200, 100);
             this.panel17.TabIndex = 0;
+            this.panel17.Click += new System.EventHandler(this.panel17_Click_1);
             this.panel17.Paint += new System.Windows.Forms.PaintEventHandler(this.panel17_Paint);
             // 
             // UserNameLabel

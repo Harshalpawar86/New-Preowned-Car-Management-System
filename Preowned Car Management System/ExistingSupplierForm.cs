@@ -20,7 +20,7 @@ namespace Preowned_Car_Management_System
         public String address { set; get; }
         public long carId { get; set; }
         public String carName { set; get; }
-        public double purchaseAmount { set; get; }
+        public decimal purchaseAmount { set; get; }
         
 
         bool noException = false;
@@ -105,13 +105,13 @@ namespace Preowned_Car_Management_System
                     if (selectForm == "ForStock") {
 
                         carId = Convert.ToInt64(row.Cells["CarId"].Value);
-                        purchaseAmount = Convert.ToDouble(row.Cells["AmountPaid"].Value);
+                        purchaseAmount = Convert.ToDecimal(row.Cells["AmountPaid"].Value);
                     }
   
                     noException = true;
                 }
             } catch (Exception exp) {
-                   MessageBox.Show(exp.ToString());
+                  // MessageBox.Show(exp.ToString());
           //      MessageBox.Show("Please Select Valid Row");
                 noException = false;
                
@@ -143,7 +143,7 @@ namespace Preowned_Car_Management_System
             }
             catch (Exception exp)
             {
-                  MessageBox.Show(exp.ToString());
+                 // MessageBox.Show(exp.ToString());
              //   MessageBox.Show("Please Select Valid Row");
                 noException = false;
 

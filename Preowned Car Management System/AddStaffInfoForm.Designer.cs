@@ -215,9 +215,9 @@
             this.JobDesignationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.JobDesignationComboBox.FormattingEnabled = true;
             this.JobDesignationComboBox.Items.AddRange(new object[] {
-            "Assistant Manager",
+            "Manager",
             "Sales Manager",
-            "Accountant",
+            "Sales Executive",
             "Mechanic",
             "Office Boy"});
             this.JobDesignationComboBox.Location = new System.Drawing.Point(580, 597);

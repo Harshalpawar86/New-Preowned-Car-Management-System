@@ -16,7 +16,7 @@ namespace Preowned_Car_Management_System
         public String carName { set; get; }
         public long mobileNumber { set; get; }
         public String address { set; get; }
-        public double amountPaid { set; get; }
+        public decimal amountPaid { set; get; }
         public UpdateSupplierInfoForm()
         {
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace Preowned_Car_Management_System
                 carName = CarNameTextBox.Text;
                 mobileNumber = Convert.ToInt64(MobileNumberTextBox.Text);
                 address = AddressTextBox.Text;
-                amountPaid = Convert.ToDouble(AmountPaidTextBox.Text);
+                amountPaid = Convert.ToDecimal(AmountPaidTextBox.Text);
 
                 DialogResult = DialogResult.OK;
             }
@@ -56,7 +56,7 @@ namespace Preowned_Car_Management_System
                    !string.IsNullOrEmpty(CarNameTextBox.Text) &&
                    long.TryParse(MobileNumberTextBox.Text, out _) &&
                    !string.IsNullOrEmpty(AddressTextBox.Text) &&
-                   double.TryParse(AmountPaidTextBox.Text, out _);
+                   decimal.TryParse(AmountPaidTextBox.Text, out _);
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

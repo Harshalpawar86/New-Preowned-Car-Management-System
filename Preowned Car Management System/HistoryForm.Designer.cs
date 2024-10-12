@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.UserNameLabel = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -45,6 +45,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1942, 1102);
             this.panel1.TabIndex = 0;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 122);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1942, 980);
+            this.flowLayoutPanel1.TabIndex = 5;
             // 
             // panel2
             // 
@@ -63,17 +71,9 @@
             this.UserNameLabel.ForeColor = System.Drawing.Color.White;
             this.UserNameLabel.Location = new System.Drawing.Point(3, 30);
             this.UserNameLabel.Name = "UserNameLabel";
-            this.UserNameLabel.Size = new System.Drawing.Size(360, 59);
+            this.UserNameLabel.Size = new System.Drawing.Size(603, 59);
             this.UserNameLabel.TabIndex = 2;
-            this.UserNameLabel.Text = "History Details : ";
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 122);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1942, 980);
-            this.flowLayoutPanel1.TabIndex = 5;
+            this.UserNameLabel.Text = "Transaction History Details : ";
             // 
             // HistoryForm
             // 

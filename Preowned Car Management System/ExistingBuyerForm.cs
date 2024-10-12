@@ -103,7 +103,7 @@ namespace Preowned_Car_Management_System
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.ToString());
+               // MessageBox.Show(exp.ToString());
                 //      MessageBox.Show("Please Select Valid Row");
                 noException = false;
 
@@ -134,7 +134,7 @@ namespace Preowned_Car_Management_System
             }
             catch (Exception exp)
             {
-                MessageBox.Show(exp.ToString());
+              //  MessageBox.Show(exp.ToString());
                 //   MessageBox.Show("Please Select Valid Row");
                 noException = false;
 
