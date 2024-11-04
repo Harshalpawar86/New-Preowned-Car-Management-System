@@ -132,13 +132,19 @@ namespace Preowned_Car_Management_System
                                 int result = cmd.ExecuteNonQuery();
                                 if (result > 0)
                                 {
-                                    MessageBox.Show("Maintenance record deleted.");
+                                    MessageBox.Show("Maintenance record deleted...", "Deletion Successful",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
                                     flowLayoutPanel1.Controls.Clear();
                                     LoadExistingData();
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Failed to delete maintenance record.");
+                                    MessageBox.Show("Failed to delete maintenance record....", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
                                 }
                             }
                         }
@@ -218,7 +224,10 @@ namespace Preowned_Car_Management_System
         {
             if (SearchTextBox.Text == null || SearchTextBox.Text == "")
             {
-                MessageBox.Show("Please Enter Car Id to Search Maintenance Records..");
+                MessageBox.Show("Please Enter Car Id to Search Maintenance Records..", "Input Required",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
 
             }
             else
@@ -307,13 +316,19 @@ namespace Preowned_Car_Management_System
                             int result = cmd.ExecuteNonQuery();
                             if (result > 0)
                             {
-                                MessageBox.Show("Maintenance record added successfully.");
+                                MessageBox.Show("Maintenance record added successfully...", "Success",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
                                 flowLayoutPanel1.Controls.Clear();
                                 LoadExistingData();
                             }
                             else
                             {
-                                MessageBox.Show("Failed to add maintenance record.");
+                                MessageBox.Show("Failed to add maintenance record...", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
                             }
                         }
                     }
@@ -328,6 +343,16 @@ namespace Preowned_Car_Management_System
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+
+                e.SuppressKeyPress = true;
+                SearchButton.PerformClick();
+            }
         }
     }
 }

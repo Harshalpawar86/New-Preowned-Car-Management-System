@@ -74,6 +74,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker1.TabIndex = 68;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // label1
             // 
@@ -167,6 +168,7 @@
             this.MaintenanceCostTextBox.Name = "MaintenanceCostTextBox";
             this.MaintenanceCostTextBox.Size = new System.Drawing.Size(133, 35);
             this.MaintenanceCostTextBox.TabIndex = 79;
+            this.MaintenanceCostTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MaintenanceCostTextBox_KeyDown);
             // 
             // label3
             // 
@@ -188,15 +190,16 @@
             this.MaintenanceIdRichTextBox.Size = new System.Drawing.Size(133, 61);
             this.MaintenanceIdRichTextBox.TabIndex = 81;
             this.MaintenanceIdRichTextBox.Text = "";
+            this.MaintenanceIdRichTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MaintenanceIdRichTextBox_KeyDown);
             // 
             // GetCarIdButton
             // 
             this.GetCarIdButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.GetCarIdButton.Font = new System.Drawing.Font("Modern No. 20", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GetCarIdButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
-            this.GetCarIdButton.Location = new System.Drawing.Point(662, 193);
+            this.GetCarIdButton.Location = new System.Drawing.Point(657, 193);
             this.GetCarIdButton.Name = "GetCarIdButton";
-            this.GetCarIdButton.Size = new System.Drawing.Size(122, 35);
+            this.GetCarIdButton.Size = new System.Drawing.Size(141, 35);
             this.GetCarIdButton.TabIndex = 82;
             this.GetCarIdButton.Text = "Get Car Id";
             this.GetCarIdButton.UseVisualStyleBackColor = true;

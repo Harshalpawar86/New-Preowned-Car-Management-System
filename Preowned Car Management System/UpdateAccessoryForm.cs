@@ -39,7 +39,7 @@ namespace Preowned_Car_Management_System
                     conn.Open();
                     String accessoryName = AccessoryNameTextBox.Text;
                     int accessoryCount = Convert.ToInt32(AccessoryCountTextBox.Text);
-                    String date = dateTimePicker1.Value.ToString();
+                    String date = dateTimePicker1.Value.Date.ToString("d");
                     decimal accessoryPrice = Convert.ToDecimal(AccessoryPriceTextBox.Text);
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -58,6 +58,7 @@ namespace Preowned_Car_Management_System
             }
             catch (Exception exp) {
 
+                
                 MessageBox.Show(exp.ToString());
                 exception = true;
             }
@@ -68,7 +69,10 @@ namespace Preowned_Car_Management_System
             }
             else {
 
-                MessageBox.Show("Please Enter Valid Data");
+                MessageBox.Show("Please Enter Valid Data", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
             }
         }
 

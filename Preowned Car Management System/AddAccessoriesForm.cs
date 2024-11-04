@@ -31,7 +31,7 @@ namespace Preowned_Car_Management_System
         void getData() {
 
             accessoriesName = AccessoriesNameTextBox.Text;
-            accessoriesDate = dateTimePicker1.Value.ToString();
+            accessoriesDate = dateTimePicker1.Value.Date.ToString("d");
             accessoriesCount = Convert.ToInt32(AccessoriesCountTextBox.Text);
             accessoriesPrice = Convert.ToDouble(PriceTextBox.Text);
             accessoryId = Convert.ToInt64(AccessoryIdTextBox.Text);
@@ -57,12 +57,17 @@ namespace Preowned_Car_Management_System
             else
             {
 
-                MessageBox.Show("Please Enter Valid Data");
+                MessageBox.Show("Please Enter Valid Data", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
             }
             if (getImage == false)
             {
 
-                MessageBox.Show("Please Select image");
+                MessageBox.Show("Please Select image", "Image Selection Required", MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
             }
             if (noException == true && getImage == true)
             {
@@ -92,6 +97,9 @@ namespace Preowned_Car_Management_System
 
                     ImagePath = openFileDialog.FileName;
                     getImage = true;
+                    
+                        OKButton.Focus();
+                    
 
                 }
             }
@@ -139,6 +147,33 @@ namespace Preowned_Car_Management_System
 
                 AccessoryIdTextBox.Text = lastaccessoryId.ToString();
             
+        }
+
+        private void AccessoriesNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                AccessoriesCountTextBox.Focus();
+            }
+        }
+
+        private void AccessoriesCountTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                PriceTextBox.Focus();
+            }
+        }
+
+        private void PriceTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                photo_button.Focus();
+            }
         }
     }
 }

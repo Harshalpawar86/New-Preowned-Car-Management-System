@@ -188,14 +188,20 @@ namespace Preowned_Car_Management_System
                                     if (result > 0)
                                     {
 
-                                        MessageBox.Show("Staff Data Updated Successfully");
+                                        MessageBox.Show("Staff Data Updated Successfully", "Success",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
                                         flowLayoutPanel1.Controls.Clear();
                                         LoadExistingData();
                                     }
                                     else
                                     {
 
-                                        MessageBox.Show("Failed to Update Data");
+                                        MessageBox.Show("Failed to Update Data", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
                                     }
 
                                 }
@@ -261,7 +267,10 @@ namespace Preowned_Car_Management_System
         {
             if (SearchTextBox.Text == null || SearchTextBox.Text == "")
             {
-                MessageBox.Show("Please Enter Staff Name to Search");
+                MessageBox.Show("Please Enter Staff Name to Search", "Input Required",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
 
             }
             else
@@ -293,7 +302,7 @@ namespace Preowned_Car_Management_System
                                 String staffBOD = reader["StaffDOB"].ToString();
                                 long staffId = Convert.ToInt64(reader["StaffId"]);
                                 String staffGender = reader["StaffGender"].ToString();
-                                int staffMobileNumber = Convert.ToInt32(reader["StaffNumber"]);
+                                long staffMobileNumber = Convert.ToInt64(reader["StaffNumber"]);
                                 String staffEmail = reader["StaffMail"].ToString();
                                 String staffAddress = reader["StaffAddress"].ToString();
                                 String jobDesignation = reader["StaffJob"].ToString();
@@ -365,13 +374,19 @@ namespace Preowned_Car_Management_System
                             int result = cmd.ExecuteNonQuery();
                             if (result > 0)
                             {
-                                MessageBox.Show("Staff record added successfully.");
+                                MessageBox.Show("Staff record added successfully...", "Success",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
                                 flowLayoutPanel1.Controls.Clear();
                                 LoadExistingData();
                             }
                             else
                             {
-                                MessageBox.Show("Failed to add Staff record.");
+                                MessageBox.Show("Failed to add Staff record...", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
                             }
                         }
                     }
@@ -386,6 +401,16 @@ namespace Preowned_Car_Management_System
         private void flowLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+
+                e.SuppressKeyPress = true;
+                SearchButton.PerformClick();
+            }
         }
     }
 }

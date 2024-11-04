@@ -76,7 +76,10 @@ namespace Preowned_Car_Management_System
             }
             else {
 
-                MessageBox.Show("Please Enter Valid Data");
+                MessageBox.Show("Please Enter Valid Data", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
             }
         }
         bool validateData() {
@@ -87,7 +90,7 @@ namespace Preowned_Car_Management_System
                 staffGender = GenderComboBox.Text;
                 staffMobileNumber = Convert.ToInt64(textBox2.Text);
                 staffEmail = StaffEmailTextBox.Text;
-                staffBOD = dateTimePicker1.Value.ToString();
+                staffBOD = dateTimePicker1.Value.Date.ToString("d");
                 staffAddress = richTextBox1.Text;
                 staffId = Convert.ToInt32(StaffIdTextBox.Text);
                 jobDesignation = JobDesignationComboBox.Text;
@@ -99,10 +102,27 @@ namespace Preowned_Car_Management_System
 
                 exception = true;
             }
-            if (exception == false) { 
-            
-                if(staffMobileNumber.ToString().Length==10 && staffEmail.EndsWith("@gmail.com"))
+            if (exception == false) {
+
+                if (staffMobileNumber.ToString().Length != 10)
                 {
+                    MessageBox.Show("Please Enter Valid Mobile Number ..", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
+                    return true;
+                }
+                else if (staffEmail.EndsWith("@gmail.com") == false)
+                {
+
+                    MessageBox.Show("Please Enter Valid G-mail ..", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
+                    return true;
+                }
+                else {
+
                     return false;
                 }
             }
@@ -111,6 +131,89 @@ namespace Preowned_Car_Management_System
         private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+        }
+
+        private void StaffNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                GenderComboBox.Focus();
+            }
+        }
+
+      
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                StaffEmailTextBox.Focus();
+            }
+        }
+
+        private void StaffEmailTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                richTextBox1.Focus();
+            }
+        }
+
+        private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                JobDesignationComboBox.Focus();
+            }
+        }
+
+        private void UserNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                PasswordTextBox.Focus();
+            }
+        }
+
+        private void PasswordTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                OKButton.Focus();
+            }
+        }
+
+        private void GenderComboBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                dateTimePicker1.Focus();
+            }
+        }
+
+        private void dateTimePicker1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                textBox2.Focus();
+            }
+        }
+
+        private void JobDesignationComboBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                UserNameTextBox.Focus();
+            }
         }
     }
 }

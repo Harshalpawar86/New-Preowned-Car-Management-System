@@ -96,6 +96,7 @@
             this.StaffNameTextBox.Name = "StaffNameTextBox";
             this.StaffNameTextBox.Size = new System.Drawing.Size(133, 35);
             this.StaffNameTextBox.TabIndex = 84;
+            this.StaffNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StaffNameTextBox_KeyDown);
             // 
             // CarIdLabel
             // 
@@ -145,6 +146,7 @@
             this.GenderComboBox.Name = "GenderComboBox";
             this.GenderComboBox.Size = new System.Drawing.Size(133, 24);
             this.GenderComboBox.TabIndex = 93;
+            this.GenderComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GenderComboBox_KeyDown);
             // 
             // textBox2
             // 
@@ -154,6 +156,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(133, 35);
             this.textBox2.TabIndex = 95;
+            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyDown);
             // 
             // label2
             // 
@@ -187,6 +190,7 @@
             this.StaffEmailTextBox.Name = "StaffEmailTextBox";
             this.StaffEmailTextBox.Size = new System.Drawing.Size(133, 35);
             this.StaffEmailTextBox.TabIndex = 97;
+            this.StaffEmailTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StaffEmailTextBox_KeyDown);
             // 
             // label5
             // 
@@ -208,6 +212,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(133, 79);
             this.richTextBox1.TabIndex = 100;
             this.richTextBox1.Text = "";
+            this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
             // 
             // JobDesignationComboBox
             // 
@@ -224,6 +229,7 @@
             this.JobDesignationComboBox.Name = "JobDesignationComboBox";
             this.JobDesignationComboBox.Size = new System.Drawing.Size(133, 24);
             this.JobDesignationComboBox.TabIndex = 102;
+            this.JobDesignationComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.JobDesignationComboBox_KeyDown);
             // 
             // label6
             // 
@@ -246,6 +252,7 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker1.TabIndex = 103;
             this.dateTimePicker1.Value = new System.DateTime(2024, 8, 29, 0, 0, 0, 0);
+            this.dateTimePicker1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateTimePicker1_KeyDown);
             // 
             // StaffIdTextBox
             // 
@@ -278,6 +285,7 @@
             this.UserNameTextBox.Name = "UserNameTextBox";
             this.UserNameTextBox.Size = new System.Drawing.Size(133, 35);
             this.UserNameTextBox.TabIndex = 107;
+            this.UserNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserNameTextBox_KeyDown);
             // 
             // label8
             // 
@@ -299,6 +307,7 @@
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.Size = new System.Drawing.Size(133, 35);
             this.PasswordTextBox.TabIndex = 109;
+            this.PasswordTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PasswordTextBox_KeyDown);
             // 
             // label9
             // 

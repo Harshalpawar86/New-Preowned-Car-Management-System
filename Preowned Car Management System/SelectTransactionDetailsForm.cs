@@ -105,7 +105,10 @@ namespace Preowned_Car_Management_System
                 else
                 {
 
-                    MessageBox.Show("Please Select Data for Both Rows");
+                    MessageBox.Show("Please Select Data for Both Rows", "Selection Required",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
                 }
             }catch (Exception exp) {
 

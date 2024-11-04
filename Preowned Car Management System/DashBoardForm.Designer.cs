@@ -500,9 +500,10 @@
             this.ClientSize = new System.Drawing.Size(1314, 809);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DashBoardForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DashBoardForm";
+            this.Text = "K&P Car Resalers";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DashBoardForm_FormClosing);
             this.Load += new System.EventHandler(this.DashBoardForm_Load);

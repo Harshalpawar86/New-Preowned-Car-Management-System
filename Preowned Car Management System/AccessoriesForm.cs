@@ -17,6 +17,7 @@ namespace Preowned_Car_Management_System
             InitializeComponent();
             contextMenu = new ContextMenuStrip();
             contextMenu.Items.Add("Update Accessory Record", null, ContextMenuOption1_Click);
+            contextMenu.Items.Add("Delete Faulty Accessories", null, ContextMenuOption2_Click);
         }
         public void AddAccessoriesData(long accessoryId,string accessoriesName, string accessoriesDate, Image accessoriesImage,int accessoriesCount,double price)
         {
@@ -122,7 +123,50 @@ namespace Preowned_Car_Management_System
 
                 UpdateAccessoryForm form = new UpdateAccessoryForm(accessoryId);
                 if (form.ShowDialog() == DialogResult.OK) {
-                    MessageBox.Show("Data Updated Successfully..");
+                    MessageBox.Show("Data Updated Successfully..", "Success",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
+                    LoadExistingData();
+                }
+            }
+        }
+        private void ContextMenuOption2_Click(object sender, EventArgs e)
+        {
+            if (contextMenu.SourceControl is Panel panel)
+            {
+                long accessoryId = (long)panel.Tag;
+
+                DialogResult result = MessageBox.Show("Are you sure you want to delete this Accessory ?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+
+
+                if (result == DialogResult.Yes) {
+
+                    try
+                    {
+
+                        using (SqlConnection conn = new SqlConnection(connectionString))
+                        {
+                            conn.Open();
+                            String query = "DELETE FROM AccessoryTable WHERE AccessoryId=@AccessoryId";
+                            using (SqlCommand cmd = new SqlCommand(query, conn))
+                            {
+
+                                cmd.Parameters.AddWithValue("@AccessoryId", accessoryId);
+                                cmd.ExecuteNonQuery();
+                            }
+                            conn.Close();
+                        }
+                    }
+                    catch (Exception exp) {
+
+                        MessageBox.Show("Something went wrong data not deleted", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
+                        MessageBox.Show(exp.ToString());
+                    }
+
                     LoadExistingData();
                 }
             }
@@ -155,31 +199,43 @@ namespace Preowned_Car_Management_System
         }
         private void LoadExistingData()
         {
-            flowLayoutPanel1.Controls.Clear();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-
-                String query = "SELECT * FROM AccessoryTable";
-                using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn))
+                flowLayoutPanel1.Controls.Clear();
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-
-                    DataTable dataTable = new DataTable();
-                    sqlDataAdapter.Fill(dataTable);
-
-                    foreach (DataRow row in dataTable.Rows)
+                    conn.Open();
+                    String query = "SELECT * FROM AccessoryTable";
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn))
                     {
 
-                        string accessoriesName = row["AccessoryName"].ToString();
-                        int accessoriesCount = Convert.ToInt32(row["AccessoryCount"]);
-                        string accessoriesDate = row["AccessoryDate"].ToString();
-                        Image image = convertFromBytes((byte[])row["AccessoryImage"]);
-                        double accessoryprice = Convert.ToDouble(row["AccessoryPrice"]);
-                        long accessoryId = Convert.ToInt64(row["AccessoryId"]);
+                        DataTable dataTable = new DataTable();
+                        sqlDataAdapter.Fill(dataTable);
 
-                        AddAccessoriesData(accessoryId: accessoryId, accessoriesName: accessoriesName, accessoriesDate: accessoriesDate, accessoriesImage: image, accessoriesCount: accessoriesCount,price:accessoryprice);
+                        foreach (DataRow row in dataTable.Rows)
+                        {
 
+                            string accessoriesName = row["AccessoryName"].ToString();
+                            int accessoriesCount = Convert.ToInt32(row["AccessoryCount"]);
+                            string accessoriesDate = row["AccessoryDate"].ToString();
+                            Image image = convertFromBytes((byte[])row["AccessoryImage"]);
+                            double accessoryprice = Convert.ToDouble(row["AccessoryPrice"]);
+                            long accessoryId = Convert.ToInt64(row["AccessoryId"]);
+
+                            AddAccessoriesData(accessoryId: accessoryId, accessoriesName: accessoriesName, accessoriesDate: accessoriesDate, accessoriesImage: image, accessoriesCount: accessoriesCount, price: accessoryprice);
+
+                        }
                     }
+                    conn.Close();
                 }
+            }
+            catch (Exception exp) {
+
+                MessageBox.Show("Something went wrong data not loaded", "Error", 
+    MessageBoxButtons.OK, 
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
+                MessageBox.Show(exp.ToString());
             }
         }
 
@@ -214,12 +270,18 @@ namespace Preowned_Car_Management_System
                         if (result > 0)
                         {
 
-                            MessageBox.Show("Data Inserted Successfully");
+                            MessageBox.Show("Data Inserted Successfully", "Success",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
                         }
                         else
                         {
 
-                            MessageBox.Show("Data Insertion Failed");
+                            MessageBox.Show("Data Insertion Failed", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
                         }
                     }
                 }
@@ -238,7 +300,10 @@ namespace Preowned_Car_Management_System
         {
             if (SearchTextBox.Text == null || SearchTextBox.Text == "")
             {
-                MessageBox.Show("Please Enter Accessory Name to Search");
+                MessageBox.Show("Please Enter Accessory Name to Search", "Input Required",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
 
             }
             else
@@ -258,10 +323,10 @@ namespace Preowned_Car_Management_System
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+                    conn.Open();
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@AccessoryName", name);
-                        conn.Open();
                         SqlDataReader reader = cmd.ExecuteReader();
                         if (reader.HasRows)
                         {
@@ -283,6 +348,7 @@ namespace Preowned_Car_Management_System
                             MessageBox.Show("Accessory Record not found in the database.", "No Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
+                    conn.Close();
                 }
 
             }
@@ -302,6 +368,16 @@ namespace Preowned_Car_Management_System
         {
             SearchTextBox.Clear();
             LoadExistingData();
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+
+                e.SuppressKeyPress = true;
+                SearchButton.PerformClick();
+            }
         }
     }
 }

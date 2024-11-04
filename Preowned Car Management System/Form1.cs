@@ -37,6 +37,15 @@ namespace Preowned_Car_Management_System
             {
                 DashBoardForm form = new DashBoardForm(this,id);
                 form.Show();
+
+                MessageBox.Show(
+    "Logged in successfully....",
+    "Success",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
+
+
                 this.Hide();
             }
             else
@@ -83,6 +92,30 @@ namespace Preowned_Car_Management_System
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            ForgotPasswordForm form = new ForgotPasswordForm();
+            form.ShowDialog();
+        }
+
+        private void UserNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; 
+                PasswordTextBox.Focus();   
+            }
+        }
+
+        private void PasswordTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                LoginButton.PerformClick(); 
+            }
         }
     }
 

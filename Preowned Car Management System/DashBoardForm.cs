@@ -35,7 +35,7 @@ namespace Preowned_Car_Management_System
 
 
         private void DashBoardForm_Load(object sender, EventArgs e)
-        {
+        {     
             CheckManager();
             LoadStaffName();
             

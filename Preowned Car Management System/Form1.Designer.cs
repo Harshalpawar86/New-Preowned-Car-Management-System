@@ -33,6 +33,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.LoginButton = new System.Windows.Forms.Button();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.UserNameTextBox = new System.Windows.Forms.TextBox();
@@ -85,6 +86,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.LoginButton);
             this.panel5.Controls.Add(this.PasswordTextBox);
             this.panel5.Controls.Add(this.UserNameTextBox);
@@ -96,6 +98,19 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(389, 459);
             this.panel5.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Lucida Fax", 13.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
+            this.label4.Location = new System.Drawing.Point(95, 420);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(204, 25);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Forgot Password";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // LoginButton
             // 
@@ -121,6 +136,7 @@
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.Size = new System.Drawing.Size(228, 36);
             this.PasswordTextBox.TabIndex = 4;
+            this.PasswordTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PasswordTextBox_KeyDown);
             // 
             // UserNameTextBox
             // 
@@ -131,6 +147,7 @@
             this.UserNameTextBox.Name = "UserNameTextBox";
             this.UserNameTextBox.Size = new System.Drawing.Size(228, 35);
             this.UserNameTextBox.TabIndex = 3;
+            this.UserNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UserNameTextBox_KeyDown);
             // 
             // label3
             // 
@@ -191,9 +208,10 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1314, 665);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "K&P Car Resalers";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.LoginForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -218,6 +236,7 @@
         private System.Windows.Forms.TextBox PasswordTextBox;
         private System.Windows.Forms.TextBox UserNameTextBox;
         private System.Windows.Forms.Button LoginButton;
+        private System.Windows.Forms.Label label4;
     }
 }
 

@@ -61,7 +61,11 @@ namespace Preowned_Car_Management_System
             if (form.ShowDialog() == DialogResult.OK)
             {
 
-                MessageBox.Show("Data Updated Successfully");
+                
+                MessageBox.Show("Data Updated Successfully", "Success",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
                 LoadStaffDetails();
             }
         }

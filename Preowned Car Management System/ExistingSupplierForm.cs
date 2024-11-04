@@ -218,7 +218,10 @@ namespace Preowned_Car_Management_System
             }
             else {
 
-                MessageBox.Show("Please Select Valid Row");
+                MessageBox.Show("Please Select Valid Row", "Selection Required",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
             }
         }
 

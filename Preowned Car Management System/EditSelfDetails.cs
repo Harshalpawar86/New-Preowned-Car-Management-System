@@ -114,7 +114,10 @@ namespace Preowned_Car_Management_System
             }
             else {
 
-                MessageBox.Show("Data not updated\nSomething went wrong");
+                MessageBox.Show("Data not updated\nSomething went wrong", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
             }
         }
     }

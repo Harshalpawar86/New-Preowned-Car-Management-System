@@ -59,17 +59,20 @@ namespace Preowned_Car_Management_System
 
         private void StaffReoprtsButton_Click(object sender, EventArgs e)
         {
-            
+            ReportDetailsFrom form = new ReportDetailsFrom("Staff");
+            form.Show();
         }
 
         private void MaintenanceReportsButton_Click(object sender, EventArgs e)
-        { 
-            
+        {
+            ReportDetailsFrom form = new ReportDetailsFrom("Maintenance");
+            form.Show();
         }
 
         private void AccessoryReportsButton_Click(object sender, EventArgs e)
         {
-
+            ReportDetailsFrom form = new ReportDetailsFrom("Accessory");
+            form.Show();
         }
 
         private void HistoryReportsButton_Click(object sender, EventArgs e)

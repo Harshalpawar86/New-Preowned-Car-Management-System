@@ -126,9 +126,11 @@ namespace Preowned_Car_Management_System
                             String supplierName = reader["SupplierName"].ToString();
                             String buyerName = reader["BuyerName"].ToString();
                             AddHistoryData(image: image, carId:carId,carName:carName,supplierName:supplierName,buyerName:buyerName);
+                        
                         }
                     }
                 }
+                conn.Close();
             }
         }
 
@@ -141,9 +143,92 @@ namespace Preowned_Car_Management_System
             }
         }
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+
+
+      
+        void searchCar(string carName)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            try
+            {
+                String query = "SELECT * FROM HistoryTable WHERE CarName=@CarName";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@CarName", carName);
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                long carId = Convert.ToInt64(reader["CarId"]);
+                                String carNamedb = reader["CarName"].ToString();
+                                Image image = convertFromBytes((byte[])reader["CarImage"]);
+                                String supplierName = reader["SupplierName"].ToString();
+                                String buyerName = reader["BuyerName"].ToString();
+
+                                AddHistoryData(image: image, carId: carId, carName: carNamedb, supplierName: supplierName, buyerName: buyerName);
+
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Car not found in the database.", "No Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
+        private Image convertFromBytes(byte[] imageBytes)
         {
 
+            using (MemoryStream ms = new MemoryStream(imageBytes))
+            {
+
+                return Image.FromStream(ms);
+            }
+        }
+
+     
+
+        private void ClearButton_Click_1(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            SearchTextBox.Clear();
+            LoadHistory();
+        }
+
+        private void SearchButton_Click_1(object sender, EventArgs e)
+        {
+            if (SearchTextBox.Text == null || SearchTextBox.Text == "")
+            {
+                MessageBox.Show("Please Enter Car Name to Search", "Input Required",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
+
+            }
+            else
+            {
+                searchCar(SearchTextBox.Text.Trim());
+
+            }
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter){
+                e.SuppressKeyPress = true;
+                SearchButton.PerformClick();
+            }
         }
     }
 }

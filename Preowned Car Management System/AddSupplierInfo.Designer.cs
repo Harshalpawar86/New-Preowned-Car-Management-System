@@ -103,6 +103,7 @@
             this.AddressTextBox.Size = new System.Drawing.Size(161, 71);
             this.AddressTextBox.TabIndex = 60;
             this.AddressTextBox.Text = "";
+            this.AddressTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddressTextBox_KeyDown);
             // 
             // label3
             // 
@@ -148,6 +149,7 @@
             this.SupplierNameTextBox.Name = "SupplierNameTextBox";
             this.SupplierNameTextBox.Size = new System.Drawing.Size(133, 35);
             this.SupplierNameTextBox.TabIndex = 52;
+            this.SupplierNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SupplierNameTextBox_KeyDown);
             // 
             // CarNameLabel
             // 
@@ -169,6 +171,8 @@
             this.MobileNumberTextBox.Name = "MobileNumberTextBox";
             this.MobileNumberTextBox.Size = new System.Drawing.Size(133, 35);
             this.MobileNumberTextBox.TabIndex = 67;
+            this.MobileNumberTextBox.TextChanged += new System.EventHandler(this.MobileNumberTextBox_TextChanged);
+            this.MobileNumberTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MobileNumberTextBox_KeyDown);
             // 
             // CarNameTextBox
             // 
@@ -178,6 +182,7 @@
             this.CarNameTextBox.Name = "CarNameTextBox";
             this.CarNameTextBox.Size = new System.Drawing.Size(133, 35);
             this.CarNameTextBox.TabIndex = 69;
+            this.CarNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CarNameTextBox_KeyDown);
             // 
             // label2
             // 
@@ -222,6 +227,8 @@
             this.AmountPaidTextBox.Name = "AmountPaidTextBox";
             this.AmountPaidTextBox.Size = new System.Drawing.Size(133, 35);
             this.AmountPaidTextBox.TabIndex = 73;
+            this.AmountPaidTextBox.TextChanged += new System.EventHandler(this.AmountPaidTextBox_TextChanged);
+            this.AmountPaidTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AmountPaidTextBox_KeyDown);
             // 
             // label7
             // 

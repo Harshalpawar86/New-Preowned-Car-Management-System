@@ -36,7 +36,10 @@ namespace Preowned_Car_Management_System
             }
             else {
 
-                MessageBox.Show("Please Enter Valid Data");
+                MessageBox.Show("Please Enter Valid Data", "Invalid Input",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
             }
         }
             private bool ValidateData()

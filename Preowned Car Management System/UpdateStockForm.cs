@@ -41,11 +41,17 @@ namespace Preowned_Car_Management_System
             }
             else {
 
-                MessageBox.Show("Please Enter Valid Data");
+                MessageBox.Show("Please Enter Valid Data", "Invalid Input",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
             }
             if (getImage == false) {
 
-                MessageBox.Show("Please Select a Image");
+                MessageBox.Show("Please Select a Image", "Image Selection Required",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
             }
             if (getImage == true && temp == true) { 
             

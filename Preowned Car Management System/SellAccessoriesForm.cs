@@ -130,12 +130,18 @@ namespace Preowned_Car_Management_System
 
             if (exception == false && accessoriesSold)
             {
-                MessageBox.Show("Accessories sold successfully!");
+                MessageBox.Show("Accessories sold successfully!", "Success",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
                 DialogResult = DialogResult.OK;
             }
             else if (!accessoriesSold) 
             {
-                MessageBox.Show("Please enter valid accessory counts.");
+                MessageBox.Show("Please enter valid accessory counts.", "Input Required",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
             }
         }
 

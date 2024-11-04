@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
+using System.Linq.Expressions;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
@@ -184,17 +185,18 @@ namespace Preowned_Car_Management_System
 
             if (contextMenu.SourceControl is Panel panel)
             {
-
+                
+                try { 
                 long carId = (long)panel.Tag;
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+                    conn.Open();
 
                     String query = "SELECT * FROM StockTable WHERE CarId = @CarId ";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
 
                         cmd.Parameters.AddWithValue("@CarId", carId);
-                        conn.Open();
                         SqlDataReader reader = cmd.ExecuteReader();
                         if (reader.Read())
                         {
@@ -225,14 +227,20 @@ namespace Preowned_Car_Management_System
                                     if (result > 0)
                                     {
 
-                                        MessageBox.Show("Stock Data Updated Successfully");
+                                        MessageBox.Show("Stock Data Updated Successfully", "Success",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
                                         flowLayoutPanel1.Controls.Clear();
                                         LoadExistingData();
                                     }
                                     else
                                     {
 
-                                        MessageBox.Show("Failed to Update Data");
+                                        MessageBox.Show("Failed to Update Data", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
                                     }
 
                                 }
@@ -250,7 +258,12 @@ namespace Preowned_Car_Management_System
                             }
                         }
                     }
+                    conn.Close();
                 }
+            }catch(Exception exp){
+
+                MessageBox.Show(exp.Message);
+            }
             }
 
         }
@@ -259,7 +272,7 @@ namespace Preowned_Car_Management_System
             flowLayoutPanel1.Controls.Clear();
             try
             {
-                int count = 0;
+             
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
@@ -273,7 +286,7 @@ namespace Preowned_Car_Management_System
 
                         foreach (DataRow row in dataTable.Rows)
                         {
-
+                            int count = 0;
                             string carName = row["CarName"].ToString();
                             long carId = Convert.ToInt64(row["CarId"]);
                             long supplierId = Convert.ToInt64(row["SupplierId"]);
@@ -451,7 +464,7 @@ namespace Preowned_Car_Management_System
                 string ownerType = addStockPopupForm.ownerType;
                 string carInfoLabel = addStockPopupForm.carInfo;
                 decimal purchaseAmount = addStockPopupForm.purchaseAmount;
-
+                try { 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
 
@@ -473,14 +486,23 @@ namespace Preowned_Car_Management_System
                         if (result > 0)
                         {
 
-                            MessageBox.Show("Data Inserted Successfully");
+                            MessageBox.Show("Data Inserted Successfully", "Success",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
                         }
                         else
                         {
 
-                            MessageBox.Show("Data Insertion Failed");
+                            MessageBox.Show("Data Insertion Failed", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
                         }
                     }
+                }
+            }catch(Exception exp){
+                    MessageBox.Show(exp.Message);
                 }
 
                 AddStockInfo(carName: carName, carId: carId, supplierId: supplierId, carDate: carDate, image: Image.FromFile(imageString), ownerType: ownerType, carInfoLabel: carInfoLabel, purchaseAmount: purchaseAmount);
@@ -491,7 +513,10 @@ namespace Preowned_Car_Management_System
         {
             if (SearchTextBox.Text == null || SearchTextBox.Text == "")
             {
-                MessageBox.Show("Please Enter Car Name to Search");
+                MessageBox.Show("Please Enter Car Name to Search", "Input Required",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
 
             }
             else
@@ -511,6 +536,21 @@ namespace Preowned_Car_Management_System
         private void flowLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void SearchTextBox_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+
+                e.SuppressKeyPress = true;
+                SearchButton.PerformClick();
+            }
         }
     }
 }

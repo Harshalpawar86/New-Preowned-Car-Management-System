@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HistoryDetailForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Seller_Bill_Button = new System.Windows.Forms.Button();
+            this.Selling_Bill_Button = new System.Windows.Forms.Button();
             this.SellingDateTextBox = new System.Windows.Forms.Label();
             this.CarIdTextBox = new System.Windows.Forms.Label();
             this.CarNameLabel = new System.Windows.Forms.Label();
@@ -39,6 +42,8 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.CarInfoLabel = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.StaffCommissionCost = new System.Windows.Forms.Label();
+            this.TotalProfitLabel = new System.Windows.Forms.Label();
             this.mCostLabel = new System.Windows.Forms.Label();
             this.AmountLabel = new System.Windows.Forms.Label();
             this.OwnerLabel = new System.Windows.Forms.Label();
@@ -67,7 +72,6 @@
             this.MaintenanceIdLabel = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.AccessoryInformtaionLabel = new System.Windows.Forms.Label();
-            this.TotalProfitLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -116,6 +120,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.Seller_Bill_Button);
+            this.panel1.Controls.Add(this.Selling_Bill_Button);
             this.panel1.Controls.Add(this.SellingDateTextBox);
             this.panel1.Controls.Add(this.CarIdTextBox);
             this.panel1.Controls.Add(this.CarNameLabel);
@@ -124,6 +130,36 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(753, 176);
             this.panel1.TabIndex = 1;
+            // 
+            // Seller_Bill_Button
+            // 
+            this.Seller_Bill_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Seller_Bill_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
+            this.Seller_Bill_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Seller_Bill_Button.Font = new System.Drawing.Font("Nirmala UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Seller_Bill_Button.ForeColor = System.Drawing.Color.White;
+            this.Seller_Bill_Button.Location = new System.Drawing.Point(348, 8);
+            this.Seller_Bill_Button.Name = "Seller_Bill_Button";
+            this.Seller_Bill_Button.Size = new System.Drawing.Size(181, 59);
+            this.Seller_Bill_Button.TabIndex = 72;
+            this.Seller_Bill_Button.Text = "Seller Bill";
+            this.Seller_Bill_Button.UseVisualStyleBackColor = false;
+            this.Seller_Bill_Button.Click += new System.EventHandler(this.Seller_Bill_Button_Click);
+            // 
+            // Selling_Bill_Button
+            // 
+            this.Selling_Bill_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Selling_Bill_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
+            this.Selling_Bill_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Selling_Bill_Button.Font = new System.Drawing.Font("Nirmala UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Selling_Bill_Button.ForeColor = System.Drawing.Color.White;
+            this.Selling_Bill_Button.Location = new System.Drawing.Point(569, 8);
+            this.Selling_Bill_Button.Name = "Selling_Bill_Button";
+            this.Selling_Bill_Button.Size = new System.Drawing.Size(181, 59);
+            this.Selling_Bill_Button.TabIndex = 71;
+            this.Selling_Bill_Button.Text = "Buyer Bill";
+            this.Selling_Bill_Button.UseVisualStyleBackColor = false;
+            this.Selling_Bill_Button.Click += new System.EventHandler(this.Selling_Bill_Button_Click);
             // 
             // SellingDateTextBox
             // 
@@ -194,9 +230,9 @@
             // 
             this.panel6.Controls.Add(this.CarInfoLabel);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 143);
+            this.panel6.Location = new System.Drawing.Point(0, 165);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(239, 121);
+            this.panel6.Size = new System.Drawing.Size(239, 99);
             this.panel6.TabIndex = 1;
             // 
             // CarInfoLabel
@@ -206,12 +242,13 @@
             this.CarInfoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
             this.CarInfoLabel.Location = new System.Drawing.Point(0, 0);
             this.CarInfoLabel.Name = "CarInfoLabel";
-            this.CarInfoLabel.Size = new System.Drawing.Size(239, 121);
+            this.CarInfoLabel.Size = new System.Drawing.Size(239, 99);
             this.CarInfoLabel.TabIndex = 78;
             this.CarInfoLabel.Text = "Car Information :  ";
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.StaffCommissionCost);
             this.panel5.Controls.Add(this.TotalProfitLabel);
             this.panel5.Controls.Add(this.mCostLabel);
             this.panel5.Controls.Add(this.AmountLabel);
@@ -219,9 +256,31 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(239, 143);
+            this.panel5.Size = new System.Drawing.Size(239, 165);
             this.panel5.TabIndex = 0;
             this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
+            // 
+            // StaffCommissionCost
+            // 
+            this.StaffCommissionCost.AutoSize = true;
+            this.StaffCommissionCost.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StaffCommissionCost.ForeColor = System.Drawing.Color.Red;
+            this.StaffCommissionCost.Location = new System.Drawing.Point(-4, 112);
+            this.StaffCommissionCost.Name = "StaffCommissionCost";
+            this.StaffCommissionCost.Size = new System.Drawing.Size(185, 22);
+            this.StaffCommissionCost.TabIndex = 85;
+            this.StaffCommissionCost.Text = "Staff Commission : ";
+            // 
+            // TotalProfitLabel
+            // 
+            this.TotalProfitLabel.AutoSize = true;
+            this.TotalProfitLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalProfitLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
+            this.TotalProfitLabel.Location = new System.Drawing.Point(-4, 140);
+            this.TotalProfitLabel.Name = "TotalProfitLabel";
+            this.TotalProfitLabel.Size = new System.Drawing.Size(136, 22);
+            this.TotalProfitLabel.TabIndex = 84;
+            this.TotalProfitLabel.Text = "Total Profit : ";
             // 
             // mCostLabel
             // 
@@ -555,26 +614,16 @@
             this.AccessoryInformtaionLabel.TabIndex = 81;
             this.AccessoryInformtaionLabel.Text = "Accessories Information : ";
             // 
-            // TotalProfitLabel
-            // 
-            this.TotalProfitLabel.AutoSize = true;
-            this.TotalProfitLabel.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalProfitLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
-            this.TotalProfitLabel.Location = new System.Drawing.Point(-4, 112);
-            this.TotalProfitLabel.Name = "TotalProfitLabel";
-            this.TotalProfitLabel.Size = new System.Drawing.Size(136, 22);
-            this.TotalProfitLabel.TabIndex = 84;
-            this.TotalProfitLabel.Text = "Total Profit : ";
-            // 
             // HistoryDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1015, 734);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HistoryDetailForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "HistoryDetailForm";
+            this.Text = "K&P Car Resalers";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.HistoryDetailForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -643,5 +692,8 @@
         private System.Windows.Forms.Label AccessoryAmountLabel;
         private System.Windows.Forms.Label mCostLabel;
         private System.Windows.Forms.Label TotalProfitLabel;
+        private System.Windows.Forms.Label StaffCommissionCost;
+        private System.Windows.Forms.Button Selling_Bill_Button;
+        private System.Windows.Forms.Button Seller_Bill_Button;
     }
 }

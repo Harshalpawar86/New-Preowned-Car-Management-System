@@ -85,13 +85,16 @@ namespace Preowned_Car_Management_System
                 carId =Convert.ToInt32( CarIdTextBox.Text);
                 maintenanceId = Convert.ToInt32(MaintenanceIdTextBox.Text);
                 maintenanceCost = Convert.ToDecimal(MaintenanceCostTextBox.Text);
-                maintenanceDate = dateTimePicker1.Value.ToString();
+                maintenanceDate = dateTimePicker1.Value.Date.ToString("d");
                 maintenanceInfo = MaintenanceIdRichTextBox.Text;
                 exception = false;
             }
             catch (Exception exp) {
                 exception = true;
-                MessageBox.Show("Please Enter Valid Data");
+                MessageBox.Show("Please Enter Valid Data", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
               //  MessageBox.Show(exp.ToString());
             }
 
@@ -120,6 +123,29 @@ namespace Preowned_Car_Management_System
 
                 CarIdTextBox.Text =form.carId.ToString();
             }
+        }
+
+        private void MaintenanceCostTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                MaintenanceIdRichTextBox.Focus();
+            }
+        }
+
+        private void MaintenanceIdRichTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                OKButton.Focus();
+            }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

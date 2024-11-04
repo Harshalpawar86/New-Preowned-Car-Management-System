@@ -132,6 +132,7 @@
             this.AccessoriesNameTextBox.Name = "AccessoriesNameTextBox";
             this.AccessoriesNameTextBox.Size = new System.Drawing.Size(133, 35);
             this.AccessoriesNameTextBox.TabIndex = 52;
+            this.AccessoriesNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AccessoriesNameTextBox_KeyDown);
             // 
             // CarNameLabel
             // 
@@ -153,6 +154,7 @@
             this.AccessoriesCountTextBox.Name = "AccessoriesCountTextBox";
             this.AccessoriesCountTextBox.Size = new System.Drawing.Size(133, 35);
             this.AccessoriesCountTextBox.TabIndex = 67;
+            this.AccessoriesCountTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AccessoriesCountTextBox_KeyDown);
             // 
             // label2
             // 
@@ -174,6 +176,7 @@
             this.PriceTextBox.Name = "PriceTextBox";
             this.PriceTextBox.Size = new System.Drawing.Size(133, 35);
             this.PriceTextBox.TabIndex = 69;
+            this.PriceTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PriceTextBox_KeyDown);
             // 
             // label3
             // 

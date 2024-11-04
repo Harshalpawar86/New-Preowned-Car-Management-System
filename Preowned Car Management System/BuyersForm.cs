@@ -138,14 +138,20 @@ namespace Preowned_Car_Management_System
                                     if (result > 0)
                                     {
 
-                                        MessageBox.Show("Buyer Data Updated Successfully");
+                                        MessageBox.Show("Buyer Data Updated Successfully", "Success",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
                                         flowLayoutPanel1.Controls.Clear();
                                         LoadExistingData();
                                     }
                                     else
                                     {
 
-                                        MessageBox.Show("Failed to Update Data");
+                                        MessageBox.Show("Failed to Update Data", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
                                     }
                                 }
                             }
@@ -180,7 +186,10 @@ namespace Preowned_Car_Management_System
                             int result = cmd.ExecuteNonQuery();
                             if (result > 0)
                             {
-                                MessageBox.Show("Buyer Data Deleted");
+                                MessageBox.Show("Buyer Data Deleted", "Success Deletion",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
                                 flowLayoutPanel1.Controls.Clear();
                                 LoadExistingData();
                             }
@@ -284,7 +293,10 @@ namespace Preowned_Car_Management_System
         {
             if (SearchTextBox.Text == null || SearchTextBox.Text == "")
             {
-                MessageBox.Show("Please Enter Buyer Name to Search");
+                MessageBox.Show("Please Enter Buyer Name to Search", "Input Required",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
 
             }
             else
@@ -322,12 +334,18 @@ namespace Preowned_Car_Management_System
                         if (result > 0)
                         {
 
-                            MessageBox.Show("Data Inserted Successfully");
+                            MessageBox.Show("Data Inserted Successfully", "Success",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
                         }
                         else
                         {
 
-                            MessageBox.Show("Data Insertion Failed");
+                            MessageBox.Show("Data Insertion Failed", "Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error,
+    MessageBoxDefaultButton.Button1);
                         }
                     }
                 }
@@ -341,6 +359,16 @@ namespace Preowned_Car_Management_System
             flowLayoutPanel1.Controls.Clear();
             SearchTextBox.Clear();
             LoadExistingData();
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+
+                e.SuppressKeyPress = true;
+                SearchButton.PerformClick();
+            }
         }
     }
 }

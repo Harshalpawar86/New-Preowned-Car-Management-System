@@ -91,12 +91,20 @@ namespace Preowned_Car_Management_System
             if (BuyerNameTextBox.Text == "" || BuyerIdTextBox.Text == "" || CarNameTextBox.Text == "" || MobileNumberTextBox.Text == "" || AddressTextBox.Text == "")
             {
 
-                MessageBox.Show("Please Enter All Fields..");
+
+
+                MessageBox.Show("Please Enter All Fields..", "Input Required",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
             }
             else if (MobileNumberTextBox.Text.Length != 10)
             {
 
-                MessageBox.Show("Please Enter Valid Mobile Number..");
+                MessageBox.Show("Please Enter Valid Mobile Number..", "Invalid Input",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
             }
             else if (exception == false)
             {
@@ -104,7 +112,10 @@ namespace Preowned_Car_Management_System
             }
             else
             {
-                MessageBox.Show("Please Enter Valid Data..");
+                MessageBox.Show("Please Enter Valid Data..", "Invalid Input",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -127,6 +138,42 @@ namespace Preowned_Car_Management_System
                     MobileNumberTextBox.Text = mobileNumber.ToString();
                     AddressTextBox.Text = address.ToString();
                 }
+            }
+        }
+
+        private void BuyerNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                CarNameTextBox.Focus();
+            }
+        }
+
+        private void CarNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                MobileNumberTextBox.Focus();
+            }
+        }
+
+        private void MobileNumberTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                AddressTextBox.Focus();
+            }
+        }
+
+        private void AddressTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                OKButton.Focus();
             }
         }
     }

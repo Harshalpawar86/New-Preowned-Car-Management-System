@@ -53,6 +53,7 @@
             this.CarNameTextBox.Name = "CarNameTextBox";
             this.CarNameTextBox.Size = new System.Drawing.Size(133, 35);
             this.CarNameTextBox.TabIndex = 84;
+            this.CarNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CarNameTextBox_KeyDown);
             // 
             // label2
             // 
@@ -74,6 +75,7 @@
             this.MobileNumberTextBox.Name = "MobileNumberTextBox";
             this.MobileNumberTextBox.Size = new System.Drawing.Size(133, 35);
             this.MobileNumberTextBox.TabIndex = 82;
+            this.MobileNumberTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MobileNumberTextBox_KeyDown);
             // 
             // label1
             // 
@@ -130,6 +132,7 @@
             this.AddressTextBox.Size = new System.Drawing.Size(161, 71);
             this.AddressTextBox.TabIndex = 76;
             this.AddressTextBox.Text = "";
+            this.AddressTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddressTextBox_KeyDown);
             // 
             // label3
             // 
@@ -175,6 +178,7 @@
             this.BuyerNameTextBox.Name = "BuyerNameTextBox";
             this.BuyerNameTextBox.Size = new System.Drawing.Size(133, 35);
             this.BuyerNameTextBox.TabIndex = 71;
+            this.BuyerNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BuyerNameTextBox_KeyDown);
             // 
             // CarNameLabel
             // 

@@ -52,11 +52,57 @@ namespace Preowned_Car_Management_System
             }
             else {
 
-                MessageBox.Show("Please Select Valid Row");
+                MessageBox.Show("Please Select Valid Row", "Selection Required",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
             }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+        private void LoadData(string carName = "")
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT CarName, CarId, SupplierId, PurchaseAmount, PurchaseDate, OwnerType, CarInfo FROM StockTable";
+
+                if (!string.IsNullOrEmpty(carName))
+                {
+                    query += " WHERE CarName LIKE @CarName";
+                }
+
+                using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn))
+                {
+                    if (!string.IsNullOrEmpty(carName))
+                    {
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@CarName", "%" + carName + "%");
+                    }
+
+                    DataTable dataTable = new DataTable();
+                    sqlDataAdapter.Fill(dataTable);
+                    dataGridView1.DataSource = dataTable;
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    dataGridView1.MultiSelect = false;
+                }
+            }
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             exception = false;
             try
@@ -74,16 +120,30 @@ namespace Preowned_Car_Management_System
             }
             catch (Exception exp)
             {
-             //   MessageBox.Show(exp.ToString());
-                MessageBox.Show("Please Select Valid Row");
+                //   MessageBox.Show(exp.ToString());
+                MessageBox.Show("Please Select Valid Row", "Selection Required",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
                 exception = true;
 
             }
         }
 
-        private void CancelButton_Click(object sender, EventArgs e)
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            searchCar(SearchTextBox.Text);
+        }
+        void searchCar(string carName)
+        {
+            try
+            {
+                LoadData(carName);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show("Error while searching: " + exp.Message);
+            }
         }
     }
 }

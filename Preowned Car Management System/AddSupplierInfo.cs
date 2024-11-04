@@ -116,19 +116,28 @@ namespace Preowned_Car_Management_System
             }
             catch (Exception exp) {
                 exception = true;
-                MessageBox.Show(exp.ToString());
+               // MessageBox.Show(exp.ToString());
             }
             if (SupplierNameTextBox.Text == "" || AmountPaidTextBox.Text==""||CarNameTextBox.Text == "" || SupplierIdTextBox.Text == "" || MobileNumberTextBox.Text == "" || AddressTextBox.Text == "") {
 
-                MessageBox.Show("Please Enter All Fields..");
+                MessageBox.Show("Please Enter All Fields..", "Invalid Input",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
             } else if (MobileNumberTextBox.Text.Length!=10) {
 
-                MessageBox.Show("Please Enter Valid Mobile Number..");
+                MessageBox.Show("Please Enter Valid Mobile Number..", "Invalid Input",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
             }else if (exception == false)
             {
                 DialogResult = DialogResult.OK;
             } else {
-                MessageBox.Show("Please Enter Valid Data..");
+                MessageBox.Show("Please Enter Valid Data..", "Invalid Input",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Warning,
+    MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -148,6 +157,62 @@ namespace Preowned_Car_Management_System
                 SupplierNameTextBox.Text = supplierName;
                 MobileNumberTextBox.Text = mobileNumber.ToString();
                 AddressTextBox.Text = address.ToString();
+            }
+        }
+
+        private void SupplierNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                CarNameTextBox.Focus();
+            }
+        }
+
+        private void CarNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                AmountPaidTextBox.Focus();
+            }
+        }
+
+        private void AmountPaidTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AmountPaidTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                MobileNumberTextBox.Focus();
+            }
+        }
+
+        private void MobileNumberTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MobileNumberTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                AddressTextBox.Focus();
+            }
+        }
+
+        private void AddressTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                OKButton.Focus();
             }
         }
     }

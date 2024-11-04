@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="carbg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\carbg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="mcar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mcar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="stockimg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stockimg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -127,17 +127,20 @@
   <data name="Login_Back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Login_Back.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Login_accessories" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Login_accessories.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Login_Page_Car" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Login_Page_Car.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Login_Bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Login_Bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="vecteezy_purple-black-car-isolated-in-transparent-background_49174806" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vecteezy_purple-black-car-isolated-in-transparent-background_49174806.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="vecteezy_stock-vector-icon_14948759" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\vecteezy_stock-vector-icon_14948759.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Login_Page_Car" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Login_Page_Car.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Login_accessories" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Login_accessories.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pngkey.com-neon-frame-png-1112636" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pngkey.com-neon-frame-png-1112636.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,10 +151,10 @@
   <data name="1724411738797" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1724411738797.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mcar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mcar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="carbg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\carbg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="vecteezy_purple-black-car-isolated-in-transparent-background_49174806" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\vecteezy_purple-black-car-isolated-in-transparent-background_49174806.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="logo_preowned" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo_preowned.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
