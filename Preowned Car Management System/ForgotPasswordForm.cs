@@ -126,5 +126,10 @@ namespace Preowned_Car_Management_System
             }
             return false;
         }
+
+        private void ForgotPasswordForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
