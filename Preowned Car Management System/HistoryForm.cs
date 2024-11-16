@@ -29,6 +29,7 @@ namespace Preowned_Car_Management_System
             if (contextMenu.SourceControl is Panel panel)
             {
                 long carId = (long)panel.Tag;
+                MessageBox.Show(""+carId);
                 HistoryDetailForm detailForm = new HistoryDetailForm(carId);
                 detailForm.ShowDialog();
             }
@@ -125,7 +126,8 @@ namespace Preowned_Car_Management_System
                             String carName = reader["CarName"].ToString();
                             String supplierName = reader["SupplierName"].ToString();
                             String buyerName = reader["BuyerName"].ToString();
-                            AddHistoryData(image: image, carId:carId,carName:carName,supplierName:supplierName,buyerName:buyerName);
+                            MessageBox.Show("" + carId)
+    ;                        AddHistoryData(image: image, carId:carId,carName:carName,supplierName:supplierName,buyerName:buyerName);
                         
                         }
                     }
@@ -142,9 +144,6 @@ namespace Preowned_Car_Management_System
                 return Image.FromStream(ms);
             }
         }
-
-
-
       
         void searchCar(string carName)
         {
@@ -211,7 +210,7 @@ namespace Preowned_Car_Management_System
             if (SearchTextBox.Text == null || SearchTextBox.Text == "")
             {
                 MessageBox.Show("Please Enter Car Name to Search", "Input Required",
-    MessageBoxButtons.OK,
+                MessageBoxButtons.OK,
     MessageBoxIcon.Warning,
     MessageBoxDefaultButton.Button1);
 

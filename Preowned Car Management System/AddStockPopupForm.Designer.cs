@@ -174,6 +174,7 @@
             this.CarIdTextBox.Location = new System.Drawing.Point(608, 243);
             this.CarIdTextBox.Multiline = true;
             this.CarIdTextBox.Name = "CarIdTextBox";
+            this.CarIdTextBox.ReadOnly = true;
             this.CarIdTextBox.Size = new System.Drawing.Size(133, 35);
             this.CarIdTextBox.TabIndex = 43;
             // 

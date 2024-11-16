@@ -1,18 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Preowned_Car_Management_System
 {
+
     public partial class StockForm : Form
     {
         String connectionString = DashBoardForm.connectionString;
         ContextMenuStrip contextMenu;
+        private static List<CarData> carDataList = null;  // Class-level list to hold the data
 
         public StockForm()
         {
@@ -163,9 +167,38 @@ namespace Preowned_Car_Management_System
 
                 SellAccessoriesForm form = new SellAccessoriesForm(carId);
                 if (form.ShowDialog() == DialogResult.OK) {
-
+                    UpdateAccessoryCount(carId);
                     LoadExistingData();
                 }
+            }
+        }
+        private void UpdateAccessoryCount(long carId)
+        {
+            try
+            {
+                int accessoryCount = 0;
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string accQuery = "SELECT COUNT(*) FROM AccessorySales WHERE CarId = @CarId;";
+                    using (SqlCommand cmd = new SqlCommand(accQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@CarId", carId);
+                        accessoryCount = (int)cmd.ExecuteScalar();
+                    }
+                }
+
+                // Update the corresponding CarData object in carDataList
+                var carData = carDataList.FirstOrDefault(c => c.CarId == carId);
+                if (carData != null)
+                {
+                    carData.AccCount = accessoryCount == 0 ? "N/A" : accessoryCount.ToString();
+                }
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show("Failed to update accessory count: " + exp.ToString());
             }
         }
 
@@ -181,7 +214,6 @@ namespace Preowned_Car_Management_System
         }
         private void ContextMenuOption2_Click(object sender, EventArgs e)
         {
-
 
             if (contextMenu.SourceControl is Panel panel)
             {
@@ -200,7 +232,6 @@ namespace Preowned_Car_Management_System
                         SqlDataReader reader = cmd.ExecuteReader();
                         if (reader.Read())
                         {
-
                             UpdateStockForm updateStockForm = new UpdateStockForm();
                             updateStockForm.carName = reader["CarName"].ToString();
                             updateStockForm.purchaseAmount = Convert.ToInt64(reader["PurchaseAmount"]);
@@ -267,20 +298,108 @@ namespace Preowned_Car_Management_System
             }
 
         }
-       
-        private void LoadExistingData() {
+
+        //private void LoadExistingData() {
+        //   flowLayoutPanel1.Controls.Clear();
+        //    try
+        //    {
+
+
+        //        using (SqlConnection conn = new SqlConnection(connectionString))
+        //        {
+        //            conn.Open();
+        //            String query = "SELECT * FROM StockTable";
+        //            using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn))
+        //            {
+
+        //                DataTable dataTable = new DataTable();
+        //                sqlDataAdapter.Fill(dataTable);
+
+        //                foreach (DataRow row in dataTable.Rows)
+        //                {
+        //                    int count = 0;
+        //                    string carName = row["CarName"].ToString();
+        //                    long carId = Convert.ToInt64(row["CarId"]);
+        //                    long supplierId = Convert.ToInt64(row["SupplierId"]);
+        //                    string carDate = row["PurchaseDate"].ToString();
+        //                    Image image = convertFromBytes((byte[])row["CarImage"]);
+        //                    string ownerType = row["OwnerType"].ToString();
+        //                    string carInfoLabel = row["CarInfo"].ToString();
+
+        //                    decimal purchaseAmount = Convert.ToDecimal(row["PurchaseAmount"]);
+
+        //                    String accQuery = "SELECT CarId, COUNT(*) AS Count FROM AccessorySales WHERE CarId = @CarId GROUP BY CarId;";
+        //                    using (SqlCommand cmd = new SqlCommand(accQuery, conn))
+        //                    {
+        //                        cmd.Parameters.AddWithValue("@CarId", carId);
+
+
+        //                        using (SqlDataReader reader = cmd.ExecuteReader())
+        //                        {
+        //                            if (reader.Read())
+        //                            {
+        //                                count = reader.GetInt32(1); // Get the count
+        //                               // MessageBox.Show("Accesssory Count : " + count);
+        //                            }
+        //                        }
+        //                    }
+        //                    String accCount;
+        //                    if (count == 0)
+        //                    {
+
+        //                        accCount = "N/A";
+        //                    }
+        //                    else {
+
+        //                        accCount=count.ToString();
+        //                    }
+        //                    AddStockInfo(carName: carName, carId: carId, supplierId: supplierId, carDate: carDate, image: image, ownerType: ownerType, carInfoLabel: carInfoLabel, purchaseAmount: purchaseAmount,accCount:accCount);
+
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception exp) {
+
+        //        MessageBox.Show(exp.ToString());
+        //    }
+        //}
+        private void LoadExistingData()
+        {
             flowLayoutPanel1.Controls.Clear();
+
+            // If data is already cached in the list, use it
+            if (carDataList != null && carDataList.Count > 0)
+            {
+                foreach (var car in carDataList)
+                {
+                    AddStockInfo(
+                        carName: car.CarName,
+                        carId: car.CarId,
+                        supplierId: car.SupplierId,
+                        carDate: car.CarDate,
+                        image: car.CarImage,
+                        ownerType: car.OwnerType,
+                        carInfoLabel: car.CarInfo,  
+                        purchaseAmount: car.PurchaseAmount,
+                        accCount: car.AccCount
+                    );
+                }
+             //   MessageBox.Show("Retrieved From List");
+                return;
+            }
+
+            // Data not cached, so load from the database
             try
             {
-             
-
+                carDataList = new List<CarData>();  // Initialize the list
+                
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    String query = "SELECT * FROM StockTable";
+                    string query = "SELECT * FROM StockTable";
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn))
                     {
-
                         DataTable dataTable = new DataTable();
                         sqlDataAdapter.Fill(dataTable);
 
@@ -294,45 +413,54 @@ namespace Preowned_Car_Management_System
                             Image image = convertFromBytes((byte[])row["CarImage"]);
                             string ownerType = row["OwnerType"].ToString();
                             string carInfoLabel = row["CarInfo"].ToString();
-
                             decimal purchaseAmount = Convert.ToDecimal(row["PurchaseAmount"]);
 
-                            String accQuery = "SELECT CarId, COUNT(*) AS Count FROM AccessorySales WHERE CarId = @CarId GROUP BY CarId;";
+                            // Retrieve accessory count for each car
+                            string accQuery = "SELECT CarId, COUNT(*) AS Count FROM AccessorySales WHERE CarId = @CarId GROUP BY CarId;";
                             using (SqlCommand cmd = new SqlCommand(accQuery, conn))
                             {
                                 cmd.Parameters.AddWithValue("@CarId", carId);
-
-
                                 using (SqlDataReader reader = cmd.ExecuteReader())
                                 {
                                     if (reader.Read())
                                     {
                                         count = reader.GetInt32(1); // Get the count
-                                       // MessageBox.Show("Accesssory Count : " + count);
                                     }
                                 }
                             }
-                            String accCount;
-                            if (count == 0)
+
+                            // If no accessories found, set the count as "N/A"
+                            string accCount = (count == 0) ? "N/A" : count.ToString();
+
+                            // Create a new CarData object and add it to the list
+                            CarData carData = new CarData
                             {
+                                CarName = carName,
+                                CarId = carId,
+                                SupplierId = supplierId,
+                                CarDate = carDate,
+                                CarImage = image,
+                                OwnerType = ownerType,
+                                CarInfo = carInfoLabel,
+                                PurchaseAmount = purchaseAmount,
+                                AccCount = accCount
+                            };
 
-                                accCount = "N/A";
-                            }
-                            else {
-                            
-                                accCount=count.ToString();
-                            }
-                            AddStockInfo(carName: carName, carId: carId, supplierId: supplierId, carDate: carDate, image: image, ownerType: ownerType, carInfoLabel: carInfoLabel, purchaseAmount: purchaseAmount,accCount:accCount);
+                            carDataList.Add(carData);  // Add to the cached list
 
+                            // Add the stock info to the form
+                            AddStockInfo(carName: carName, carId: carId, supplierId: supplierId, carDate: carDate, image: image, ownerType: ownerType, carInfoLabel: carInfoLabel, purchaseAmount: purchaseAmount, accCount: accCount);
                         }
                     }
                 }
+               // MessageBox.Show("Retrieved From Database");
             }
-            catch (Exception exp) {
-
+            catch (Exception exp)
+            {
                 MessageBox.Show(exp.ToString());
             }
         }
+
         private Image convertFromBytes(byte[] imageBytes) {
 
             using (MemoryStream ms = new MemoryStream(imageBytes)) {
@@ -464,6 +592,7 @@ namespace Preowned_Car_Management_System
                 string ownerType = addStockPopupForm.ownerType;
                 string carInfoLabel = addStockPopupForm.carInfo;
                 decimal purchaseAmount = addStockPopupForm.purchaseAmount;
+                MessageBox.Show(""+carId);
                 try { 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
@@ -506,6 +635,20 @@ namespace Preowned_Car_Management_System
                 }
 
                 AddStockInfo(carName: carName, carId: carId, supplierId: supplierId, carDate: carDate, image: Image.FromFile(imageString), ownerType: ownerType, carInfoLabel: carInfoLabel, purchaseAmount: purchaseAmount);
+                CarData carData = new CarData
+                {
+                    CarName = carName,
+                    CarId = carId,
+                    SupplierId = supplierId,
+                    CarDate = carDate,
+                    CarImage = Image.FromFile(imageString),
+                    OwnerType = ownerType,
+                    CarInfo = carInfoLabel,
+                    PurchaseAmount = purchaseAmount,
+                    AccCount = "N/A"
+                };
+
+                carDataList.Add(carData);  // Add to the cached list
             }
         }
 
@@ -552,5 +695,17 @@ namespace Preowned_Car_Management_System
                 SearchButton.PerformClick();
             }
         }
+    }
+    public class CarData
+    {
+        public string CarName { get; set; }
+        public long CarId { get; set; }
+        public long SupplierId { get; set; }
+        public string CarDate { get; set; }
+        public Image CarImage { get; set; }
+        public string OwnerType { get; set; }
+        public string CarInfo { get; set; }
+        public decimal PurchaseAmount { get; set; }
+        public string AccCount { get; set; }
     }
 }

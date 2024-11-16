@@ -19,6 +19,7 @@ using iText.Layout;
 using iText.Layout.Borders;
 using Org.BouncyCastle.Asn1.Crmf;
 using PdfiumViewer;
+using Org.BouncyCastle.Utilities.Net;
 
 
 namespace Preowned_Car_Management_System
@@ -27,6 +28,7 @@ namespace Preowned_Car_Management_System
     {
         ContextMenuStrip contextMenu;
         String connectionString = DashBoardForm.connectionString;
+        private static List<SupplierData> supplierDataList = null;
         //Trust Server Certificate=True
         public SupplierForm()
         {
@@ -373,6 +375,7 @@ namespace Preowned_Car_Management_System
                             updateSupplierInfoForm.mobileNumber = Convert.ToInt64(reader["SupplierMobileNumber"]);
                             updateSupplierInfoForm.address = reader["SupplierAddress"].ToString();
                             updateSupplierInfoForm.amountPaid = Convert.ToDecimal(reader["AmountPaid"]);
+                            long supplierId = Convert.ToInt64(reader["SupplierId"]);
 
                             if (updateSupplierInfoForm.ShowDialog() == DialogResult.OK) {
 
@@ -397,6 +400,16 @@ namespace Preowned_Car_Management_System
     MessageBoxIcon.Information,
     MessageBoxDefaultButton.Button1);
                                         flowLayoutPanel1.Controls.Clear();
+                                        supplierDataList.Add(new SupplierData
+                                        {
+                                            SupplierName = updateSupplierInfoForm.supplierName,
+                                            CarId = carId,
+                                            SupplierId = supplierId,
+                                            CarName = updateSupplierInfoForm.carName,
+                                            MobileNumber = updateSupplierInfoForm.mobileNumber,
+                                            AmountPaid = updateSupplierInfoForm.amountPaid,
+                                            Address = updateSupplierInfoForm.address
+                                        });
                                         LoadExistingData();
                                     }
                                     else {
@@ -442,31 +455,158 @@ namespace Preowned_Car_Management_System
         {
             
         }
-        private void LoadExistingData() {
+        //private void LoadExistingData() {
 
-            using (SqlConnection conn = new SqlConnection(connectionString)) {
+        //    using (SqlConnection conn = new SqlConnection(connectionString)) {
 
-                String query = "SELECT * FROM SupplierTable;";
-                using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query,conn)) {
+        //        String query = "SELECT * FROM SupplierTable;";
+        //        using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query,conn)) {
 
-                    DataTable dataTable = new DataTable();
-                    sqlDataAdapter.Fill(dataTable);
+        //            DataTable dataTable = new DataTable();
+        //            sqlDataAdapter.Fill(dataTable);
 
-                    foreach (DataRow row in dataTable.Rows) {
+        //            foreach (DataRow row in dataTable.Rows) {
 
-                        String supplierName = row["SupplierName"].ToString();
-                        long carId = Convert.ToInt64(row["CarId"]);
-                        long supplierId = Convert.ToInt64(row["SupplierId"]);
-                        String carName = row["CarName"].ToString();
-                        long mobileNumber = Convert.ToInt64(row["SupplierMobileNumber"]);
-                        decimal amountPaid = Convert.ToDecimal(row["AmountPaid"]);
-                        String address = row["SupplierAddress"].ToString();
+        //                String supplierName = row["SupplierName"].ToString();
+        //                long carId = Convert.ToInt64(row["CarId"]);
+        //                long supplierId = Convert.ToInt64(row["SupplierId"]);
+        //                String carName = row["CarName"].ToString();
+        //                long mobileNumber = Convert.ToInt64(row["SupplierMobileNumber"]);
+        //                decimal amountPaid = Convert.ToDecimal(row["AmountPaid"]);
+        //                String address = row["SupplierAddress"].ToString();
 
-                        AddSupplierInfo(supplierName:supplierName,carId:carId,supplierId:supplierId,carName:carName,mobileNumber:mobileNumber,amountPaid:amountPaid,address:address);
+        //                AddSupplierInfo(supplierName:supplierName,carId:carId,supplierId:supplierId,carName:carName,mobileNumber:mobileNumber,amountPaid:amountPaid,address:address);
+        //            }
+        //        }
+        //    }
+        //}
+        //private void LoadExistingData()
+        //{
+        //    // Check if data is already loaded
+        //    if (supplierDataList == null)
+        //    {
+        //        supplierDataList = new List<SupplierData>();
+
+        //        using (SqlConnection conn = new SqlConnection(connectionString))
+        //        {
+        //            string query = "SELECT * FROM SupplierTable;";
+        //            using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn))
+        //            {
+        //                DataTable dataTable = new DataTable();
+        //                sqlDataAdapter.Fill(dataTable);
+
+        //                foreach (DataRow row in dataTable.Rows)
+        //                {
+        //                    SupplierData supplier = new SupplierData
+        //                    {
+        //                        SupplierName = row["SupplierName"].ToString(),
+        //                        CarId = Convert.ToInt64(row["CarId"]),
+        //                        SupplierId = Convert.ToInt64(row["SupplierId"]),
+        //                        CarName = row["CarName"].ToString(),
+        //                        MobileNumber = Convert.ToInt64(row["SupplierMobileNumber"]),
+        //                        AmountPaid = Convert.ToDecimal(row["AmountPaid"]),
+        //                        Address = row["SupplierAddress"].ToString()
+        //                    };
+
+        //                    supplierDataList.Add(supplier); // Add to list
+        //                }
+        //                MessageBox.Show("Retrieved From Database");
+        //            }
+        //        }
+        //    }
+
+        //    // Clear existing controls in the UI and load from the list
+        //    flowLayoutPanel1.Controls.Clear();
+
+        //    foreach (var supplier in supplierDataList)
+        //    {
+        //        AddSupplierInfo(
+        //            supplierName: supplier.SupplierName,
+        //            carId: supplier.CarId,
+        //            supplierId: supplier.SupplierId,
+        //            carName: supplier.CarName,
+        //            mobileNumber: supplier.MobileNumber,
+        //            amountPaid: supplier.AmountPaid,
+        //            address: supplier.Address
+        //        );
+        //    }
+        //    MessageBox.Show("Retrieved From List");
+        //}
+        private void LoadExistingData()
+        {
+            flowLayoutPanel1.Controls.Clear();
+
+            // If data is already cached in the list, use it
+            if (supplierDataList != null && supplierDataList.Count > 0)
+            {
+                foreach (var supplier in supplierDataList)
+                {
+                    AddSupplierInfo(
+                        supplierName: supplier.SupplierName,
+                        carId: supplier.CarId,
+                        supplierId: supplier.SupplierId,
+                        carName: supplier.CarName,
+                        mobileNumber: supplier.MobileNumber,
+                        amountPaid: supplier.AmountPaid,
+                        address: supplier.Address
+                    );
+                }
+                // Optionally, show a message or debug log
+                // MessageBox.Show("Retrieved From List");
+                return;
+            }
+
+            // Data not cached, so load from the database
+            try
+            {
+                supplierDataList = new List<SupplierData>();  // Initialize the list
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM SupplierTable";  // Modify your query as per requirements
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn))
+                    {
+                        DataTable dataTable = new DataTable();
+                        sqlDataAdapter.Fill(dataTable);
+
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            SupplierData supplierData = new SupplierData
+                            {
+                                SupplierName = row["SupplierName"].ToString(),
+                                CarId = Convert.ToInt64(row["CarId"]),
+                                SupplierId = Convert.ToInt64(row["SupplierId"]),
+                                CarName = row["CarName"].ToString(),
+                                MobileNumber = Convert.ToInt64(row["SupplierMobileNumber"]),
+                                AmountPaid = Convert.ToDecimal(row["AmountPaid"]),
+                                Address = row["SupplierAddress"].ToString()
+                            };
+
+                            supplierDataList.Add(supplierData);  // Add to the cached list
+
+                            // Add the supplier info to the UI (flowLayoutPanel1)
+                            AddSupplierInfo(
+                                supplierName: supplierData.SupplierName,
+                                carId: supplierData.CarId,
+                                supplierId: supplierData.SupplierId,
+                                carName: supplierData.CarName,
+                                mobileNumber: supplierData.MobileNumber,
+                                amountPaid: supplierData.AmountPaid,
+                                address: supplierData.Address
+                            );
+                        }
                     }
                 }
+                // Optionally, show a message or debug log
+                // MessageBox.Show("Retrieved From Database");
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.ToString());
             }
         }
+
 
         private void SupplierForm_Load(object sender, EventArgs e)
         {
@@ -538,6 +678,16 @@ namespace Preowned_Car_Management_System
                 }
 
                 AddSupplierInfo(supplierName: supplierName, carName: carName, amountPaid: amountPaid, carId: carId, supplierId: supplierId, mobileNumber: mobileNumber, address: address);
+                SupplierData supplierData = new SupplierData
+                {
+                    SupplierName = supplierName,
+                    CarId = carId,
+                    SupplierId = supplierId,
+                    CarName = carName,
+                    MobileNumber = mobileNumber,
+                    AmountPaid = amountPaid,
+                    Address = address
+                };
             }
         }
 
@@ -619,4 +769,15 @@ namespace Preowned_Car_Management_System
             }
         }
     }
+    public class SupplierData
+    {
+        public string SupplierName { get; set; }
+        public long CarId { get; set; }
+        public long SupplierId { get; set; }
+        public string CarName { get; set; }
+        public long MobileNumber { get; set; }
+        public decimal AmountPaid { get; set; }
+        public string Address { get; set; }
+    }
+
 }

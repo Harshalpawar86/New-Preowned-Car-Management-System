@@ -32,24 +32,56 @@ namespace Preowned_Car_Management_System
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView2.CellClick += dataGridView2_CellClick;
         }
+        //private void LoadSupplierData(String filter = "")
+        //{
+        //    using (SqlConnection conn = new SqlConnection(connectionString))
+        //    {
+
+        //        conn.Open();
+        //        String query = "SELECT SupplierName,SupplierId,SupplierMobileNumber,CarId,SupplierAddress,AmountPaid,CarName FROM SupplierTable ";
+        //        if (!String.IsNullOrEmpty(filter))
+        //        {
+
+        //            query += "WHERE SupplierName LIKE @filter";
+        //        }
+        //        SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn);
+        //        if (!String.IsNullOrEmpty(filter))
+        //        {
+
+        //            sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@filter", "%" + filter + "%");
+        //        }
+        //        DataTable dataTable = new DataTable();
+        //        sqlDataAdapter.Fill(dataTable);
+        //        dataGridView1.DataSource = dataTable;
+        //        dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        //        dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        //        dataGridView1.MultiSelect = false;
+        //    }
+        //}
         private void LoadSupplierData(String filter = "")
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-
                 conn.Open();
-                String query = "SELECT SupplierName,SupplierId,SupplierMobileNumber,CarId,SupplierAddress,AmountPaid,CarName FROM SupplierTable ";
+                String query = @"
+            SELECT SupplierName, SupplierId, SupplierMobileNumber, CarId, SupplierAddress, AmountPaid, CarName 
+            FROM SupplierTable 
+            WHERE CarId NOT IN (SELECT CarId FROM StockTable)";
+
+                // Add filter for SupplierName if provided
                 if (!String.IsNullOrEmpty(filter))
                 {
-
-                    query += "WHERE SupplierName LIKE @filter";
+                    query += " AND SupplierName LIKE @filter";
                 }
+
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn);
+
+                // Add filter parameter if provided
                 if (!String.IsNullOrEmpty(filter))
                 {
-
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@filter", "%" + filter + "%");
                 }
+
                 DataTable dataTable = new DataTable();
                 sqlDataAdapter.Fill(dataTable);
                 dataGridView1.DataSource = dataTable;
@@ -58,6 +90,7 @@ namespace Preowned_Car_Management_System
                 dataGridView1.MultiSelect = false;
             }
         }
+
         private void LoadHistoryData(String filter = "")
         {
             using (SqlConnection conn = new SqlConnection(connectionString))

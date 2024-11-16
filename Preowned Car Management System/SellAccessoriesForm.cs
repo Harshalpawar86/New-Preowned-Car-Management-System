@@ -80,7 +80,6 @@ namespace Preowned_Car_Management_System
                             int accessoryCount = Convert.ToInt32(row.Cells["AccessoryCount"].Value);
                             decimal accessoryPrice = Convert.ToDecimal(row.Cells["AccessoryPrice"].Value);
                             int requiredAccessoryCount = Convert.ToInt32(row.Cells["Required Accessory Count"].Value);
-
                             if (requiredAccessoryCount > accessoryCount)
                             {
                                 MessageBox.Show($"Not enough stock for accessory '{accessoryName}'. Available count: {accessoryCount}");
