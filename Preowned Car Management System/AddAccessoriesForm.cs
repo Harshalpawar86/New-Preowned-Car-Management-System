@@ -17,10 +17,10 @@ namespace Preowned_Car_Management_System
         public String ImagePath { get; set; }
         public String accessoriesName { get; set; }
         public String accessoriesDate { get; set; }
-        public double accessoriesPrice { get;set; }
-        public long accessoryId { get; set; } 
+        public decimal accessoriesPrice { get; set; }
+        public long accessoryId { get; set; }
 
-        public int accessoriesCount { get;set; }
+        public int accessoriesCount { get; set; }
         bool noException = false;
         bool getImage = false;
 
@@ -28,17 +28,18 @@ namespace Preowned_Car_Management_System
         {
             InitializeComponent();
         }
-        void getData() {
+        void getData()
+        {
 
             accessoriesName = AccessoriesNameTextBox.Text;
             accessoriesDate = dateTimePicker1.Value.Date.ToString("d");
             accessoriesCount = Convert.ToInt32(AccessoriesCountTextBox.Text);
-            accessoriesPrice = Convert.ToDouble(PriceTextBox.Text);
+            accessoriesPrice = Convert.ToDecimal(PriceTextBox.Text);
             accessoryId = Convert.ToInt64(AccessoryIdTextBox.Text);
         }
         private void OKButton_Click(object sender, EventArgs e)
         {
-            
+
 
             noException = false;
             if (ValidateData())
@@ -82,7 +83,7 @@ namespace Preowned_Car_Management_System
 
             return !string.IsNullOrEmpty(AccessoriesNameTextBox.Text) &&
                    int.TryParse(AccessoriesCountTextBox.Text, out _) &&
-                   double.TryParse(PriceTextBox.Text, out _) &&
+                   decimal.TryParse(PriceTextBox.Text, out _) &&
                    !string.IsNullOrEmpty(dateTimePicker1.Text);
         }
         private void photo_button_Click(object sender, EventArgs e)
@@ -97,9 +98,9 @@ namespace Preowned_Car_Management_System
 
                     ImagePath = openFileDialog.FileName;
                     getImage = true;
-                    
-                        OKButton.Focus();
-                    
+
+                    OKButton.Focus();
+
 
                 }
             }
@@ -114,24 +115,25 @@ namespace Preowned_Car_Management_System
         {
             LoadAccessoryId();
         }
-        void LoadAccessoryId() {
+        void LoadAccessoryId()
+        {
 
-            
 
-                long lastaccessoryId = 601;
-                string queryStock = "SELECT MAX(AccessoryId) FROM AccessoryTable";
 
-                using (SqlConnection conn = new SqlConnection(connectionString))
+            long lastaccessoryId = 601;
+            string queryStock = "SELECT MAX(AccessoryId) FROM AccessoryTable";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(queryStock, conn);
+                var result = cmd.ExecuteScalar();
+
+                if (result != DBNull.Value && result != null)
                 {
-                    conn.Open();
-
-                    SqlCommand cmd = new SqlCommand(queryStock, conn);
-                    var result = cmd.ExecuteScalar();
-
-                    if (result != DBNull.Value && result != null)
-                    {
-                        lastaccessoryId = Convert.ToInt64(result) + 1;
-                    }
+                    lastaccessoryId = Convert.ToInt64(result) + 1;
+                }
                 else
                 {
                     string queryHistory = "SELECT MAX(AccessoryId) FROM AccessorySales";
@@ -145,8 +147,8 @@ namespace Preowned_Car_Management_System
                 }
             }
 
-                AccessoryIdTextBox.Text = lastaccessoryId.ToString();
-            
+            AccessoryIdTextBox.Text = lastaccessoryId.ToString();
+
         }
 
         private void AccessoriesNameTextBox_KeyDown(object sender, KeyEventArgs e)

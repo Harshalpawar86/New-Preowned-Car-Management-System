@@ -22,7 +22,7 @@ namespace Preowned_Car_Management_System
         public static String connectionString = "Data Source=LAPTOP-Q6RR7BFH\\SQLEXPRESS08;Initial Catalog=PreOwnedCarManagementDatabase;Integrated Security=True;";
      
 
-       // public static String connectionString = "Data Source=MONU\\SQLEXPRESS;Initial Catalog=PreOwnedCarManagementDatabase;Integrated Security=True;TrustServerCertificate=True";
+       // public static String connectionString = "Data Source=MONU\\SQLEXPRESS;Initial Catalog=PreOwnedCarManagementDatabase;Integrated Security=True;TrustServerCertificate=True;";
         public DashBoardForm(Form loginForm,long id)
         {
             this.loginForm = loginForm;
@@ -30,8 +30,6 @@ namespace Preowned_Car_Management_System
             InitializeComponent();
           
         }
-
-
 
 
         private void DashBoardForm_Load(object sender, EventArgs e)
@@ -294,6 +292,11 @@ namespace Preowned_Car_Management_System
         private void panel17_Click_1(object sender, EventArgs e)
         {
             SeeProfile();
+        }
+
+        private void panel15_Paint_1(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

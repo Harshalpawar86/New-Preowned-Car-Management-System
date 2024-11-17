@@ -333,6 +333,12 @@
     <Compile Include="GetCarIdForm.Designer.cs">
       <DependentUpon>GetCarIdForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="historydemo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>historydemo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="HistoryDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -363,6 +369,18 @@
       <DependentUpon>MaintenanceReports.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="NewStockReports.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewStockReports.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NewTransactionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewTransactionForm.Designer.cs">
+      <DependentUpon>NewTransactionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProfileForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -388,12 +406,6 @@
     </Compile>
     <Compile Include="SelectStaffForm.Designer.cs">
       <DependentUpon>SelectStaffForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SelectTransactionDetailsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SelectTransactionDetailsForm.Designer.cs">
-      <DependentUpon>SelectTransactionDetailsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SellAccessoriesForm.cs">
       <SubType>Form</SubType>
@@ -448,6 +460,12 @@
     </Compile>
     <Compile Include="SupplierForm.Designer.cs">
       <DependentUpon>SupplierForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionReports.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransactionReports.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UpdateAccessoryForm.cs">
       <SubType>Form</SubType>
@@ -533,6 +551,10 @@
     <EmbeddedResource Include="GetCarIdForm.resx">
       <DependentUpon>GetCarIdForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="historydemo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>historydemo.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="HistoryDetailForm.resx">
       <DependentUpon>HistoryDetailForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -548,6 +570,13 @@
     <EmbeddedResource Include="MaintenanceReports.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>MaintenanceReports.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewStockReports.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>NewStockReports.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewTransactionForm.resx">
+      <DependentUpon>NewTransactionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProfileForm.resx">
       <DependentUpon>ProfileForm.cs</DependentUpon>
@@ -570,9 +599,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelectStaffForm.resx">
       <DependentUpon>SelectStaffForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectTransactionDetailsForm.resx">
-      <DependentUpon>SelectTransactionDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SellAccessoriesForm.resx">
       <DependentUpon>SellAccessoriesForm.cs</DependentUpon>
@@ -603,6 +629,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SupplierForm.resx">
       <DependentUpon>SupplierForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransactionReports.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TransactionReports.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateAccessoryForm.resx">
       <DependentUpon>UpdateAccessoryForm.cs</DependentUpon>

@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,13 +18,17 @@ namespace Preowned_Car_Management_System
     public partial class SellCarForm : Form
     {
         String connectionString = DashBoardForm.connectionString;
-        SelectTransactionDetailsForm form = new SelectTransactionDetailsForm();
+        NewTransactionForm form = new NewTransactionForm();
+
         //SellAccessoriesForm accForm = new SellAccessoriesForm();
-
-
-        public SellCarForm()
+        long carId;
+        long supplierId;
+        public SellCarForm(long carId, long supplierId)
         {
             InitializeComponent();
+            this.carId = carId;
+            this.supplierId = supplierId;
+            NewTransactionForm.sId=supplierId;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,8 +36,7 @@ namespace Preowned_Car_Management_System
             
             if (form.ShowDialog()==DialogResult.OK) {
 
-                CarIdTextBox.Text = form.carId.ToString();
-                SupplierIdTextBox.Text = form.supplierId.ToString();
+
                 BuyerIdTextBox.Text = form.buyerId.ToString();
                 PurchaseAmountTextBox.Text = form.amountPaid.ToString();
 
@@ -43,10 +47,25 @@ namespace Preowned_Car_Management_System
         {
             DialogResult = DialogResult.Cancel;
         }
+        void loadData() {
+
+            using (SqlConnection conn = new SqlConnection(connectionString)) {
+
+                String query = "SELECT SupplierId FROM StockTable WHERE CarId=@CarId";
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query,conn)) {
+
+                    cmd.Parameters.AddWithValue("@CarId",carId);
+                    var result = cmd.ExecuteScalar();
+                    SupplierIdTextBox.Text = result + "";
+                }
+            }
+            CarIdTextBox.Text = carId + "";
+        }
 
         private void SellCarForm_Load(object sender, EventArgs e)
         {
-
+            loadData();
         }
         private byte[] ConvertToByteArray(Image image) {
 

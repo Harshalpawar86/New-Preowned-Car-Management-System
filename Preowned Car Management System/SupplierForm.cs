@@ -22,6 +22,7 @@ using PdfiumViewer;
 using Org.BouncyCastle.Utilities.Net;
 
 
+
 namespace Preowned_Car_Management_System
 {
     public partial class SupplierForm : Form
@@ -38,7 +39,7 @@ namespace Preowned_Car_Management_System
             contextMenu.Items.Add("Update Information", null, ContextMenuOption2_Click);
             contextMenu.Items.Add("Delete Supplier", null, ContextMenuOption3_Click);
         }
-        public void AddSupplierInfo(string supplierName, string carName, decimal amountPaid,long carId, long supplierId, long mobileNumber, string address)
+        public void AddSupplierInfo(string supplierName, string carName, decimal amountPaid, long carId, long supplierId, long mobileNumber, string address)
         {
             Panel panel = new Panel();
             panel.Name = "SupplierData";
@@ -51,7 +52,7 @@ namespace Preowned_Car_Management_System
 
             Label label1 = new Label();
             label1.Name = "SupplierNameLabel";
-            label1.Text = "Supplier Name : "+supplierName;
+            label1.Text = "Supplier Name : " + supplierName;
             label1.Location = new Point(12, 5);
             label1.ForeColor = Color.Black;
             label1.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -59,7 +60,7 @@ namespace Preowned_Car_Management_System
 
             Label label2 = new Label();
             label2.Name = "CarNameLabel";
-            label2.Text = "Car Name : "+carName;
+            label2.Text = "Car Name : " + carName;
             label2.Location = new Point(12, label1.Bottom + 5);
             label2.ForeColor = Color.Black;
             label2.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -67,7 +68,7 @@ namespace Preowned_Car_Management_System
 
             Label label3 = new Label();
             label3.Name = "CarIdLabel";
-            label3.Text = "Car Id : "+carId;
+            label3.Text = "Car Id : " + carId;
             label3.Location = new Point(12, label2.Bottom + 5);
             label3.ForeColor = Color.Black;
             label3.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -75,7 +76,7 @@ namespace Preowned_Car_Management_System
 
             Label supplierIdLabel = new Label();
             supplierIdLabel.Name = "SupplierIdLabel";
-            supplierIdLabel.Text = "Supplier Id : "+supplierId;
+            supplierIdLabel.Text = "Supplier Id : " + supplierId;
             supplierIdLabel.Location = new Point(12, label3.Bottom + 5);
             supplierIdLabel.ForeColor = Color.Black;
             supplierIdLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -83,7 +84,7 @@ namespace Preowned_Car_Management_System
 
             Label mobileNumberLabel = new Label();
             mobileNumberLabel.Name = "MobileNumberLabel";
-            mobileNumberLabel.Text = "Mobile Number : "+mobileNumber;
+            mobileNumberLabel.Text = "Mobile Number : " + mobileNumber;
             mobileNumberLabel.Location = new Point(12, supplierIdLabel.Bottom + 5);
             mobileNumberLabel.ForeColor = Color.Black;
             mobileNumberLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -91,7 +92,7 @@ namespace Preowned_Car_Management_System
 
             Label addressLabel = new Label();
             addressLabel.Name = "CarInfoLabel";
-            addressLabel.Text = "Supplier Address : "+address;
+            addressLabel.Text = "Supplier Address : " + address;
             addressLabel.Location = new Point(12, mobileNumberLabel.Bottom + 5);
             addressLabel.ForeColor = Color.Black;
             addressLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -101,7 +102,7 @@ namespace Preowned_Car_Management_System
             addressLabel.MaximumSize = new Size(200, 0);
             addressLabel.TextAlign = ContentAlignment.TopLeft;
             addressLabel.Padding = new Padding(0);
-            
+
             panel.Controls.Add(label1);
             panel.Controls.Add(label2);
             panel.Controls.Add(label3);
@@ -149,6 +150,18 @@ namespace Preowned_Car_Management_System
     MessageBoxButtons.OK,
     MessageBoxIcon.Information,
     MessageBoxDefaultButton.Button1);
+                                var deleteSupplier = supplierDataList.FirstOrDefault(s => s.CarId == carId);
+                                if (deleteSupplier != null)
+                                {
+
+                                    supplierDataList.Remove(deleteSupplier);
+                                }
+                                var carData = StockForm.carDataList.FirstOrDefault(s => s.CarId == carId);
+                                if (carData != null)
+                                {
+
+                                    StockForm.carDataList.Remove(carData);
+                                }
                                 flowLayoutPanel1.Controls.Clear();
                                 LoadExistingData();
                             }
@@ -191,53 +204,53 @@ namespace Preowned_Car_Management_System
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
-                saveFileDialog.Title = "K&P Car Resalers";
-                saveFileDialog.FileName = $"Bill_Sell_{carId}.pdf";
+                    saveFileDialog.Title = "K&P Car Resalers";
+                    saveFileDialog.FileName = $"Bill_Sell_{carId}.pdf";
 
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string filePath = saveFileDialog.FileName;
-
-                    using (PdfWriter writer = new PdfWriter(filePath))
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        using (iText.Kernel.Pdf.PdfDocument pdf = new iText.Kernel.Pdf.PdfDocument(writer))
+                        string filePath = saveFileDialog.FileName;
+
+                        using (PdfWriter writer = new PdfWriter(filePath))
                         {
-                            Document document = new Document(pdf);
+                            using (iText.Kernel.Pdf.PdfDocument pdf = new iText.Kernel.Pdf.PdfDocument(writer))
+                            {
+                                Document document = new Document(pdf);
 
-                            Table logoTitleTable = new Table(2);
-                            logoTitleTable.SetWidth(UnitValue.CreatePercentValue(100));
+                                Table logoTitleTable = new Table(2);
+                                logoTitleTable.SetWidth(UnitValue.CreatePercentValue(100));
 
-                            ImageData logoData = ImageDataFactory.Create("E:\\College Project\\Preowned Car Management System\\Preowned Car Management System\\Resources\\logo_preowned.png");
-                            iText.Layout.Element.Image logo = new iText.Layout.Element.Image(logoData);
+                                ImageData logoData = ImageDataFactory.Create("E:\\College Project\\Preowned Car Management System\\Preowned Car Management System\\Resources\\logo_preowned.png");
+                                iText.Layout.Element.Image logo = new iText.Layout.Element.Image(logoData);
 
-                            logo.SetHeight(100);
-                            logo.SetWidth(100);
+                                logo.SetHeight(100);
+                                logo.SetWidth(100);
 
-                            Cell logoCell = new Cell().Add(logo)
-                                .SetBorder(Border.NO_BORDER)
-                                .SetTextAlignment(TextAlignment.LEFT);
-                            logoTitleTable.AddCell(logoCell);
+                                Cell logoCell = new Cell().Add(logo)
+                                    .SetBorder(Border.NO_BORDER)
+                                    .SetTextAlignment(TextAlignment.LEFT);
+                                logoTitleTable.AddCell(logoCell);
 
-                            Paragraph title = new Paragraph("Invoice")
-                                .SetFontSize(30)
-                                .SetBold()
-                                .SetTextAlignment(TextAlignment.RIGHT);
-                            Cell titleCell = new Cell().Add(title)
-                                .SetBorder(Border.NO_BORDER)
-                                .SetTextAlignment(TextAlignment.RIGHT);
-                            logoTitleTable.AddCell(titleCell);
+                                Paragraph title = new Paragraph("Invoice")
+                                    .SetFontSize(30)
+                                    .SetBold()
+                                    .SetTextAlignment(TextAlignment.RIGHT);
+                                Cell titleCell = new Cell().Add(title)
+                                    .SetBorder(Border.NO_BORDER)
+                                    .SetTextAlignment(TextAlignment.RIGHT);
+                                logoTitleTable.AddCell(titleCell);
 
-                            document.Add(logoTitleTable);
+                                document.Add(logoTitleTable);
 
-                            Table headerTable = new Table(2);
-                            headerTable.SetWidth(UnitValue.CreatePercentValue(100));
+                                Table headerTable = new Table(2);
+                                headerTable.SetWidth(UnitValue.CreatePercentValue(100));
 
-                            string from = "From,";
-                            string systemName = "Pre-Owned Car Management System";
-                            string systemAddress = "ShivajiNagar,Pune";
-                            string systemNumber = "+91 9876543210";
-                            string systemEmail = "kp123@gmail.com";
-                            string invoiceNumber = "#SELL_" + carId;
+                                string from = "From,";
+                                string systemName = "Pre-Owned Car Management System";
+                                string systemAddress = "ShivajiNagar,Pune";
+                                string systemNumber = "+91 9876543210";
+                                string systemEmail = "kp123@gmail.com";
+                                string invoiceNumber = "#SELL_" + carId;
 
 
                                 string customerNamedb = "";
@@ -248,13 +261,15 @@ namespace Preowned_Car_Management_System
                                 String sellingCostdb = "";
                                 try
                                 {
-                                    using (SqlConnection conn = new SqlConnection(connectionString)) {
-                                               
+                                    using (SqlConnection conn = new SqlConnection(connectionString))
+                                    {
+
                                         conn.Open();
                                         String query = "SELECT * FROM SupplierTable WHERE CarId=@CarId";
-                                        using (SqlCommand cmd = new SqlCommand(query, conn)) {
+                                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                                        {
 
-                                            cmd.Parameters.AddWithValue("CarId",carId);
+                                            cmd.Parameters.AddWithValue("CarId", carId);
                                             using (SqlDataReader reader = cmd.ExecuteReader())
                                             {
                                                 if (reader.Read()) // Check if there is any result
@@ -270,105 +285,112 @@ namespace Preowned_Car_Management_System
 
                                         }
                                     }
-                            } catch (Exception exp) {
-   
-                            }
+                                }
+                                catch (Exception exp)
+                                {
 
-                            Paragraph fromDetails = new Paragraph()
-                                .SetTextAlignment(TextAlignment.LEFT)
-                                .SetFontSize(14)
-                                .SetBold()
-                                .Add(from + "\n")
-                                .Add($"{systemName}\n")
-                                .Add($"{systemEmail}\n")
-                                .Add($"{systemNumber}\n")
-                                .Add($"{systemAddress}\n")
-                                .Add("\n")
-                                .Add($"{invoiceNumber}\n")
-                                .Add("\n");
+                                }
 
-                            Cell fromCell = new Cell().Add(fromDetails)
-                                .SetBorder(Border.NO_BORDER);
-                            headerTable.AddCell(fromCell);
+                                Paragraph fromDetails = new Paragraph()
+                                    .SetTextAlignment(TextAlignment.LEFT)
+                                    .SetFontSize(14)
+                                    .SetBold()
+                                    .Add(from + "\n")
+                                    .Add($"{systemName}\n")
+                                    .Add($"{systemEmail}\n")
+                                    .Add($"{systemNumber}\n")
+                                    .Add($"{systemAddress}\n")
+                                    .Add("\n")
+                                    .Add($"{invoiceNumber}\n")
+                                    .Add("\n");
 
-                            string to = "To,";
+                                Cell fromCell = new Cell().Add(fromDetails)
+                                    .SetBorder(Border.NO_BORDER);
+                                headerTable.AddCell(fromCell);
+
+                                string to = "To,";
                                 string customerName = customerNamedb;
                                 string customerId = customerIddb;
                                 string address = addressdb;
                                 string number = numberdb;
 
-                            List<string> addressLines = SplitAddress(address, 25);
+                                List<string> addressLines = SplitAddress(address, 25);
 
-                            Paragraph toDetails = new Paragraph()
-                                .SetTextAlignment(TextAlignment.RIGHT)
-                                .SetFontSize(14)
-                                .SetBold()
-                                .Add(to + "\n")
-                                .Add(customerId + "\n")
-                                .Add(customerName + "\n");
+                                Paragraph toDetails = new Paragraph()
+                                    .SetTextAlignment(TextAlignment.RIGHT)
+                                    .SetFontSize(14)
+                                    .SetBold()
+                                    .Add(to + "\n")
+                                    .Add(customerId + "\n")
+                                    .Add(customerName + "\n");
 
-                            foreach (var line in addressLines)
-                            {
-                                toDetails.Add(line + "\n");
-                            }
+                                foreach (var line in addressLines)
+                                {
+                                    toDetails.Add(line + "\n");
+                                }
 
-                            toDetails.Add(number + "\n");
-                            toDetails.Add("Car Id : "+carId);
+                                toDetails.Add(number + "\n");
+                                toDetails.Add("Car Id : " + carId);
 
-                            Cell toCell = new Cell().Add(toDetails)
-                                .SetBorder(Border.NO_BORDER);
-                            headerTable.AddCell(toCell);
+                                Cell toCell = new Cell().Add(toDetails)
+                                    .SetBorder(Border.NO_BORDER);
+                                headerTable.AddCell(toCell);
 
-                            document.Add(headerTable);
+                                document.Add(headerTable);
 
                                 string carName = carNamedb;
-                            Table carNameTable = new Table(2);
-                            carNameTable.SetWidth(530);
+                                Table carNameTable = new Table(2);
+                                carNameTable.SetWidth(530);
 
                                 String sellingCost = sellingCostdb;
-                            carNameTable.AddHeaderCell("Car Name").SetTextAlignment(TextAlignment.CENTER);
-                            carNameTable.AddHeaderCell("Price").SetTextAlignment(TextAlignment.CENTER);
-                            carNameTable.AddCell(carName).SetTextAlignment(TextAlignment.CENTER);
-                            carNameTable.AddCell($"₹{sellingCost}").SetTextAlignment(TextAlignment.CENTER);
+                                carNameTable.AddHeaderCell("Car Name").SetTextAlignment(TextAlignment.CENTER);
+                                carNameTable.AddHeaderCell("Price").SetTextAlignment(TextAlignment.CENTER);
+                                carNameTable.AddCell(carName).SetTextAlignment(TextAlignment.CENTER);
+                                carNameTable.AddCell($"₹{sellingCost}").SetTextAlignment(TextAlignment.CENTER);
 
-                            document.Add(carNameTable);
+                                document.Add(carNameTable);
 
-                            document.Add(new Paragraph("\nThank you for your business!")
-                                .SetTextAlignment(TextAlignment.CENTER)
-                                .SetMarginTop(20)
-                                .SetFontSize(12));
-                            Paragraph stamp = new Paragraph("Stamp")
-                                .SetFontSize(20)
-                                .SetBold()
-                                .SetTextAlignment(TextAlignment.RIGHT)
-                                .SetFixedPosition(pdf.GetDefaultPageSize().GetWidth() - 120, 30, 100);
-                            document.Add(stamp);
+                                document.Add(new Paragraph("\nThank you for your business!")
+                                    .SetTextAlignment(TextAlignment.CENTER)
+                                    .SetMarginTop(20)
+                                    .SetFontSize(12));
+                                Paragraph stamp = new Paragraph("Stamp")
+                                    .SetFontSize(20)
+                                    .SetBold()
+                                    .SetTextAlignment(TextAlignment.RIGHT)
+                                    .SetFixedPosition(pdf.GetDefaultPageSize().GetWidth() - 120, 30, 100);
+                                document.Add(stamp);
 
 
-                            document.Close();
+                                document.Close();
+                            }
                         }
-                    }
 
-                    MessageBox.Show("Bill generated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Bill generated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
         }
-        }
-        private void ContextMenuOption2_Click(object sender, EventArgs e) {
+        private void ContextMenuOption2_Click(object sender, EventArgs e)
+        {
 
-            if (contextMenu.SourceControl is Panel panel) {
+            if (contextMenu.SourceControl is Panel panel)
+            {
 
                 long carId = (long)panel.Tag;
-                using (SqlConnection conn = new SqlConnection(connectionString)) {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
 
                     String query = "SELECT * FROM SupplierTable WHERE CarId=@CarId";
-                    using (SqlCommand cmd = new SqlCommand(query,conn)) {
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
 
-                        cmd.Parameters.AddWithValue("@CarId",carId);
+                        cmd.Parameters.AddWithValue("@CarId", carId);
                         conn.Open();
                         SqlDataReader reader = cmd.ExecuteReader();
-                        if (reader.Read()) { 
-                        
+                        if (reader.Read())
+                        {
+
                             UpdateSupplierInfoForm updateSupplierInfoForm = new UpdateSupplierInfoForm();
                             updateSupplierInfoForm.supplierName = reader["SupplierName"].ToString();
                             updateSupplierInfoForm.carName = reader["CarName"].ToString();
@@ -377,11 +399,13 @@ namespace Preowned_Car_Management_System
                             updateSupplierInfoForm.amountPaid = Convert.ToDecimal(reader["AmountPaid"]);
                             long supplierId = Convert.ToInt64(reader["SupplierId"]);
 
-                            if (updateSupplierInfoForm.ShowDialog() == DialogResult.OK) {
+                            if (updateSupplierInfoForm.ShowDialog() == DialogResult.OK)
+                            {
 
                                 string updateQuery = "UPDATE SupplierTable SET SupplierName = @SupplierName, CarName = @CarName, SupplierMobileNumber = @SupplierMobileNumber, AmountPaid = @AmountPaid, SupplierAddress = @SupplierAddress WHERE CarId = @CarId";
 
-                                using (SqlCommand upd = new SqlCommand(updateQuery,conn)) {
+                                using (SqlCommand upd = new SqlCommand(updateQuery, conn))
+                                {
 
                                     upd.Parameters.AddWithValue("@SupplierName", updateSupplierInfoForm.supplierName);
                                     upd.Parameters.AddWithValue("@CarName", updateSupplierInfoForm.carName);
@@ -399,20 +423,29 @@ namespace Preowned_Car_Management_System
     MessageBoxButtons.OK,
     MessageBoxIcon.Information,
     MessageBoxDefaultButton.Button1);
-                                        flowLayoutPanel1.Controls.Clear();
-                                        supplierDataList.Add(new SupplierData
+                                        var supplierData = supplierDataList.FirstOrDefault(c => c.SupplierId == supplierId);
+                                        if (supplierData != null)
                                         {
-                                            SupplierName = updateSupplierInfoForm.supplierName,
-                                            CarId = carId,
-                                            SupplierId = supplierId,
-                                            CarName = updateSupplierInfoForm.carName,
-                                            MobileNumber = updateSupplierInfoForm.mobileNumber,
-                                            AmountPaid = updateSupplierInfoForm.amountPaid,
-                                            Address = updateSupplierInfoForm.address
-                                        });
+
+                                            supplierData.SupplierName = updateSupplierInfoForm.supplierName;
+                                            supplierData.CarId = carId;
+                                            supplierData.CarName = updateSupplierInfoForm.carName;
+                                            supplierData.SupplierId = supplierId;
+                                            supplierData.MobileNumber = updateSupplierInfoForm.mobileNumber;
+                                            supplierData.AmountPaid = updateSupplierInfoForm.amountPaid;
+                                            supplierData.Address = updateSupplierInfoForm.address;
+                                        }
+                                        var carNameData = StockForm.carDataList.FirstOrDefault(c => c.CarId == carId);
+                                        if (carNameData != null)
+                                        {
+                                            carNameData.CarName = updateSupplierInfoForm.carName;
+
+                                        }
+                                        flowLayoutPanel1.Controls.Clear();
                                         LoadExistingData();
                                     }
-                                    else {
+                                    else
+                                    {
 
                                         MessageBox.Show("Failed to Update Data", "Error",
     MessageBoxButtons.OK,
@@ -420,21 +453,21 @@ namespace Preowned_Car_Management_System
     MessageBoxDefaultButton.Button1);
                                     }
                                 }
-                                String updateQuery2 = "UPDATE StockTable SET CarName=@CarName";
+                                String updateQuery2 = "UPDATE StockTable SET CarName=@CarName WHERE CarId=@CarId";
                                 using (SqlCommand upd = new SqlCommand(updateQuery2, conn))
                                 {
 
                                     upd.Parameters.AddWithValue("@CarName", updateSupplierInfoForm.carName);
-                                 
+                                    upd.Parameters.AddWithValue("@CarId", carId);
 
                                     reader.Close();
                                     int result = upd.ExecuteNonQuery();
-                                    
+
                                 }
                             }
                         }
                     }
-                    
+
                 }
             }
 
@@ -453,7 +486,7 @@ namespace Preowned_Car_Management_System
 
         private void AddStockButton_Click(object sender, EventArgs e)
         {
-            
+
         }
         //private void LoadExistingData() {
 
@@ -552,7 +585,7 @@ namespace Preowned_Car_Management_System
                     );
                 }
                 // Optionally, show a message or debug log
-                // MessageBox.Show("Retrieved From List");
+                //  MessageBox.Show("Retrieved From List");
                 return;
             }
 
@@ -610,7 +643,7 @@ namespace Preowned_Car_Management_System
 
         private void SupplierForm_Load(object sender, EventArgs e)
         {
-                LoadExistingData();
+            LoadExistingData();
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -665,6 +698,19 @@ namespace Preowned_Car_Management_System
     MessageBoxButtons.OK,
     MessageBoxIcon.Information,
     MessageBoxDefaultButton.Button1);
+                            SupplierData supplierData = new SupplierData
+                            {
+                                SupplierName = supplierName,
+                                CarId = carId,
+                                SupplierId = supplierId,
+                                CarName = carName,
+                                MobileNumber = mobileNumber,
+                                AmountPaid = amountPaid,
+                                Address = address
+                            };
+                            supplierDataList.Add(supplierData);
+                            AddSupplierInfo(supplierName: supplierName, carName: carName, amountPaid: amountPaid, carId: carId, supplierId: supplierId, mobileNumber: mobileNumber, address: address);
+
                         }
                         else
                         {
@@ -677,17 +723,6 @@ namespace Preowned_Car_Management_System
                     }
                 }
 
-                AddSupplierInfo(supplierName: supplierName, carName: carName, amountPaid: amountPaid, carId: carId, supplierId: supplierId, mobileNumber: mobileNumber, address: address);
-                SupplierData supplierData = new SupplierData
-                {
-                    SupplierName = supplierName,
-                    CarId = carId,
-                    SupplierId = supplierId,
-                    CarName = carName,
-                    MobileNumber = mobileNumber,
-                    AmountPaid = amountPaid,
-                    Address = address
-                };
             }
         }
 
@@ -707,7 +742,8 @@ namespace Preowned_Car_Management_System
 
             }
         }
-        void searchSupplier(String name) {
+        void searchSupplier(String name)
+        {
 
             flowLayoutPanel1.Controls.Clear();
             try

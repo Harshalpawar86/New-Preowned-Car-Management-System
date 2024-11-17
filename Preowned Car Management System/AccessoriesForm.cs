@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
@@ -12,6 +14,7 @@ namespace Preowned_Car_Management_System
     {
         ContextMenuStrip contextMenu;
         String connectionString = DashBoardForm.connectionString;
+        static List<AccessoryData> accessoryDataList = null;
         public AccessoriesForm()
         {
             InitializeComponent();
@@ -19,7 +22,7 @@ namespace Preowned_Car_Management_System
             contextMenu.Items.Add("Update Accessory Record", null, ContextMenuOption1_Click);
             contextMenu.Items.Add("Delete Faulty Accessories", null, ContextMenuOption2_Click);
         }
-        public void AddAccessoriesData(long accessoryId,string accessoriesName, string accessoriesDate, Image accessoriesImage,int accessoriesCount,double price)
+        public void AddAccessoriesData(long accessoryId, string accessoriesName, string accessoriesDate, Image accessoriesImage, int accessoriesCount, decimal price)
         {
             Panel panel = new Panel();
             panel.Tag = accessoryId;
@@ -41,7 +44,7 @@ namespace Preowned_Car_Management_System
 
             Label label1 = new Label();
             label1.Name = "AccessoriesNameLabel";
-            label1.Text = "Accessory Name : "+accessoriesName;
+            label1.Text = "Accessory Name : " + accessoriesName;
             label1.Location = new Point(12, pictureBox.Bottom + 5);
             label1.ForeColor = Color.Black;
             label1.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -57,7 +60,7 @@ namespace Preowned_Car_Management_System
 
             Label label2 = new Label();
             label2.Name = "AccessoriesCountLabel";
-            label2.Text = "Accessory Count : "+accessoriesCount;
+            label2.Text = "Accessory Count : " + accessoriesCount;
             label2.Location = new Point(12, idLabel.Bottom + 5);
             if (accessoriesCount == 0)
             {
@@ -83,7 +86,7 @@ namespace Preowned_Car_Management_System
 
             Label label3 = new Label();
             label3.Name = "AccessoriesDateLabel";
-            label3.Text = "Purchase Date : "+accessoriesDate;
+            label3.Text = "Purchase Date : " + accessoriesDate;
             label3.Location = new Point(12, plabel.Bottom + 5);
             label3.ForeColor = Color.Black;
             label3.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -122,11 +125,24 @@ namespace Preowned_Car_Management_System
                 long accessoryId = (long)panel.Tag;
 
                 UpdateAccessoryForm form = new UpdateAccessoryForm(accessoryId);
-                if (form.ShowDialog() == DialogResult.OK) {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
                     MessageBox.Show("Data Updated Successfully..", "Success",
     MessageBoxButtons.OK,
     MessageBoxIcon.Information,
     MessageBoxDefaultButton.Button1);
+                    var accessoryData = accessoryDataList.FirstOrDefault(a => a.AccessoryId == accessoryId);
+                    if (accessoryData != null)
+                    {
+
+                        accessoryData.AccessoryName = form.AccessoryName;
+                        accessoryData.AccessoryId = form.AccessoryId;
+                        accessoryData.AccessoryPrice = form.AccessoryPrice;
+                        accessoryData.AccessoryDate = form.AccessoryDate;
+
+
+                    }
+                    flowLayoutPanel1.Controls.Clear();
                     LoadExistingData();
                 }
             }
@@ -140,7 +156,8 @@ namespace Preowned_Car_Management_System
                 DialogResult result = MessageBox.Show("Are you sure you want to delete this Accessory ?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
 
 
-                if (result == DialogResult.Yes) {
+                if (result == DialogResult.Yes)
+                {
 
                     try
                     {
@@ -156,9 +173,20 @@ namespace Preowned_Car_Management_System
                                 cmd.ExecuteNonQuery();
                             }
                             conn.Close();
+                            MessageBox.Show("Accessory data Deleted Successfully", "Success",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
+                            var accessoryData = accessoryDataList.FirstOrDefault(a => a.AccessoryId == accessoryId);
+                            if (accessoryData != null)
+                            {
+
+                                accessoryDataList.Remove(accessoryData);
+                            }
                         }
                     }
-                    catch (Exception exp) {
+                    catch (Exception exp)
+                    {
 
                         MessageBox.Show("Something went wrong data not deleted", "Error",
     MessageBoxButtons.OK,
@@ -174,7 +202,7 @@ namespace Preowned_Car_Management_System
 
         private void AddStockButton_Click(object sender, EventArgs e)
         {
-           
+
         }
         private byte[] convertImage(String imageString)
         {
@@ -199,44 +227,109 @@ namespace Preowned_Car_Management_System
         }
         private void LoadExistingData()
         {
+            //        try
+            //        {
+            //            flowLayoutPanel1.Controls.Clear();
+            //            using (SqlConnection conn = new SqlConnection(connectionString))
+            //            {
+            //                conn.Open();
+            //                String query = "SELECT * FROM AccessoryTable";
+            //                using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn))
+            //                {
+
+            //                    DataTable dataTable = new DataTable();
+            //                    sqlDataAdapter.Fill(dataTable);
+
+            //                    foreach (DataRow row in dataTable.Rows)
+            //                    {
+
+            //                        string accessoriesName = row["AccessoryName"].ToString();
+            //                        int accessoriesCount = Convert.ToInt32(row["AccessoryCount"]);
+            //                        string accessoriesDate = row["AccessoryDate"].ToString();
+            //                        Image image = convertFromBytes((byte[])row["AccessoryImage"]);
+            //                        double accessoryprice = Convert.ToDouble(row["AccessoryPrice"]);
+            //                        long accessoryId = Convert.ToInt64(row["AccessoryId"]);
+
+            //                        AddAccessoriesData(accessoryId: accessoryId, accessoriesName: accessoriesName, accessoriesDate: accessoriesDate, accessoriesImage: image, accessoriesCount: accessoriesCount, price: accessoryprice);
+
+            //                    }
+            //                }
+            //                conn.Close();
+            //            }
+            //        }
+            //        catch (Exception exp) {
+
+            //            MessageBox.Show("Something went wrong data not loaded", "Error", 
+            //MessageBoxButtons.OK, 
+            //MessageBoxIcon.Error,
+            //MessageBoxDefaultButton.Button1);
+            //            MessageBox.Show(exp.ToString());
+            //        }
+            flowLayoutPanel1.Controls.Clear();
+            if (accessoryDataList != null && accessoryDataList.Count > 0)
+            {
+
+                foreach (var accessoryData in accessoryDataList)
+                {
+
+                    AddAccessoriesData(
+                        accessoryId: accessoryData.AccessoryId,
+                        accessoriesName: accessoryData.AccessoryName,
+                        accessoriesDate: accessoryData.AccessoryDate,
+                        accessoriesImage: accessoryData.AccessoryImage,
+                        accessoriesCount: accessoryData.AccessoryCount,
+                        price: accessoryData.AccessoryPrice
+                    );
+                }
+                // MessageBox.Show("Retrieved from List");
+                return;
+            }
             try
             {
-                flowLayoutPanel1.Controls.Clear();
+
+                accessoryDataList = new List<AccessoryData>();
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    String query = "SELECT * FROM AccessoryTable";
+                    string query = "SELECT * FROM AccessoryTable";  // Modify your query as per requirements
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn))
                     {
-
                         DataTable dataTable = new DataTable();
                         sqlDataAdapter.Fill(dataTable);
 
                         foreach (DataRow row in dataTable.Rows)
                         {
+                            AccessoryData accessoryData = new AccessoryData
+                            {
+                                AccessoryName = row["AccessoryName"].ToString(),
+                                AccessoryCount = Convert.ToInt32(row["AccessoryCount"]),
+                                AccessoryDate = row["AccessoryDate"].ToString(),
+                                AccessoryImage = convertFromBytes((byte[])row["AccessoryImage"]),
+                                AccessoryPrice = Convert.ToDecimal(row["AccessoryPrice"]),
+                                AccessoryId = Convert.ToInt64(row["AccessoryId"])
 
-                            string accessoriesName = row["AccessoryName"].ToString();
-                            int accessoriesCount = Convert.ToInt32(row["AccessoryCount"]);
-                            string accessoriesDate = row["AccessoryDate"].ToString();
-                            Image image = convertFromBytes((byte[])row["AccessoryImage"]);
-                            double accessoryprice = Convert.ToDouble(row["AccessoryPrice"]);
-                            long accessoryId = Convert.ToInt64(row["AccessoryId"]);
+                            };
 
-                            AddAccessoriesData(accessoryId: accessoryId, accessoriesName: accessoriesName, accessoriesDate: accessoriesDate, accessoriesImage: image, accessoriesCount: accessoriesCount, price: accessoryprice);
+                            accessoryDataList.Add(accessoryData);  // Add to the cached list
+
+                            // Add the supplier info to the UI (flowLayoutPanel1)
+                            AddAccessoriesData(
+                                accessoryId: accessoryData.AccessoryId,
+                                accessoriesName: accessoryData.AccessoryName,
+                                accessoriesDate: accessoryData.AccessoryDate,
+                                accessoriesImage: accessoryData.AccessoryImage,
+                                accessoriesCount: accessoryData.AccessoryCount,
+                                price: accessoryData.AccessoryPrice
+                            );
 
                         }
+                        // MessageBox.Show("Retrieved from Database");
                     }
-                    conn.Close();
                 }
-            }
-            catch (Exception exp) {
 
-                MessageBox.Show("Something went wrong data not loaded", "Error", 
-    MessageBoxButtons.OK, 
-    MessageBoxIcon.Error,
-    MessageBoxDefaultButton.Button1);
-                MessageBox.Show(exp.ToString());
+
             }
+            catch (Exception exp) { }
         }
 
         private void AddBuyerButton_Click(object sender, EventArgs e)
@@ -248,7 +341,7 @@ namespace Preowned_Car_Management_System
                 String accessoriesDate = addAccessoriesForm.accessoriesDate;
                 int accessoriesCount = addAccessoriesForm.accessoriesCount;
                 String image = addAccessoriesForm.ImagePath;
-                double accessoryPrice = addAccessoriesForm.accessoriesPrice;
+                decimal accessoryPrice = addAccessoriesForm.accessoriesPrice;
                 long accessoryId = addAccessoriesForm.accessoryId;
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -274,6 +367,28 @@ namespace Preowned_Car_Management_System
     MessageBoxButtons.OK,
     MessageBoxIcon.Information,
     MessageBoxDefaultButton.Button1);
+                            Image image1 = convertFromBytes(convertImage(image));
+                            AccessoryData accessoryData = new AccessoryData
+                            {
+
+                                AccessoryId = accessoryId,
+                                AccessoryPrice = accessoryPrice,
+                                AccessoryCount = accessoriesCount,
+                                AccessoryDate = accessoriesDate,
+                                AccessoryImage = image1,
+                                AccessoryName = accessoriesName
+                            };
+                            accessoryDataList.Add(accessoryData);
+
+                            AddAccessoriesData(
+                                accessoryId: accessoryId,
+                                accessoriesName: accessoriesName,
+                                accessoriesDate: accessoriesDate,
+                                accessoriesImage: image1,
+                                accessoriesCount: accessoriesCount,
+                                price: accessoryPrice
+                            );
+
                         }
                         else
                         {
@@ -337,7 +452,7 @@ namespace Preowned_Car_Management_System
                                 int accessoriesCount = Convert.ToInt32(reader["AccessoryCount"]);
                                 string accessoriesDate = reader["AccessoryDate"].ToString();
                                 Image image = convertFromBytes((byte[])reader["AccessoryImage"]);
-                                double accessoryprice = Convert.ToDouble(reader["AccessoryPrice"]);
+                                decimal accessoryprice = Convert.ToDecimal(reader["AccessoryPrice"]);
                                 long accessoryId = Convert.ToInt64(reader["AccessoryId"]);
                                 AddAccessoriesData(accessoryId: accessoryId, accessoriesName: accessoriesName, accessoriesDate: accessoriesDate, accessoriesImage: image, accessoriesCount: accessoriesCount, price: accessoryprice);
 
@@ -379,5 +494,15 @@ namespace Preowned_Car_Management_System
                 SearchButton.PerformClick();
             }
         }
+    }
+    public class AccessoryData
+    {
+
+        public long AccessoryId { get; set; }
+        public string AccessoryName { get; set; }
+        public int AccessoryCount { get; set; }
+        public string AccessoryDate { get; set; }
+        public Image AccessoryImage { get; set; }
+        public decimal AccessoryPrice { get; set; }
     }
 }

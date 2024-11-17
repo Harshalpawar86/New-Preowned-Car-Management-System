@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
@@ -11,6 +13,7 @@ namespace Preowned_Car_Management_System
     {
         ContextMenuStrip contextMenu;
         string connectionString = DashBoardForm.connectionString;
+        static List<MaintenenceData> maintenenceDataList = null;
 
         public MaintenanceForm()
         {
@@ -19,7 +22,7 @@ namespace Preowned_Car_Management_System
             contextMenu.Items.Add("Delete Maintenance", null, ContextMenuOption2_Click);
         }
 
-        public void AddMaintenanceRecord(string carId, string maintenanceId, string maintenanceCost, string maintenanceDate, string maintenanceInfo)
+        public void AddMaintenanceRecord(long carId, long maintenanceId, decimal maintenanceCost, string maintenanceDate, string maintenanceInfo)
         {
             try
             {
@@ -31,13 +34,13 @@ namespace Preowned_Car_Management_System
                     Margin = new Padding(10),
                     Padding = new Padding(10),
                     BorderStyle = BorderStyle.FixedSingle,
-                    Tag = maintenanceId 
+                    Tag = maintenanceId
                 };
 
                 Label carIdLabel = new Label
                 {
                     Name = "CarIdLabel",
-                    Text = "Car Id : "+carId,
+                    Text = "Car Id : " + carId,
                     Location = new Point(12, 5),
                     ForeColor = Color.Black,
                     Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular),
@@ -47,7 +50,7 @@ namespace Preowned_Car_Management_System
                 Label maintenanceIdLabel = new Label
                 {
                     Name = "MaintenanceIdLabel",
-                    Text = "Maintenance Id : "+maintenanceId,
+                    Text = "Maintenance Id : " + maintenanceId,
                     Location = new Point(12, carIdLabel.Bottom + 5),
                     ForeColor = Color.Black,
                     Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular),
@@ -57,7 +60,7 @@ namespace Preowned_Car_Management_System
                 Label maintenanceDateLabel = new Label
                 {
                     Name = "MaintenanceDateDateLabel",
-                    Text = "Maintenance Date : "+maintenanceDate,
+                    Text = "Maintenance Date : " + maintenanceDate,
                     Location = new Point(12, maintenanceIdLabel.Bottom + 5),
                     ForeColor = Color.Black,
                     Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular),
@@ -67,7 +70,7 @@ namespace Preowned_Car_Management_System
                 Label maintenanceCostLabel = new Label
                 {
                     Name = "MaintenanceCostLabel",
-                    Text = "Maintenance Cost : "+maintenanceCost,
+                    Text = "Maintenance Cost : " + maintenanceCost,
                     Location = new Point(12, maintenanceDateLabel.Bottom + 5),
                     ForeColor = Color.Black,
                     Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular),
@@ -77,7 +80,7 @@ namespace Preowned_Car_Management_System
                 Label maintenanceInfoLabel = new Label
                 {
                     Name = "MaintenanceInfoLabel",
-                    Text = "Maintenance Information : "+maintenanceInfo,
+                    Text = "Maintenance Information : " + maintenanceInfo,
                     Location = new Point(12, maintenanceCostLabel.Bottom + 5),
                     ForeColor = Color.Black,
                     Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular),
@@ -110,7 +113,7 @@ namespace Preowned_Car_Management_System
             }
         }
 
-        
+
 
         private void ContextMenuOption2_Click(object sender, EventArgs e)
         {
@@ -121,7 +124,7 @@ namespace Preowned_Car_Management_System
                 {
                     if (contextMenu.SourceControl is Panel panel)
                     {
-                        string maintenanceId = panel.Tag as string;
+                        long maintenanceId = Convert.ToInt64(panel.Tag);
                         using (SqlConnection conn = new SqlConnection(connectionString))
                         {
                             string query = "DELETE FROM MaintenanceTable WHERE MaintenanceId = @MaintenanceId";
@@ -136,6 +139,12 @@ namespace Preowned_Car_Management_System
     MessageBoxButtons.OK,
     MessageBoxIcon.Information,
     MessageBoxDefaultButton.Button1);
+                                    var maintenenceData = maintenenceDataList.FirstOrDefault(m => m.MaintenanceId == maintenanceId);
+                                    if (maintenenceData != null)
+                                    {
+
+                                        maintenenceDataList.Remove(maintenenceData);
+                                    }
                                     flowLayoutPanel1.Controls.Clear();
                                     LoadExistingData();
                                 }
@@ -156,7 +165,7 @@ namespace Preowned_Car_Management_System
                 MessageBox.Show($"An error occurred while deleting the maintenance record: {ex.Message}");
             }
         }
-        
+
 
         private void Panel_MouseClick(object sender, MouseEventArgs e)
         {
@@ -172,31 +181,97 @@ namespace Preowned_Car_Management_System
 
         private void LoadExistingData()
         {
+            //try
+            //{
+            //    using (SqlConnection conn = new SqlConnection(connectionString))
+            //    {
+            //        string query = "SELECT * FROM MaintenanceTable;";
+            //        using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+            //        {
+            //            DataTable dataTable = new DataTable();
+            //            adapter.Fill(dataTable);
+            //            foreach (DataRow row in dataTable.Rows)
+            //            {
+            //                string carId = row["CarId"].ToString();
+            //                string maintenanceId = row["MaintenanceId"].ToString();
+            //                string maintenanceDate = row["MaintenanceDate"].ToString();
+            //                string maintenanceInfo = row["MaintenanceInfo"].ToString();
+            //                string maintenanceCost = row["MaintenanceCost"].ToString();
+
+            //                AddMaintenanceRecord(carId, maintenanceId, maintenanceCost, maintenanceDate, maintenanceInfo);
+            //            }
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"An error occurred while loading existing data: {ex.Message}");
+            //}
+            flowLayoutPanel1.Controls.Clear();
+            if (maintenenceDataList != null && maintenenceDataList.Count > 0)
+            {
+                foreach (var maintenence in maintenenceDataList)
+                {
+                    AddMaintenanceRecord(
+                        carId: maintenence.CarId,
+                        maintenanceId: maintenence.MaintenanceId,
+                        maintenanceCost: maintenence.MaintenanceCost,
+                        maintenanceDate: maintenence.MaintenanceDate,
+                        maintenanceInfo: maintenence.MaintenanceInfo
+                    );
+
+                }
+                // Optionally, show a message or debug log
+                //  MessageBox.Show("Retrieved From List");
+                return;
+            }
+
+            // Data not cached, so load from the database
             try
             {
+                maintenenceDataList = new List<MaintenenceData>();  // Initialize the list
+
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT * FROM MaintenanceTable;";
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+                    conn.Open();
+                    string query = "SELECT * FROM MaintenanceTable";  // Modify your query as per requirements
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn))
                     {
                         DataTable dataTable = new DataTable();
-                        adapter.Fill(dataTable);
+                        sqlDataAdapter.Fill(dataTable);
+
                         foreach (DataRow row in dataTable.Rows)
                         {
-                            string carId = row["CarId"].ToString();
-                            string maintenanceId = row["MaintenanceId"].ToString();
-                            string maintenanceDate = row["MaintenanceDate"].ToString();
-                            string maintenanceInfo = row["MaintenanceInfo"].ToString();
-                            string maintenanceCost = row["MaintenanceCost"].ToString();
+                            MaintenenceData maintenenceData = new MaintenenceData
+                            {
+                                CarId = Convert.ToInt64(row["CarId"]),
+                                MaintenanceId = Convert.ToInt64(row["MaintenanceId"]),
+                                MaintenanceDate = row["MaintenanceDate"].ToString(),
+                                MaintenanceCost = Convert.ToDecimal(row["MaintenanceCost"]),
+                                MaintenanceInfo = row["MaintenanceInfo"].ToString()
 
-                            AddMaintenanceRecord(carId, maintenanceId, maintenanceCost, maintenanceDate, maintenanceInfo);
+                            };
+
+                            maintenenceDataList.Add(maintenenceData);  // Add to the cached list
+
+                            // Add the supplier info to the UI (flowLayoutPanel1)
+                            AddMaintenanceRecord(
+                                carId: maintenenceData.CarId,
+                                maintenanceId: maintenenceData.MaintenanceId,
+                                maintenanceCost: maintenenceData.MaintenanceCost,
+                                maintenanceDate: maintenenceData.MaintenanceDate,
+                                maintenanceInfo: maintenenceData.MaintenanceInfo
+                            );
+
                         }
                     }
                 }
+                // Optionally, show a message or debug log
+                // MessageBox.Show("Retrieved From Database");
             }
-            catch (Exception ex)
+            catch (Exception exp)
             {
-                MessageBox.Show($"An error occurred while loading existing data: {ex.Message}");
+                MessageBox.Show(exp.ToString());
             }
         }
 
@@ -207,7 +282,7 @@ namespace Preowned_Car_Management_System
 
         private void AddMaintenanceButton_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -236,7 +311,8 @@ namespace Preowned_Car_Management_System
 
             }
         }
-        private void searchId(String name) {
+        private void searchId(String name)
+        {
 
             flowLayoutPanel1.Controls.Clear();
             try
@@ -255,9 +331,9 @@ namespace Preowned_Car_Management_System
                         {
                             while (reader.Read())
                             {
-                                String carId = reader["CarId"].ToString();
-                                String maintenanceId = reader["MaintenanceId"].ToString();
-                                String maintenanceCost = reader["MaintenanceCost"].ToString();
+                                long carId = Convert.ToInt64(reader["CarId"].ToString());
+                                long maintenanceId = Convert.ToInt64(reader["MaintenanceId"].ToString());
+                                decimal maintenanceCost = Convert.ToDecimal(reader["MaintenanceCost"].ToString());
                                 String maintenanceDate = reader["MaintenanceDate"].ToString();
                                 String maintenanceInfo = reader["MaintenanceInfo"].ToString();
 
@@ -320,6 +396,15 @@ namespace Preowned_Car_Management_System
     MessageBoxButtons.OK,
     MessageBoxIcon.Information,
     MessageBoxDefaultButton.Button1);
+                                MaintenenceData maintenenceData = new MaintenenceData
+                                {
+                                    CarId = carId,
+                                    MaintenanceId = maintenanceId,
+                                    MaintenanceDate = maintenanceDate,
+                                    MaintenanceCost = maintenanceCost,
+                                    MaintenanceInfo = maintenanceInfo
+                                };
+                                maintenenceDataList.Add(maintenenceData);
                                 flowLayoutPanel1.Controls.Clear();
                                 LoadExistingData();
                             }
@@ -355,4 +440,14 @@ namespace Preowned_Car_Management_System
             }
         }
     }
+    public class MaintenenceData
+    {
+
+        public long CarId { get; set; }
+        public long MaintenanceId { get; set; }
+        public string MaintenanceDate { get; set; }
+        public string MaintenanceInfo { get; set; }
+        public decimal MaintenanceCost { get; set; }
+    }
+
 }

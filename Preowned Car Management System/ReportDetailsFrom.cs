@@ -27,11 +27,12 @@ namespace Preowned_Car_Management_System
         }
         String GetReportPath() {
             String supplierPath = "E:\\College Project\\Preowned Car Management System\\Preowned Car Management System\\SupplierCrystalReport.rpt";
-            String stockPath = "E:\\College Project\\Preowned Car Management System\\Preowned Car Management System\\StockCrystalReport.rpt";
+            String stockPath = "E:\\College Project\\Preowned Car Management System\\Preowned Car Management System\\NewStockReports.rpt";
             String buyerPath = "E:\\College Project\\Preowned Car Management System\\Preowned Car Management System\\BuyersCrystalReport.rpt";
             String staffPath = "E:\\College Project\\Preowned Car Management System\\Preowned Car Management System\\StaffReports.rpt";
             String maintenancePath = "E:\\College Project\\Preowned Car Management System\\Preowned Car Management System\\MaintenanceReports.rpt";
             String accessoryPath = "E:\\College Project\\Preowned Car Management System\\Preowned Car Management System\\AccessoryReports.rpt";
+            String historyPath = "E:\\College Project\\Preowned Car Management System\\Preowned Car Management System\\TransactionReports.rpt";
             if (reportName == "Supplier") {
 
                 return supplierPath;
@@ -50,6 +51,9 @@ namespace Preowned_Car_Management_System
             } else if (reportName == "Accessory") {
 
                 return accessoryPath;
+            } else if (reportName=="History") {
+
+                return historyPath;
             }
             return "";
         }
@@ -59,7 +63,7 @@ namespace Preowned_Car_Management_System
             
                 reportDocument = new ReportDocument();
                 reportDocument.Load(path);
-                crystalReportViewer1.ReportSource= reportDocument;
+                crystalReportViewer1.ReportSource = reportDocument;
                 crystalReportViewer1.RefreshReport();
             }catch(Exception exp){
 

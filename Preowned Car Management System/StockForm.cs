@@ -16,17 +16,17 @@ namespace Preowned_Car_Management_System
     {
         String connectionString = DashBoardForm.connectionString;
         ContextMenuStrip contextMenu;
-        private static List<CarData> carDataList = null;  // Class-level list to hold the data
+        public static List<CarData> carDataList = null;  // Class-level list to hold the data
 
         public StockForm()
         {
             InitializeComponent();
             contextMenu = new ContextMenuStrip();
-            contextMenu.Items.Add("Add Accessories",null, ContextMenuOption1_Click);
+            contextMenu.Items.Add("Add Accessories", null, ContextMenuOption1_Click);
             contextMenu.Items.Add("Update Information", null, ContextMenuOption2_Click);
             contextMenu.Items.Add("Sell Car", null, ContextMenuOption3_Click);
         }
-        public void AddStockInfo(String carName, long carId,long supplierId ,String carDate, Image image, String ownerType,decimal purchaseAmount, String carInfoLabel,String accCount="N/A")
+        public void AddStockInfo(String carName, long carId, long supplierId, String carDate, Image image, String ownerType, decimal purchaseAmount, String carInfoLabel, String accCount = "N/A")
         {
             Panel panel = new Panel();
             panel.Name = "StockData";
@@ -40,7 +40,7 @@ namespace Preowned_Car_Management_System
             PictureBox pictureBox = new PictureBox();
             pictureBox.Padding = new Padding(10);
             pictureBox.Name = "StockImage";
-            pictureBox.Size = new Size(200,150);
+            pictureBox.Size = new Size(200, 150);
             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
 
@@ -48,15 +48,15 @@ namespace Preowned_Car_Management_System
 
             Label CarNameLabel = new Label();
             CarNameLabel.Name = "CarNameLabel";
-            CarNameLabel   .Text = "Car Name : "+carName;
-            CarNameLabel.Location = new Point(12, pictureBox.Bottom+5);
+            CarNameLabel.Text = "Car Name : " + carName;
+            CarNameLabel.Location = new Point(12, pictureBox.Bottom + 5);
             CarNameLabel.ForeColor = Color.Black;
             CarNameLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
             CarNameLabel.AutoSize = true;
 
             Label CarIdLabel = new Label();
             CarIdLabel.Name = "CarIdLabel";
-            CarIdLabel.Text = "Car Id : "+carId;
+            CarIdLabel.Text = "Car Id : " + carId;
             CarIdLabel.Location = new Point(12, CarNameLabel.Bottom + 5);
             CarIdLabel.ForeColor = Color.Black;
             CarIdLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -64,7 +64,7 @@ namespace Preowned_Car_Management_System
 
             Label SupplierIdLabel = new Label();
             SupplierIdLabel.Name = "SupplierIdLabel";
-            SupplierIdLabel.Text = "Supplier Id : "+supplierId;
+            SupplierIdLabel.Text = "Supplier Id : " + supplierId;
             SupplierIdLabel.Location = new Point(12, CarIdLabel.Bottom + 5);
             SupplierIdLabel.ForeColor = Color.Black;
             SupplierIdLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -72,7 +72,7 @@ namespace Preowned_Car_Management_System
 
             Label CarDateLabel = new Label();
             CarDateLabel.Name = "CarDateLabel";
-            CarDateLabel.Text = "Purchased Date : "+carDate;
+            CarDateLabel.Text = "Purchased Date : " + carDate;
             CarDateLabel.Location = new Point(12, SupplierIdLabel.Bottom + 5);
             CarDateLabel.ForeColor = Color.Black;
             CarDateLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -80,7 +80,7 @@ namespace Preowned_Car_Management_System
 
             Label OwnerTypeLabel = new Label();
             OwnerTypeLabel.Name = "OwnerTypeLabel";
-            OwnerTypeLabel.Text = "Owner Type : "+ownerType;
+            OwnerTypeLabel.Text = "Owner Type : " + ownerType;
             OwnerTypeLabel.Location = new Point(12, CarDateLabel.Bottom + 5);
             OwnerTypeLabel.ForeColor = Color.Black;
             OwnerTypeLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -88,7 +88,7 @@ namespace Preowned_Car_Management_System
 
             Label PurchaseAmountLabel = new Label();
             PurchaseAmountLabel.Name = "PurchaseAmountLabel";
-            PurchaseAmountLabel.Text = "Purchase Amount : "+purchaseAmount;
+            PurchaseAmountLabel.Text = "Purchase Amount : " + purchaseAmount;
             PurchaseAmountLabel.Location = new Point(12, OwnerTypeLabel.Bottom + 5);
             PurchaseAmountLabel.ForeColor = Color.Black;
             PurchaseAmountLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -107,14 +107,14 @@ namespace Preowned_Car_Management_System
 
             Label vehicleInfoLabel = new Label();
             vehicleInfoLabel.Name = "CarInfoLabel";
-            vehicleInfoLabel.Text = "Car Information : "+carInfoLabel;
+            vehicleInfoLabel.Text = "Car Information : " + carInfoLabel;
             vehicleInfoLabel.Location = new Point(12, AccessoryDetailLabel.Bottom + 5);
             vehicleInfoLabel.ForeColor = Color.Black;
             vehicleInfoLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
             vehicleInfoLabel.AutoSize = true;
-            vehicleInfoLabel.Width = 200; 
-            vehicleInfoLabel.Height = 100; 
-            vehicleInfoLabel.MaximumSize = new Size(200, 0); 
+            vehicleInfoLabel.Width = 200;
+            vehicleInfoLabel.Height = 100;
+            vehicleInfoLabel.MaximumSize = new Size(200, 0);
             vehicleInfoLabel.TextAlign = ContentAlignment.TopLeft;
             vehicleInfoLabel.Padding = new Padding(0);
 
@@ -150,7 +150,7 @@ namespace Preowned_Car_Management_System
                 Panel panel = sender as Panel;
                 if (panel != null)
                 {
-                    contextMenu.Show(panel, e.Location); 
+                    contextMenu.Show(panel, e.Location);
                 }
             }
         }
@@ -166,7 +166,8 @@ namespace Preowned_Car_Management_System
                 long carId = (long)panel.Tag;
 
                 SellAccessoriesForm form = new SellAccessoriesForm(carId);
-                if (form.ShowDialog() == DialogResult.OK) {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
                     UpdateAccessoryCount(carId);
                     LoadExistingData();
                 }
@@ -202,100 +203,270 @@ namespace Preowned_Car_Management_System
             }
         }
 
-        private void ContextMenuOption3_Click(object sender, EventArgs e) {
+        private void ContextMenuOption3_Click(object sender, EventArgs e)
+        {
 
-            SellCarForm form = new SellCarForm();
-            if (form.ShowDialog() == DialogResult.OK)
+            //SellCarForm form = new SellCarForm();
+            //if (form.ShowDialog() == DialogResult.OK)
+            //{
+            //    flowLayoutPanel1.Controls.Clear();
+            //    LoadExistingData();
+            //}
+            if (contextMenu.SourceControl is Panel panel)
             {
-                flowLayoutPanel1.Controls.Clear();
-                LoadExistingData();
+                try
+                {
+                    long supplierId = 0;
+                    // Get the CarId from the panel's Tag
+                    long carId = (long)panel.Tag;
+                    using (SqlConnection conn = new SqlConnection(connectionString)) {
+
+                        String query = "SELECT SupplierId FROM StockTable WHERE CarId=@CarId";
+                        conn.Open();
+                        using (SqlCommand cmd = new SqlCommand(query,conn)) {
+
+                            cmd.Parameters.AddWithValue("@CarId",carId);
+                            var result = cmd.ExecuteScalar();
+                            supplierId = (long)result;
+                        }
+                    }
+
+                        // Show the SellCarForm
+                        SellCarForm form = new SellCarForm(carId, supplierId);
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        // Remove the car from the list
+                        var carData = carDataList.FirstOrDefault(c => c.CarId == carId);
+                        if (carData != null)
+                        {
+                            carDataList.Remove(carData);
+                        }
+
+                        // Refresh the UI
+                        flowLayoutPanel1.Controls.Clear();
+                        LoadExistingData();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
         }
         private void ContextMenuOption2_Click(object sender, EventArgs e)
         {
-
             if (contextMenu.SourceControl is Panel panel)
             {
-                
-                try { 
-                long carId = (long)panel.Tag;
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                try
                 {
-                    conn.Open();
+                    long carId = (long)panel.Tag;
 
-                    String query = "SELECT * FROM StockTable WHERE CarId = @CarId ";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    using (SqlConnection conn = new SqlConnection(connectionString))
                     {
+                        conn.Open();
 
-                        cmd.Parameters.AddWithValue("@CarId", carId);
-                        SqlDataReader reader = cmd.ExecuteReader();
-                        if (reader.Read())
+                        // Begin a transaction for consistent updates
+                        using (SqlTransaction transaction = conn.BeginTransaction())
                         {
-                            UpdateStockForm updateStockForm = new UpdateStockForm();
-                            updateStockForm.carName = reader["CarName"].ToString();
-                            updateStockForm.purchaseAmount = Convert.ToInt64(reader["PurchaseAmount"]);
-                            updateStockForm.image = convertFromBytes((byte[])reader["CarImage"]);
-                            updateStockForm.ownerType = reader["OwnerType"].ToString();
-                            updateStockForm.carInfo = reader["CarInfo"].ToString();
-
-                            if (updateStockForm.ShowDialog() == DialogResult.OK)
+                            try
                             {
-
-                                String updateQuery = "UPDATE StockTable SET CarName = @CarName, PurchaseAmount = @PurchaseAmount, CarImage = @CarImage, OwnerType = @OwnerType, CarInfo = @CarInfo WHERE CarId = @CarId";
-                                using (SqlCommand upd = new SqlCommand(updateQuery, conn))
+                                // Fetch data from StockTable
+                                string query = "SELECT * FROM StockTable WHERE CarId = @CarId";
+                                using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
                                 {
+                                    cmd.Parameters.AddWithValue("@CarId", carId);
+                                    SqlDataReader reader = cmd.ExecuteReader();
 
-                                    upd.Parameters.AddWithValue("@CarName", updateStockForm.carName);
-                                    upd.Parameters.AddWithValue("@PurchaseAmount", updateStockForm.purchaseAmount);
-                                    upd.Parameters.AddWithValue("@CarImage", convertToByte(updateStockForm.image));
-                                    upd.Parameters.AddWithValue("@OwnerType", updateStockForm.ownerType);
-                                    upd.Parameters.AddWithValue("@CarInfo", updateStockForm.carInfo);
-                                    upd.Parameters.AddWithValue("@CarId", carId);
-
-                                    reader.Close();
-                                    int result = upd.ExecuteNonQuery();
-                                    if (result > 0)
+                                    if (reader.Read())
                                     {
+                                        UpdateStockForm updateStockForm = new UpdateStockForm
+                                        {
+                                            carName = reader["CarName"].ToString(),
+                                            purchaseAmount = Convert.ToInt64(reader["PurchaseAmount"]),
+                                            image = convertFromBytes((byte[])reader["CarImage"]),
+                                            ownerType = reader["OwnerType"].ToString(),
+                                            carInfo = reader["CarInfo"].ToString()
+                                        };
 
-                                        MessageBox.Show("Stock Data Updated Successfully", "Success",
-    MessageBoxButtons.OK,
-    MessageBoxIcon.Information,
-    MessageBoxDefaultButton.Button1);
-                                        flowLayoutPanel1.Controls.Clear();
-                                        LoadExistingData();
+                                        reader.Close();
+
+                                        if (updateStockForm.ShowDialog() == DialogResult.OK)
+                                        {
+                                            // Update StockTable
+                                            string updateQuery = @"
+                                    UPDATE StockTable
+                                    SET CarName = @CarName,
+                                        PurchaseAmount = @PurchaseAmount,
+                                        CarImage = @CarImage,
+                                        OwnerType = @OwnerType,
+                                        CarInfo = @CarInfo
+                                    WHERE CarId = @CarId";
+
+                                            using (SqlCommand updateCmd = new SqlCommand(updateQuery, conn, transaction))
+                                            {
+                                                updateCmd.Parameters.AddWithValue("@CarName", updateStockForm.carName);
+                                                updateCmd.Parameters.AddWithValue("@PurchaseAmount", updateStockForm.purchaseAmount);
+                                                updateCmd.Parameters.AddWithValue("@CarImage", convertToByte(updateStockForm.image));
+                                                updateCmd.Parameters.AddWithValue("@OwnerType", updateStockForm.ownerType);
+                                                updateCmd.Parameters.AddWithValue("@CarInfo", updateStockForm.carInfo);
+                                                updateCmd.Parameters.AddWithValue("@CarId", carId);
+
+                                                int stockResult = updateCmd.ExecuteNonQuery();
+                                                if (stockResult == 0)
+                                                {
+                                                    throw new Exception("No rows updated in StockTable.");
+                                                }
+                                            }
+
+                                            // Update SupplierTable
+                                            string updateQuery2 = @"
+                                    UPDATE SupplierTable
+                                    SET CarName = @CarName
+                                    WHERE CarId = @CarId";
+
+                                            using (SqlCommand updateCmd2 = new SqlCommand(updateQuery2, conn, transaction))
+                                            {
+                                                updateCmd2.Parameters.AddWithValue("@CarName", updateStockForm.carName);
+                                                updateCmd2.Parameters.AddWithValue("@CarId", carId);
+
+                                                int supplierResult = updateCmd2.ExecuteNonQuery();
+                                                if (supplierResult == 0)
+                                                {
+                                                    throw new Exception("No rows updated in SupplierTable.");
+                                                }
+                                            }
+
+                                            // Commit the transaction if all updates succeed
+                                            transaction.Commit();
+
+                                            MessageBox.Show("Stock and Supplier data updated successfully!", "Success",
+                                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                            // Update carDataList
+                                            var carData = carDataList.FirstOrDefault(c => c.CarId == carId);
+                                            if (carData != null)
+                                            {
+                                                carData.CarName = updateStockForm.carName;
+                                                carData.PurchaseAmount = updateStockForm.purchaseAmount;
+                                                carData.CarImage = updateStockForm.image;
+                                                carData.OwnerType = updateStockForm.ownerType;
+                                                carData.CarInfo = updateStockForm.carInfo;
+                                            }
+
+                                            // Refresh the FlowLayoutPanel
+                                            flowLayoutPanel1.Controls.Clear();
+                                            LoadExistingData();
+                                        }
                                     }
                                     else
                                     {
-
-                                        MessageBox.Show("Failed to Update Data", "Error",
-    MessageBoxButtons.OK,
-    MessageBoxIcon.Error,
-    MessageBoxDefaultButton.Button1);
+                                        reader.Close();
+                                        throw new Exception("CarId not found in StockTable.");
                                     }
-
                                 }
-                                String updateQuery2 = "UPDATE SupplierTable SET CarName = @CarName WHERE CarId=@CarId";
-                                using (SqlCommand upd = new SqlCommand(updateQuery2, conn))
-                                {
-
-                                    upd.Parameters.AddWithValue("@CarName", updateStockForm.carName);
-                                    upd.Parameters.AddWithValue("@CarId", carId);
-                                    reader.Close();
-                                    int result = upd.ExecuteNonQuery();
-
-
-                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                // Roll back the transaction in case of an error
+                                transaction.Rollback();
+                                MessageBox.Show($"Error: {ex.Message}", "Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
-                    conn.Close();
                 }
-            }catch(Exception exp){
+                catch (Exception exp)
+                {
+                    MessageBox.Show($"Unexpected error: {exp.Message}", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
 
-                MessageBox.Show(exp.Message);
-            }
-            }
+
+            //        if (contextMenu.SourceControl is Panel panel)
+            //        {
+
+            //            try { 
+            //            long carId = (long)panel.Tag;
+            //            using (SqlConnection conn = new SqlConnection(connectionString))
+            //            {
+            //                conn.Open();
+
+            //                String query = "SELECT * FROM StockTable WHERE CarId = @CarId ";
+            //                using (SqlCommand cmd = new SqlCommand(query, conn))
+            //                {
+
+            //                    cmd.Parameters.AddWithValue("@CarId", carId);
+            //                    SqlDataReader reader = cmd.ExecuteReader();
+            //                    if (reader.Read())
+            //                    {
+            //                        UpdateStockForm updateStockForm = new UpdateStockForm();
+            //                        updateStockForm.carName = reader["CarName"].ToString();
+            //                        updateStockForm.purchaseAmount = Convert.ToInt64(reader["PurchaseAmount"]);
+            //                        updateStockForm.image = convertFromBytes((byte[])reader["CarImage"]);
+            //                        updateStockForm.ownerType = reader["OwnerType"].ToString();
+            //                        updateStockForm.carInfo = reader["CarInfo"].ToString();
+
+            //                        if (updateStockForm.ShowDialog() == DialogResult.OK)
+            //                        {
+
+            //                            String updateQuery = "UPDATE StockTable SET CarName = @CarName, PurchaseAmount = @PurchaseAmount, CarImage = @CarImage, OwnerType = @OwnerType, CarInfo = @CarInfo WHERE CarId = @CarId";
+
+            //                            using (SqlCommand upd = new SqlCommand(updateQuery, conn))
+            //                            {
+
+            //                                upd.Parameters.AddWithValue("@CarName", updateStockForm.carName);
+            //                                upd.Parameters.AddWithValue("@PurchaseAmount", updateStockForm.purchaseAmount);
+            //                                upd.Parameters.AddWithValue("@CarImage", convertToByte(updateStockForm.image));
+            //                                upd.Parameters.AddWithValue("@OwnerType", updateStockForm.ownerType);
+            //                                upd.Parameters.AddWithValue("@CarInfo", updateStockForm.carInfo);
+            //                                upd.Parameters.AddWithValue("@CarId", carId);
+
+            //                                reader.Close();
+            //                                int result = upd.ExecuteNonQuery();
+            //                                if (result > 0)
+            //                                {
+
+            //                                    MessageBox.Show("Stock Data Updated Successfully", "Success",
+            //MessageBoxButtons.OK,
+            //MessageBoxIcon.Information,
+            //MessageBoxDefaultButton.Button1);
+            //                                    flowLayoutPanel1.Controls.Clear();
+            //                                    LoadExistingData();
+            //                                }
+            //                                else
+            //                                {
+
+            //                                    MessageBox.Show("Failed to Update Data", "Error",
+            //MessageBoxButtons.OK,
+            //MessageBoxIcon.Error,
+            //MessageBoxDefaultButton.Button1);
+            //                                }
+
+            //                            }
+            //                            String updateQuery2 = "UPDATE SupplierTable SET CarName = @CarName WHERE CarId=@CarId";
+            //                            using (SqlCommand upd = new SqlCommand(updateQuery2, conn))
+            //                            {
+
+            //                                upd.Parameters.AddWithValue("@CarName", updateStockForm.carName);
+            //                                upd.Parameters.AddWithValue("@CarId", carId);
+            //                                reader.Close();
+            //                                int result = upd.ExecuteNonQuery();
+
+
+            //                            }
+            //                        }
+            //                    }
+            //                }
+            //                conn.Close();
+            //            }
+            //        }catch(Exception exp){
+
+            //            MessageBox.Show(exp.Message);
+            //        }
+            //        }
 
         }
 
@@ -380,12 +551,12 @@ namespace Preowned_Car_Management_System
                         carDate: car.CarDate,
                         image: car.CarImage,
                         ownerType: car.OwnerType,
-                        carInfoLabel: car.CarInfo,  
+                        carInfoLabel: car.CarInfo,
                         purchaseAmount: car.PurchaseAmount,
                         accCount: car.AccCount
                     );
                 }
-             //   MessageBox.Show("Retrieved From List");
+                // MessageBox.Show("Retrieved From List");
                 return;
             }
 
@@ -393,7 +564,7 @@ namespace Preowned_Car_Management_System
             try
             {
                 carDataList = new List<CarData>();  // Initialize the list
-                
+
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
@@ -453,7 +624,7 @@ namespace Preowned_Car_Management_System
                         }
                     }
                 }
-               // MessageBox.Show("Retrieved From Database");
+                // MessageBox.Show("Retrieved From Database");
             }
             catch (Exception exp)
             {
@@ -461,14 +632,17 @@ namespace Preowned_Car_Management_System
             }
         }
 
-        private Image convertFromBytes(byte[] imageBytes) {
+        private Image convertFromBytes(byte[] imageBytes)
+        {
 
-            using (MemoryStream ms = new MemoryStream(imageBytes)) {
+            using (MemoryStream ms = new MemoryStream(imageBytes))
+            {
 
                 return Image.FromStream(ms);
             }
         }
-        private byte[] convertToByte(Image image) {
+        private byte[] convertToByte(Image image)
+        {
 
             using (MemoryStream ms = new MemoryStream())
             {
@@ -477,19 +651,21 @@ namespace Preowned_Car_Management_System
                 return ms.ToArray();
             }
         }
-        private byte[] convertImage(String imageString) {
+        private byte[] convertImage(String imageString)
+        {
 
             Image image = Image.FromFile(imageString);
 
-            using (MemoryStream ms = new MemoryStream()) {
+            using (MemoryStream ms = new MemoryStream())
+            {
 
-                image.Save(ms,image.RawFormat);
+                image.Save(ms, image.RawFormat);
                 return ms.ToArray();
             }
         }
         private void AddStockButton_Click(object sender, EventArgs e)
         {
-            
+
 
         }
 
@@ -561,7 +737,7 @@ namespace Preowned_Car_Management_System
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
@@ -571,7 +747,7 @@ namespace Preowned_Car_Management_System
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -592,45 +768,48 @@ namespace Preowned_Car_Management_System
                 string ownerType = addStockPopupForm.ownerType;
                 string carInfoLabel = addStockPopupForm.carInfo;
                 decimal purchaseAmount = addStockPopupForm.purchaseAmount;
-                MessageBox.Show(""+carId);
-                try { 
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                MessageBox.Show("" + carId);
+                try
                 {
-
-                    String query = "INSERT INTO StockTable(CarName,CarId,SupplierId,PurchaseAmount,carImage,PurchaseDate,OwnerType,CarInfo) VALUES (@CarName,@CarId,@SupplierId,@PurchaseAmount,@carImage,@PurchaseDate,@OwnerType,@CarInfo);";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    using (SqlConnection conn = new SqlConnection(connectionString))
                     {
 
-                        cmd.Parameters.AddWithValue("@CarName", carName);
-                        cmd.Parameters.AddWithValue("@CarId", carId);
-                        cmd.Parameters.AddWithValue("@SupplierId", supplierId);
-                        cmd.Parameters.AddWithValue("@PurchaseAmount", purchaseAmount);
-                        cmd.Parameters.AddWithValue("@carImage", convertImage(imageString));
-                        cmd.Parameters.AddWithValue("@PurchaseDate", carDate);
-                        cmd.Parameters.AddWithValue("@OwnerType", ownerType);
-                        cmd.Parameters.AddWithValue("@CarInfo", carInfoLabel);
-
-                        conn.Open();
-                        int result = cmd.ExecuteNonQuery();
-                        if (result > 0)
+                        String query = "INSERT INTO StockTable(CarName,CarId,SupplierId,PurchaseAmount,carImage,PurchaseDate,OwnerType,CarInfo) VALUES (@CarName,@CarId,@SupplierId,@PurchaseAmount,@carImage,@PurchaseDate,@OwnerType,@CarInfo);";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
 
-                            MessageBox.Show("Data Inserted Successfully", "Success",
-    MessageBoxButtons.OK,
-    MessageBoxIcon.Information,
-    MessageBoxDefaultButton.Button1);
-                        }
-                        else
-                        {
+                            cmd.Parameters.AddWithValue("@CarName", carName);
+                            cmd.Parameters.AddWithValue("@CarId", carId);
+                            cmd.Parameters.AddWithValue("@SupplierId", supplierId);
+                            cmd.Parameters.AddWithValue("@PurchaseAmount", purchaseAmount);
+                            cmd.Parameters.AddWithValue("@carImage", convertImage(imageString));
+                            cmd.Parameters.AddWithValue("@PurchaseDate", carDate);
+                            cmd.Parameters.AddWithValue("@OwnerType", ownerType);
+                            cmd.Parameters.AddWithValue("@CarInfo", carInfoLabel);
 
-                            MessageBox.Show("Data Insertion Failed", "Error",
-    MessageBoxButtons.OK,
-    MessageBoxIcon.Error,
-    MessageBoxDefaultButton.Button1);
+                            conn.Open();
+                            int result = cmd.ExecuteNonQuery();
+                            if (result > 0)
+                            {
+
+                                MessageBox.Show("Data Inserted Successfully", "Success",
+        MessageBoxButtons.OK,
+        MessageBoxIcon.Information,
+        MessageBoxDefaultButton.Button1);
+                            }
+                            else
+                            {
+
+                                MessageBox.Show("Data Insertion Failed", "Error",
+        MessageBoxButtons.OK,
+        MessageBoxIcon.Error,
+        MessageBoxDefaultButton.Button1);
+                            }
                         }
                     }
                 }
-            }catch(Exception exp){
+                catch (Exception exp)
+                {
                     MessageBox.Show(exp.Message);
                 }
 

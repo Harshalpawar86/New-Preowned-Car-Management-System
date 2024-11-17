@@ -15,6 +15,7 @@ namespace Preowned_Car_Management_System
     {
         String connectionString = DashBoardForm.connectionString;
         ContextMenuStrip contextMenu;
+        static List<BuyerData> buyerDataList = null;
         public BuyersForm()
         {
             InitializeComponent();
@@ -35,7 +36,7 @@ namespace Preowned_Car_Management_System
 
             Label label1 = new Label();
             label1.Name = "BuyerNameLabel";
-            label1.Text = "Buyer Name : "+buyerName;
+            label1.Text = "Buyer Name : " + buyerName;
             label1.Location = new Point(12, 5);
             label1.ForeColor = Color.Black;
             label1.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -43,7 +44,7 @@ namespace Preowned_Car_Management_System
 
             Label label2 = new Label();
             label2.Name = "CarNameLabel";
-            label2.Text = "Car Name : "+carName;
+            label2.Text = "Car Name : " + carName;
             label2.Location = new Point(12, label1.Bottom + 5);
             label2.ForeColor = Color.Black;
             label2.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -51,7 +52,7 @@ namespace Preowned_Car_Management_System
 
             Label label3 = new Label();
             label3.Name = "BuyerIdLabel";
-            label3.Text = "Buyer Id : "+buyerId.ToString();
+            label3.Text = "Buyer Id : " + buyerId.ToString();
             label3.Location = new Point(12, label2.Bottom + 5);
             label3.ForeColor = Color.Black;
             label3.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -59,7 +60,7 @@ namespace Preowned_Car_Management_System
 
             Label mobileNumberLabel = new Label();
             mobileNumberLabel.Name = "MobileNumberLabel";
-            mobileNumberLabel.Text = "Mobile Number : "+mobileNumber.ToString();
+            mobileNumberLabel.Text = "Mobile Number : " + mobileNumber.ToString();
             mobileNumberLabel.Location = new Point(12, label3.Bottom + 5);
             mobileNumberLabel.ForeColor = Color.Black;
             mobileNumberLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -67,7 +68,7 @@ namespace Preowned_Car_Management_System
 
             Label addressLabel = new Label();
             addressLabel.Name = "CarInfoLabel";
-            addressLabel.Text = "Address : "+address;
+            addressLabel.Text = "Address : " + address;
             addressLabel.Location = new Point(12, mobileNumberLabel.Bottom + 5);
             addressLabel.ForeColor = Color.Black;
             addressLabel.Font = new Font(this.Font.FontFamily, 9.5f, FontStyle.Regular);
@@ -108,7 +109,7 @@ namespace Preowned_Car_Management_System
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
 
-                        cmd.Parameters.AddWithValue("@BuyerId",buyerId );
+                        cmd.Parameters.AddWithValue("@BuyerId", buyerId);
                         conn.Open();
                         SqlDataReader reader = cmd.ExecuteReader();
                         if (reader.Read())
@@ -142,6 +143,16 @@ namespace Preowned_Car_Management_System
     MessageBoxButtons.OK,
     MessageBoxIcon.Information,
     MessageBoxDefaultButton.Button1);
+                                        var buyerData = buyerDataList.FirstOrDefault(b => b.BuyerId == buyerId);
+                                        if (buyerData != null)
+                                        {
+
+                                            buyerData.BuyerName = updateBuyerDetailsForm.buyerName;
+                                            buyerData.BuyerId = buyerId;
+                                            buyerData.MobileNumber = updateBuyerDetailsForm.mobileNumber;
+                                            buyerData.Address = updateBuyerDetailsForm.address;
+                                            buyerData.CarName = updateBuyerDetailsForm.carName;
+                                        }
                                         flowLayoutPanel1.Controls.Clear();
                                         LoadExistingData();
                                     }
@@ -190,6 +201,12 @@ namespace Preowned_Car_Management_System
     MessageBoxButtons.OK,
     MessageBoxIcon.Information,
     MessageBoxDefaultButton.Button1);
+                                var buyerData = buyerDataList.FirstOrDefault(b => b.BuyerId == buyerId);
+                                if (buyerData != null)
+                                {
+
+                                    buyerDataList.Remove(buyerData);
+                                }
                                 flowLayoutPanel1.Controls.Clear();
                                 LoadExistingData();
                             }
@@ -213,30 +230,96 @@ namespace Preowned_Car_Management_System
 
         private void AddStockButton_Click(object sender, EventArgs e)
         {
-            
+
         }
-        private void LoadExistingData() {
+        private void LoadExistingData()
+        {
 
-            using (SqlConnection conn = new SqlConnection(connectionString)) {
+            //using (SqlConnection conn = new SqlConnection(connectionString)) {
 
-                String query = "SELECT * FROM BuyerTable";
-                using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query,conn)) { 
-                
-                    DataTable dataTable = new DataTable();
-                    sqlDataAdapter.Fill(dataTable);
+            //    String query = "SELECT * FROM BuyerTable";
+            //    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query,conn)) { 
 
-                    foreach (DataRow row in dataTable.Rows) { 
-                    
-                        String buyerName = row["BuyerName"].ToString();
-                        long buyerId = Convert.ToInt64(row["BuyerId"]);
-                        String carName = row["CarName"].ToString();
-                        long mobileNumber = Convert.ToInt64(row["BuyerMobileNumber"]);
-                        String address = row["BuyerAddress"].ToString();
+            //        DataTable dataTable = new DataTable();
+            //        sqlDataAdapter.Fill(dataTable);
 
-                        AddBuyerInfoFun(buyerName: buyerName, carName: carName, buyerId: buyerId, mobileNumber: mobileNumber, address: address);
+            //        foreach (DataRow row in dataTable.Rows) { 
 
+            //            String buyerName = row["BuyerName"].ToString();
+            //            long buyerId = Convert.ToInt64(row["BuyerId"]);
+            //            String carName = row["CarName"].ToString();
+            //            long mobileNumber = Convert.ToInt64(row["BuyerMobileNumber"]);
+            //            String address = row["BuyerAddress"].ToString();
+
+            //            AddBuyerInfoFun(buyerName: buyerName, carName: carName, buyerId: buyerId, mobileNumber: mobileNumber, address: address);
+
+            //        }
+            //    }
+            //}
+            flowLayoutPanel1.Controls.Clear();
+
+            // If data is already cached in the list, use it
+            if (buyerDataList != null && buyerDataList.Count > 0)
+            {
+                foreach (var buyer in buyerDataList)
+                {
+                    AddBuyerInfoFun(
+                        buyerName: buyer.BuyerName,
+                        carName: buyer.CarName,
+                        buyerId: buyer.BuyerId,
+                        mobileNumber: buyer.MobileNumber,
+                        address: buyer.Address);
+
+                }
+                // Optionally, show a message or debug log
+                //  MessageBox.Show("Retrieved From List");
+                return;
+            }
+
+            // Data not cached, so load from the database
+            try
+            {
+                buyerDataList = new List<BuyerData>();  // Initialize the list
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM BuyerTable";  // Modify your query as per requirements
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn))
+                    {
+                        DataTable dataTable = new DataTable();
+                        sqlDataAdapter.Fill(dataTable);
+
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            BuyerData buyerData = new BuyerData
+                            {
+                                BuyerName = row["BuyerName"].ToString(),
+                                BuyerId = Convert.ToInt64(row["BuyerId"]),
+                                CarName = row["CarName"].ToString(),
+                                MobileNumber = Convert.ToInt64(row["BuyerMobileNumber"]),
+                                Address = row["BuyerAddress"].ToString()
+
+                            };
+
+                            buyerDataList.Add(buyerData);  // Add to the cached list
+
+                            // Add the supplier info to the UI (flowLayoutPanel1)
+                            AddBuyerInfoFun(
+                                buyerName: buyerData.BuyerName,
+                                carName: buyerData.CarName,
+                                buyerId: buyerData.BuyerId,
+                                mobileNumber: buyerData.MobileNumber,
+                                address: buyerData.Address);
+                        }
                     }
                 }
+                // Optionally, show a message or debug log
+                // MessageBox.Show("Retrieved From Database");
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.ToString());
             }
         }
 
@@ -245,7 +328,8 @@ namespace Preowned_Car_Management_System
             LoadExistingData();
         }
 
-        private void searchBuyer(String name) {
+        private void searchBuyer(String name)
+        {
 
             flowLayoutPanel1.Controls.Clear();
             try
@@ -338,6 +422,23 @@ namespace Preowned_Car_Management_System
     MessageBoxButtons.OK,
     MessageBoxIcon.Information,
     MessageBoxDefaultButton.Button1);
+                            BuyerData buyerData = new BuyerData
+                            {
+
+                                BuyerName = buyerName,
+                                BuyerId = buyerId,
+                                Address = address,
+                                CarName = carName,
+                                MobileNumber = mobileNumber,
+                            };
+                            buyerDataList.Add(buyerData);
+                            AddBuyerInfoFun(
+                                buyerName: buyerName,
+                                carName: carName,
+                                buyerId: buyerId,
+                                mobileNumber: mobileNumber,
+                                address: address);
+
                         }
                         else
                         {
@@ -350,7 +451,6 @@ namespace Preowned_Car_Management_System
                     }
                 }
 
-                AddBuyerInfoFun(buyerName: buyerName, carName: carName, buyerId: buyerId, mobileNumber: mobileNumber, address: address);
             }
         }
 
@@ -371,4 +471,13 @@ namespace Preowned_Car_Management_System
             }
         }
     }
+    public class BuyerData
+    {
+        public string BuyerName { get; set; }
+        public long BuyerId { get; set; }
+        public string CarName { get; set; }
+        public long MobileNumber { get; set; }
+        public string Address { get; set; }
+    }
+
 }

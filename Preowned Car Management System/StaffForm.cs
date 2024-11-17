@@ -17,13 +17,15 @@ namespace Preowned_Car_Management_System
     {
         ContextMenuStrip contextMenu;
         String connectionString = DashBoardForm.connectionString;
+        static List<StaffData> staffDataList = null;
         public StaffForm()
         {
             InitializeComponent();
             contextMenu = new ContextMenuStrip();
             contextMenu.Items.Add("Update Information", null, ContextMenuOption1_Click);
+            contextMenu.Items.Add("Delete Informartion", null, ContextMenuOption2_Click);
         }
-        public void AddStaffInfoFun(String userName,String staffName, String staffBOD,long staffId, String staffGender, long staffMobileNumber, String staffEmail, String staffAddress, String jobDesignation)
+        public void AddStaffInfoFun(String userName, String staffName, String staffBOD, long staffId, String staffGender, long staffMobileNumber, String staffEmail, String staffAddress, String jobDesignation)
         {
             Panel panel = new Panel();
             panel.Name = "StaffData";
@@ -45,7 +47,7 @@ namespace Preowned_Car_Management_System
             Label StaffNameLabel = new Label();
             StaffNameLabel.Name = "StaffNameLabel";
             StaffNameLabel.Text = "Name : " + staffName;
-            StaffNameLabel.Location = new Point(12, StaffUserNameLabel.Bottom+2);
+            StaffNameLabel.Location = new Point(12, StaffUserNameLabel.Bottom + 2);
             StaffNameLabel.ForeColor = Color.Black;
             StaffNameLabel.Font = new Font("Modern No. 20", 9.5f, FontStyle.Regular);
             StaffNameLabel.AutoSize = true;
@@ -53,7 +55,7 @@ namespace Preowned_Car_Management_System
             Label StaffIdLabel = new Label();
             StaffIdLabel.Name = "StaffIdLabel";
             StaffIdLabel.Text = "Staff Id : " + staffId.ToString();
-            StaffIdLabel.Location = new Point(12,StaffNameLabel.Bottom + 2);
+            StaffIdLabel.Location = new Point(12, StaffNameLabel.Bottom + 2);
             StaffIdLabel.ForeColor = Color.Black;
             StaffIdLabel.Font = new Font("Modern No. 20", 9.5f, FontStyle.Regular);
             StaffIdLabel.AutoSize = true;
@@ -140,6 +142,52 @@ namespace Preowned_Car_Management_System
                 }
             }
         }
+        private void ContextMenuOption2_Click(object sender, EventArgs e)
+        {
+
+            if (contextMenu.SourceControl is Panel panel)
+            {
+
+                long staffId = (long)panel.Tag;
+                DialogResult dresult = MessageBox.Show("Are you sure you want to delete this Staff Information ?",
+                                                          "Confirm Deletion",
+                                                          MessageBoxButtons.OKCancel,
+                                                          MessageBoxIcon.Warning);
+                if (dresult == DialogResult.OK)
+                {
+
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+
+                        String query = "DELETE FROM StaffTable WHERE StaffId=@StaffId";
+                        conn.Open();
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+
+                            cmd.Parameters.AddWithValue("@StaffId", staffId);
+                            int result = cmd.ExecuteNonQuery();
+                            if (result > 0)
+                            {
+
+                                MessageBox.Show("Staff Data Deleted", "Deletion Successful",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1);
+                                var staffData = staffDataList.FirstOrDefault(s => s.StaffId == staffId);
+                                if (staffData != null)
+                                {
+
+                                    staffDataList.Remove(staffData);
+                                }
+                                flowLayoutPanel1.Controls.Clear();
+                                LoadExistingData();
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
 
         private void ContextMenuOption1_Click(object sender, EventArgs e)
         {
@@ -164,7 +212,7 @@ namespace Preowned_Car_Management_System
                             updateStaffForm.staffName = reader["StaffName"].ToString();
                             updateStaffForm.staffMobileNumber = Convert.ToInt64(reader["StaffNumber"]);
                             updateStaffForm.staffEmail = reader["StaffMail"].ToString();
-                            updateStaffForm.staffAddress= reader["StaffAddress"].ToString();
+                            updateStaffForm.staffAddress = reader["StaffAddress"].ToString();
                             updateStaffForm.staffJob = reader["StaffJob"].ToString();
                             updateStaffForm.password = reader["StaffPassword"].ToString();
 
@@ -179,9 +227,9 @@ namespace Preowned_Car_Management_System
                                     upd.Parameters.AddWithValue("@StaffNumber", updateStaffForm.staffMobileNumber);
                                     upd.Parameters.AddWithValue("@StaffMail", updateStaffForm.staffEmail);
                                     upd.Parameters.AddWithValue("@StaffAddress", updateStaffForm.staffAddress);
-                                    upd.Parameters.AddWithValue("StaffJob",updateStaffForm.staffJob);
+                                    upd.Parameters.AddWithValue("StaffJob", updateStaffForm.staffJob);
                                     upd.Parameters.AddWithValue("@StaffId", staffId);
-                                    upd.Parameters.AddWithValue("@StaffPassword",updateStaffForm.password);
+                                    upd.Parameters.AddWithValue("@StaffPassword", updateStaffForm.password);
 
                                     reader.Close();
                                     int result = upd.ExecuteNonQuery();
@@ -192,6 +240,17 @@ namespace Preowned_Car_Management_System
     MessageBoxButtons.OK,
     MessageBoxIcon.Information,
     MessageBoxDefaultButton.Button1);
+                                        var staffData = staffDataList.FirstOrDefault(s => s.StaffId == staffId);
+                                        if (staffData != null)
+                                        {
+
+                                            staffData.StaffName = updateStaffForm.staffName;
+                                            staffData.StaffNumber = updateStaffForm.staffMobileNumber;
+                                            staffData.StaffMail = updateStaffForm.staffEmail;
+                                            staffData.StaffAddress = updateStaffForm.staffAddress;
+                                            staffData.StaffJob = updateStaffForm.staffJob;
+                                            staffData.StaffId = staffId;
+                                        }
                                         flowLayoutPanel1.Controls.Clear();
                                         LoadExistingData();
                                     }
@@ -215,41 +274,117 @@ namespace Preowned_Car_Management_System
 
         private void LoadExistingData()
         {
-            
+
+            //using (SqlConnection conn = new SqlConnection(connectionString))
+            //{
+            //    string query = "select * from StaffTable;";
+            //    using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+            //    {
+            //        DataTable datatable = new DataTable();
+            //        adapter.Fill(datatable);
+            //        foreach (DataRow row in datatable.Rows)
+
+            //        {
+
+            //            String staffName = row["StaffName"].ToString();
+            //            String staffGender = row["StaffGender"].ToString();
+            //            String staffDOB = row["StaffDOB"].ToString();
+            //            long staffNumber = Convert.ToInt64(row["StaffNumber"]);
+            //            String staffMail = row["StaffMail"].ToString();
+            //            String staffAddress = row["StaffAddress"].ToString();
+            //            String staffJob = row["StaffJob"].ToString();
+            //            long staffId = Convert.ToInt64(row["StaffId"]);
+            //            String userName = row["StaffUserName"].ToString();
+
+
+
+
+            //            AddStaffInfoFun(userName:userName,staffName: staffName, staffBOD: staffDOB, staffGender: staffGender, staffMobileNumber: staffNumber,staffId:staffId, staffEmail: staffMail, staffAddress: staffAddress, jobDesignation: staffJob); 
+            //            }
+            //        }
+            //}
+            flowLayoutPanel1.Controls.Clear();
+            if (staffDataList != null && staffDataList.Count > 0)
+            {
+
+                foreach (var staffData in staffDataList)
+                {
+
+                    AddStaffInfoFun(
+                        userName: staffData.UserName,
+                        staffName: staffData.StaffName,
+                        staffBOD: staffData.StaffDOB,
+                        staffGender: staffData.StaffGender,
+                        staffMobileNumber: staffData.StaffNumber,
+                        staffId: staffData.StaffId,
+                        staffEmail: staffData.StaffMail,
+                        staffAddress: staffData.StaffAddress,
+                        jobDesignation: staffData.StaffJob
+                    );
+
+                }
+                //   MessageBox.Show("Retrieved From List");
+                return;
+            }
+            try
+            {
+
+                staffDataList = new List<StaffData>();
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string query = "select * from StaffTable;";
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+                    conn.Open();
+                    string query = "SELECT * FROM StaffTable";  // Modify your query as per requirements
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn))
                     {
-                        DataTable datatable = new DataTable();
-                        adapter.Fill(datatable);
-                        foreach (DataRow row in datatable.Rows)
+                        DataTable dataTable = new DataTable();
+                        sqlDataAdapter.Fill(dataTable);
 
+                        foreach (DataRow row in dataTable.Rows)
                         {
+                            StaffData staffData = new StaffData
+                            {
+                                StaffName = row["StaffName"].ToString(),
+                                StaffGender = row["StaffGender"].ToString(),
+                                StaffDOB = row["StaffDOB"].ToString(),
+                                StaffNumber = Convert.ToInt64(row["StaffNumber"]),
+                                StaffMail = row["StaffMail"].ToString(),
+                                StaffAddress = row["StaffAddress"].ToString(),
+                                StaffJob = row["StaffJob"].ToString(),
+                                StaffId = Convert.ToInt64(row["StaffId"]),
+                                UserName = row["StaffUserName"].ToString()
+                            };
 
-                            String staffName = row["StaffName"].ToString();
-                            String staffGender = row["StaffGender"].ToString();
-                            String staffDOB = row["StaffDOB"].ToString();
-                            long staffNumber = Convert.ToInt64(row["StaffNumber"]);
-                            String staffMail = row["StaffMail"].ToString();
-                            String staffAddress = row["StaffAddress"].ToString();
-                            String staffJob = row["StaffJob"].ToString();
-                            long staffId = Convert.ToInt64(row["StaffId"]);
-                        String userName = row["StaffUserName"].ToString();
-
-                            AddStaffInfoFun(userName:userName,staffName: staffName, staffBOD: staffDOB, staffGender: staffGender, staffMobileNumber: staffNumber,staffId:staffId, staffEmail: staffMail, staffAddress: staffAddress, jobDesignation: staffJob); 
-                            }
+                            staffDataList.Add(staffData);  // Add to the cached list
+                            AddStaffInfoFun(
+                                userName: staffData.UserName,
+                                staffName: staffData.StaffName,
+                                staffBOD: staffData.StaffDOB,
+                                staffGender: staffData.StaffGender,
+                                staffMobileNumber: staffData.StaffNumber,
+                                staffId: staffData.StaffId,
+                                staffEmail: staffData.StaffMail,
+                                staffAddress: staffData.StaffAddress,
+                                jobDesignation: staffData.StaffJob
+                            );
                         }
+                        //  MessageBox.Show("Retrieved From Database");
+                    }
                 }
-            
-  
+            }
+            catch (Exception exp)
+            {
+
+                MessageBox.Show(exp.ToString());
+            }
+
+
         }
 
 
         private void AddStaffButton_Click(object sender, EventArgs e)
         {
 
-            
+
 
 
         }
@@ -261,7 +396,8 @@ namespace Preowned_Car_Management_System
 
         private void StaffForm_Load(object sender, EventArgs e)
         {
-            LoadExistingData();        }
+            LoadExistingData();
+        }
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
@@ -279,7 +415,8 @@ namespace Preowned_Car_Management_System
 
             }
         }
-        private void searchStaff(String name) {
+        private void searchStaff(String name)
+        {
 
             flowLayoutPanel1.Controls.Clear();
             try
@@ -308,7 +445,7 @@ namespace Preowned_Car_Management_System
                                 String jobDesignation = reader["StaffJob"].ToString();
                                 String userName = reader["StaffUserName"].ToString();
 
-                                AddStaffInfoFun(userName:userName,staffName: staffName, staffBOD: staffBOD, staffGender: staffGender, staffMobileNumber: staffMobileNumber, staffId: staffId, staffEmail: staffEmail, staffAddress: staffAddress, jobDesignation: jobDesignation);
+                                AddStaffInfoFun(userName: userName, staffName: staffName, staffBOD: staffBOD, staffGender: staffGender, staffMobileNumber: staffMobileNumber, staffId: staffId, staffEmail: staffEmail, staffAddress: staffAddress, jobDesignation: jobDesignation);
 
                             }
                         }
@@ -368,7 +505,7 @@ namespace Preowned_Car_Management_System
                             cmd.Parameters.AddWithValue("@StaffJob", StaffJob);
                             cmd.Parameters.AddWithValue("@StaffId", staffId);
                             cmd.Parameters.AddWithValue("@StaffUserName", userName);
-                            cmd.Parameters.AddWithValue("@StaffPassword",password);
+                            cmd.Parameters.AddWithValue("@StaffPassword", password);
 
                             conn.Open();
                             int result = cmd.ExecuteNonQuery();
@@ -378,6 +515,21 @@ namespace Preowned_Car_Management_System
     MessageBoxButtons.OK,
     MessageBoxIcon.Information,
     MessageBoxDefaultButton.Button1);
+                                StaffData staffData = new StaffData
+                                {
+
+                                    StaffName = StaffName,
+                                    StaffGender = StaffGender,
+                                    StaffDOB = StaffDOB,
+                                    StaffNumber = StaffNumber,
+                                    StaffMail = StaffMail,
+                                    StaffAddress = StaffAddress,
+                                    StaffJob = StaffJob,
+                                    StaffId = staffId,
+                                    UserName = userName,
+
+                                };
+                                staffDataList.Add(staffData);
                                 flowLayoutPanel1.Controls.Clear();
                                 LoadExistingData();
                             }
@@ -412,5 +564,18 @@ namespace Preowned_Car_Management_System
                 SearchButton.PerformClick();
             }
         }
+    }
+    public class StaffData
+    {
+
+        public long StaffId { get; set; }
+        public string StaffName { get; set; }
+        public string StaffGender { get; set; }
+        public string StaffDOB { get; set; }
+        public long StaffNumber { get; set; }
+        public string StaffMail { get; set; }
+        public string StaffAddress { get; set; }
+        public string StaffJob { get; set; }
+        public string UserName { get; set; }
     }
 }

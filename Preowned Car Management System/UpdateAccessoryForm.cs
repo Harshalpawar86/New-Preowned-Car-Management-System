@@ -13,6 +13,13 @@ namespace Preowned_Car_Management_System
 {
     public partial class UpdateAccessoryForm : Form
     {
+        public long AccessoryId { get; set; }
+        public string AccessoryName { get; set; }
+        public int AccessoryCount { get; set; }
+        public string AccessoryDate { get; set; }
+        public Image AccessoryImage { get; set; }
+        public decimal AccessoryPrice { get; set; }
+
         String connectionString = DashBoardForm.connectionString;
         long accessoryId;
         public UpdateAccessoryForm(long accessoryId)
@@ -53,21 +60,29 @@ namespace Preowned_Car_Management_System
                         cmd.ExecuteNonQuery();
 
                     }
+                    AccessoryName = accessoryName;
+                    AccessoryCount = accessoryCount;
+                    AccessoryDate = date;
+                    AccessoryPrice = accessoryPrice;
+                    AccessoryId = accessoryId;
+
                 }
                 exception = false;
             }
-            catch (Exception exp) {
+            catch (Exception exp)
+            {
 
-                
+
                 MessageBox.Show(exp.ToString());
                 exception = true;
             }
             if (exception == false)
             {
-                
+
                 DialogResult = DialogResult.OK;
             }
-            else {
+            else
+            {
 
                 MessageBox.Show("Please Enter Valid Data", "Error",
     MessageBoxButtons.OK,
@@ -82,7 +97,7 @@ namespace Preowned_Car_Management_System
         }
         private void LoadExistingData()
         {
-            
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = "SELECT AccessoryName, AccessoryCount, AccessoryPrice FROM AccessoryTable WHERE AccessoryId = @AccessoryId";
@@ -96,7 +111,7 @@ namespace Preowned_Car_Management_System
                         conn.Open();
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read()) 
+                            if (reader.Read())
                             {
                                 AccessoryNameTextBox.Text = reader["AccessoryName"].ToString();
                                 AccessoryCountTextBox.Text = reader["AccessoryCount"].ToString();

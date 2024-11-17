@@ -201,11 +201,11 @@
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(255)))));
-            this.button1.Location = new System.Drawing.Point(782, 226);
+            this.button1.Location = new System.Drawing.Point(776, 336);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(166, 42);
+            this.button1.Size = new System.Drawing.Size(179, 47);
             this.button1.TabIndex = 78;
-            this.button1.Text = "Select Details";
+            this.button1.Text = "Select Buyer";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

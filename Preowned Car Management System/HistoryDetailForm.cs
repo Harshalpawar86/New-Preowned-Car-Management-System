@@ -764,5 +764,10 @@ namespace Preowned_Car_Management_System
         {
             generateSellerBill();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

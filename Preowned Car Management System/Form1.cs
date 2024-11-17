@@ -117,6 +117,11 @@ namespace Preowned_Car_Management_System
                 LoginButton.PerformClick(); 
             }
         }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 
 }

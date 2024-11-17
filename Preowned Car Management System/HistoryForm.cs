@@ -16,6 +16,7 @@ namespace Preowned_Car_Management_System
     public partial class HistoryForm : Form
     {
         String connectionString = DashBoardForm.connectionString;
+        static List<HistoryData> historyDataList = null;
         ContextMenuStrip contextMenu;
 
         public HistoryForm()
@@ -24,12 +25,13 @@ namespace Preowned_Car_Management_System
             contextMenu = new ContextMenuStrip();
             contextMenu.Items.Add("Get Detailed Information", null, ContextMenuOption1_Click);
         }
-        private void ContextMenuOption1_Click(object sender, EventArgs e) {
+        private void ContextMenuOption1_Click(object sender, EventArgs e)
+        {
 
             if (contextMenu.SourceControl is Panel panel)
             {
                 long carId = (long)panel.Tag;
-                MessageBox.Show(""+carId);
+                MessageBox.Show("" + carId);
                 HistoryDetailForm detailForm = new HistoryDetailForm(carId);
                 detailForm.ShowDialog();
             }
@@ -39,7 +41,8 @@ namespace Preowned_Car_Management_System
         {
             LoadHistory();
         }
-        private void AddHistoryData(long carId, Image image,String carName,String supplierName,String buyerName) {
+        private void AddHistoryData(long carId, Image image, String carName, String supplierName, String buyerName)
+        {
 
             Panel panel = new Panel();
             panel.Name = "HistoryData";
@@ -111,28 +114,92 @@ namespace Preowned_Car_Management_System
                 }
             }
         }
-        private void LoadHistory() {
+        private void LoadHistory()
+        {
 
-            using (SqlConnection conn = new SqlConnection(connectionString)) {
+            //using (SqlConnection conn = new SqlConnection(connectionString)) {
 
-                conn.Open();
-                String query = "SELECT * FROM HistoryTable";
-                using (SqlCommand cmd = new SqlCommand(query, conn)) {
-                    using (SqlDataReader reader = cmd.ExecuteReader()) {
+            //    conn.Open();
+            //    String query = "SELECT * FROM HistoryTable";
+            //    using (SqlCommand cmd = new SqlCommand(query, conn)) {
+            //        using (SqlDataReader reader = cmd.ExecuteReader()) {
 
-                        while (reader.Read()) {
-                            Image image = ConvertToImage((byte[])reader["CarImage"]);
-                            long carId = Convert.ToInt64(reader["CarId"]);
-                            String carName = reader["CarName"].ToString();
-                            String supplierName = reader["SupplierName"].ToString();
-                            String buyerName = reader["BuyerName"].ToString();
-                            MessageBox.Show("" + carId)
-    ;                        AddHistoryData(image: image, carId:carId,carName:carName,supplierName:supplierName,buyerName:buyerName);
-                        
+            //            while (reader.Read()) {
+            //                Image image = ConvertToImage((byte[])reader["CarImage"]);
+            //                long carId = Convert.ToInt64(reader["CarId"]);
+            //                String carName = reader["CarName"].ToString();
+            //                String supplierName = reader["SupplierName"].ToString();
+            //                String buyerName = reader["BuyerName"].ToString();
+            //               AddHistoryData(image: image, carId:carId,carName:carName,supplierName:supplierName,buyerName:buyerName);
+
+            //            }
+            //        }
+            //    }
+            //    conn.Close();
+            //}
+            flowLayoutPanel1.Controls.Clear();
+            if (historyDataList != null && historyDataList.Count > 0)
+            {
+
+                foreach (var historyData in historyDataList)
+                {
+
+                    AddHistoryData(
+                        image: historyData.CarImage,
+                        carId: historyData.CarId,
+                        carName: historyData.CarName,
+                        supplierName: historyData.SupplierName,
+                        buyerName: historyData.BuyerName
+                    );
+
+                }
+                //   MessageBox.Show("Retrieved From List");
+                return;
+            }
+            try
+            {
+
+                historyDataList = new List<HistoryData>();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM HistoryTable";  // Modify your query as per requirements
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, conn))
+                    {
+                        DataTable dataTable = new DataTable();
+                        sqlDataAdapter.Fill(dataTable);
+
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            HistoryData historyData = new HistoryData
+                            {
+                                CarImage = ConvertToImage((byte[])row["CarImage"]),
+                                CarId = Convert.ToInt64(row["CarId"]),
+                                CarName = row["CarName"].ToString(),
+                                SupplierName = row["SupplierName"].ToString(),
+                                BuyerName = row["BuyerName"].ToString(),
+                            };
+
+                            historyDataList.Add(historyData);  // Add to the cached list
+
+                            // Add the supplier info to the UI (flowLayoutPanel1)
+                            AddHistoryData(
+                                image: historyData.CarImage,
+                                carId: historyData.CarId,
+                                carName: historyData.CarName,
+                                supplierName: historyData.SupplierName,
+                                buyerName: historyData.BuyerName
+                            );
+
                         }
+                        //  MessageBox.Show("Retrieved From Database");
                     }
                 }
-                conn.Close();
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.ToString());
+
             }
         }
 
@@ -144,7 +211,7 @@ namespace Preowned_Car_Management_System
                 return Image.FromStream(ms);
             }
         }
-      
+
         void searchCar(string carName)
         {
             flowLayoutPanel1.Controls.Clear();
@@ -196,7 +263,7 @@ namespace Preowned_Car_Management_System
             }
         }
 
-     
+
 
         private void ClearButton_Click_1(object sender, EventArgs e)
         {
@@ -224,10 +291,19 @@ namespace Preowned_Car_Management_System
 
         private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter){
+            if (e.KeyCode == Keys.Enter)
+            {
                 e.SuppressKeyPress = true;
                 SearchButton.PerformClick();
             }
         }
+    }
+    public class HistoryData
+    {
+        public long CarId { get; set; }
+        public string CarName { get; set; }
+        public string SupplierName { get; set; }
+        public string BuyerName { get; set; }
+        public Image CarImage { get; set; }
     }
 }

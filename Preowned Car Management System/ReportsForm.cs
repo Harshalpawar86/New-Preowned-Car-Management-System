@@ -77,7 +77,8 @@ namespace Preowned_Car_Management_System
 
         private void HistoryReportsButton_Click(object sender, EventArgs e)
         {
-
+            ReportDetailsFrom form = new ReportDetailsFrom("History");
+            form.Show();
         }
     }
 }
