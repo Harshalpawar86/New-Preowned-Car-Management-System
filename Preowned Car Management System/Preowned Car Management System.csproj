@@ -327,6 +327,12 @@
     <Compile Include="GetCarIdForm.Designer.cs">
       <DependentUpon>GetCarIdForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="historydemo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>historydemo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="HistoryDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -522,6 +528,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GetCarIdForm.resx">
       <DependentUpon>GetCarIdForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="historydemo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>historydemo.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="HistoryDetailForm.resx">
       <DependentUpon>HistoryDetailForm.cs</DependentUpon>

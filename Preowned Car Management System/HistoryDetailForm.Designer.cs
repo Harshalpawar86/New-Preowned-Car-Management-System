@@ -130,6 +130,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(753, 176);
             this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // Seller_Bill_Button
             // 
